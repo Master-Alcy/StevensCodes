@@ -6,3 +6,8 @@
 [user]
 	name = Master-Alcy
 	email = aijingxuan92@gmail.com
+[winUpdater]
+	recentlySeenVersion = 2.19.0.windows.1
+[alias]
+	s = status
+	ca = 'git commit -m'
