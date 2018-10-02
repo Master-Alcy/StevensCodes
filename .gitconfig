@@ -13,3 +13,6 @@
 	ca = commit -m
 [gui]
 	recentrepo = C:/Users/aijin/github/git
+[github]
+	user = Master-Alcy
+	token = b39993783302075fb80357b01cd371955f9303f3
