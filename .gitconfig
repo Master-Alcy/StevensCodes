@@ -10,4 +10,6 @@
 	recentlySeenVersion = 2.19.0.windows.1
 [alias]
 	s = status
-	ca = 'git commit -m'
+	ca = commit -m
+[gui]
+	recentrepo = C:/Users/aijin/github/git
