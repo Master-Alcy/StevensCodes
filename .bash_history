@@ -359,3 +359,115 @@ git push
 git push --set-upstream origin master
 git s
 git pull
+git s
+git add .
+git branch
+git ca "Start on Lab5"
+git push
+git push --set-upstream origin master
+git pull
+git s
+git clone git@github.com:Master-Alcy/StevensCodes.git
+git clone git@github.com:Master-Alcy/StevensCodes.git
+git branch
+cd StevensCodes
+cd cs-546-2018f
+ls
+git checkout -b onLab5
+git branch
+git push origin onLab5
+ls
+cd lab5
+touch readme.md
+nano readme
+ls
+cd ..
+ls
+git s
+git add .
+git ca "add1"
+git push
+git push --set-upstream origin onLab5
+cd lab5
+nano readme
+nano README.md
+nano README.md
+ls
+git s
+git add .
+git ca "add1.1"
+git push
+git s
+git add .
+git s
+ls
+nano README.md
+git ca "add 1.1"
+git branch
+cd ..
+git add .
+git s
+git cd ..
+cd ..
+git s
+cd ..
+cd ..
+git s
+cd git
+ls
+git s
+git add .
+git s
+git push
+git branch
+git push --set-upstream origin master
+git branch
+cd StevensCodes
+git branch
+git s
+git add .
+git push
+git pull
+git checkout master
+git branch
+git checkout master
+git add .
+git ca "add1"
+git push
+git s
+git checkout master
+git pull
+git branch
+git branch -D onLab5
+git branch
+git s
+git push
+git add .
+git ca "lab5 description"
+git push
+git s
+git add .
+git ca "First file finished"
+git push
+git add .
+git s
+git ca "moved docs"
+git push
+git s
+git add .
+git ca "2nd finished"
+git push
+git s
+git add .
+git ca "lab5 finished"
+git push
+git push
+git s
+git add .
+git ca "Ready"
+git push
+git s
+git add .
+git ca "upload"
+git push
+ls
