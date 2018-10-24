@@ -1,15 +1,3 @@
-ls
-git init
-ls
-git remote
-git remote
-git remote -v
-git init
-git remote
-git config --global user.name "Master-Alcy"
-git config --global user.email aijingxuan92@gmail.com
-git remote
-git status
 git add .
 git ca 'add new test'
 git commit 'add new test'
@@ -471,3 +459,42 @@ git add .
 git ca "upload"
 git push
 ls
+ls
+cd StevensCodes
+ls
+cd CS-546-2018F
+ls
+git ca "Add Final Project"
+git add .
+git ca "Add Final Project"
+git push
+cd ..
+cd ..
+ls
+git push
+git add .
+git ca "Add Final Project"
+git push
+git push --set-upstream origin master
+git pull
+git push
+git push --set-upstream origin master
+git pull
+git pull origin master
+git branch
+git pull
+git add .
+git ca "add"
+git pull
+git pull(1)
+git pull master
+git pull ls
+ls
+cd StevensCOdes
+cd ..
+cd StevensCodes/
+ls
+git add .
+git ca "add"
+git push
+git pull
