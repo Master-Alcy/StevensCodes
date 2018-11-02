@@ -1,84 +1,3 @@
-git push origin master
-git push
-git removete add Master-Alcy https://github.com/Master-Alcy
-git remote add Master-Alcy https://github.com/Master-Alcy
-git push
-git remote add Master-Alcy git@github.com:Master-Alcy
-push Master-Alcy
-git push Master-Alcy
-git remote add StevensCodes git@github.com:Master-Alcy/StevensCodes.git
-git push StevensCodes
-git ca "add2"
-git push
-git push Master-Alcy StevensCodes
-cd StevensCodes
-git ca "add2"
-git push
-git ca "add2"
-git status
-git add README.md
-git ca "Add2"
-git push
-git pull Master-Alcy StevensCodes
-git pull StevensCodes
-git pull
-cd ..
-git pull
-git pull StevensCodes
-git config --global user,name Master-Alcy
-git config --global user.name Master-Alcy
-git config --global user.email aijingxuan92@gmail.com
-ssh-keygen -t rsa -C aijingxuan92@gmail.com
-ssh -T git@github.com
-ssh -T git@github.com
-git config --global user.name "Master-Alcy"
-git config --global user.email "aijingxuan92@gmail.com"
-git config --global github.user Master-Alcy
-git config --global github.token b39993783302075fb80357b01cd371955f9303f3
-touch README
-git ca "Add2"
-git add README
-git ca "ADD3"
-git remote add origin git@github.com:Master-Alcy/StevensCodes
-git push -u origin master
-ssh -T git@github.com
-cd StevensCodes
-git status
-git ca "Add33"
-git add README.md
-git ca "ADD3"
-git push
-git pull
-git touch newREADME
-git --help
-git mv newREADME
-git status
-git add testWorkFlow.txt
-git ca testWF1
-git push
-git checkout -b testWorkFlow.txt
-nano testWorkFlow.txt
-git status
-git add testWorkFlow.txt
-git status
-git ca "Updates to testWF"
-git push origin StevensCodes/testWorkFlow.txt
-git push origin testWorkFlow.txt
-git pull origin master
-ls
-git clone 
-      gitignore/Node.gitignore
-    
-      gitignore/Node.gitignore
-    git clone 
-      gitignore/Node.gitignore
-git  gitignore/Node.gitignore
-git clone gitignore/Node.gitignore
-git clone git@github.com/gitignore/Node.gitignore
-git clone git@github.com/github/gitignore/Node.gitignore
-git clone git@github.com/github/gitignore/blob/master/Node.gitignore
-git clone 
-      gitignore/Node.gitignore
 git clone  gitignore/Node.gitignore
 git status
 git add.
@@ -498,3 +417,84 @@ git ca "a"
 git push
 git remote
 git pull
+ls
+git add .
+git ca "Add Book Repo"
+git st
+git s
+git sgit add .
+git add .
+git push
+ls
+git push --set-upstream origin master
+git pull
+git pull git@github.com:Master-Alcy/MyLearningSpot.git master
+git add .
+git push
+git push --set-upstream origin master
+cd StevensCodes/
+git push
+cd ..
+cd MyLearningSpot/
+git add .
+git ca "add"
+git pull
+git pull /c/Users/aijin/Desktop/MyLearningSpot/c/Users/aijin/Desktop/MyLearningSpot
+git pull /c/Users/aijin/Desktop/MyLearningSpot
+git pull git@github.com:Master-Alcy/MyLearningSpot.git
+git pull --allow-unrelated-histories
+git /MyLearningSpot pull --allow-unrelated-histories
+git --work-tree="." pull --allow-unrelated-histories
+git pull <remote> <branch>
+git pull origin master
+git add .
+git s
+git push
+git push --set-upstream origin master
+git push --set-upstream master
+git push --set-upstream git@github.com:Master-Alcy/MyLearningSpot.git master
+git init
+git add .
+git ca "Add 1"
+git remote add origin git@github.com:Master-Alcy/MyLearningSpot.git
+git remote -v
+git push origin master
+git pull
+git pull origin master
+git pull origin master --allow-unrelated-histories
+git add .
+git ca "add1"
+git push
+git push origin master
+git add .
+git ca "add2"
+git push origin master
+git --version
+git upgrade
+git update
+git reinstall
+git update-git-for-windows
+ls
+cd MyLearningSpot/
+ls
+cd OpenCourses/
+ls
+python3
+python
+python3.7
+python --version
+help MinTTY/?
+info MinTTY
+info MinTTY/?
+cd ..
+git add .
+git ca "add2"
+git push origin master
+git add .
+git ca "add3"
+push origin master
+git push origin master
+git add .
+git ca "add3"
+git push origin master
+git push origin master

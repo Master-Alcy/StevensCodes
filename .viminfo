@@ -15,7 +15,7 @@ $
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1538445735,,"wq"
+|2,0,1541038415,,"wq"
 :q
 |2,0,1538445584,,"q"
 :w
@@ -34,20 +34,20 @@ $
 # 寄存器:
 
 # 文件标记:
-'0  9  16  ~/StevensCodes/.git/MERGE_MSG
-|4,48,9,16,1540412935,"~/StevensCodes/.git/MERGE_MSG"
-'1  9  0  ~/StevensCOdes/.git/MERGE_MSG
-|4,49,9,0,1538531240,"~/StevensCOdes/.git/MERGE_MSG"
-'2  13  5  ~/.gitconfig
-|4,50,13,5,1538445735,"~/.gitconfig"
+'0  8  9  ~/MyLearningSpot/.git/MERGE_MSG
+|4,48,8,9,1541038415,"~/MyLearningSpot/.git/MERGE_MSG"
+'1  9  16  ~/StevensCodes/.git/MERGE_MSG
+|4,49,9,16,1540412935,"~/StevensCodes/.git/MERGE_MSG"
+'2  9  0  ~/StevensCOdes/.git/MERGE_MSG
+|4,50,9,0,1538531240,"~/StevensCOdes/.git/MERGE_MSG"
 '3  13  5  ~/.gitconfig
 |4,51,13,5,1538445735,"~/.gitconfig"
-'4  13  19  ~/.gitconfig
-|4,52,13,19,1538445680,"~/.gitconfig"
+'4  13  5  ~/.gitconfig
+|4,52,13,5,1538445735,"~/.gitconfig"
 '5  13  19  ~/.gitconfig
 |4,53,13,19,1538445680,"~/.gitconfig"
-'6  13  20  ~/.gitconfig
-|4,54,13,20,1538445638,"~/.gitconfig"
+'6  13  19  ~/.gitconfig
+|4,54,13,19,1538445680,"~/.gitconfig"
 '7  13  20  ~/.gitconfig
 |4,55,13,20,1538445638,"~/.gitconfig"
 '8  13  20  ~/.gitconfig
@@ -56,16 +56,32 @@ $
 |4,57,13,20,1538445638,"~/.gitconfig"
 
 # 跳转列表 (从新到旧):
+-'  8  9  ~/MyLearningSpot/.git/MERGE_MSG
+|4,39,8,9,1541038415,"~/MyLearningSpot/.git/MERGE_MSG"
+-'  1  0  ~/MyLearningSpot/.git/MERGE_MSG
+|4,39,1,0,1541038309,"~/MyLearningSpot/.git/MERGE_MSG"
+-'  9  16  ~/StevensCodes/.git/MERGE_MSG
+|4,39,9,16,1540412935,"~/StevensCodes/.git/MERGE_MSG"
 -'  9  16  ~/StevensCodes/.git/MERGE_MSG
 |4,39,9,16,1540412935,"~/StevensCodes/.git/MERGE_MSG"
 -'  1  0  ~/StevensCodes/.git/MERGE_MSG
 |4,39,1,0,1540412815,"~/StevensCodes/.git/MERGE_MSG"
+-'  1  0  ~/StevensCodes/.git/MERGE_MSG
+|4,39,1,0,1540412815,"~/StevensCodes/.git/MERGE_MSG"
+-'  9  0  ~/StevensCOdes/.git/MERGE_MSG
+|4,39,9,0,1538531240,"~/StevensCOdes/.git/MERGE_MSG"
 -'  9  0  ~/StevensCOdes/.git/MERGE_MSG
 |4,39,9,0,1538531240,"~/StevensCOdes/.git/MERGE_MSG"
 -'  8  2  ~/StevensCodes/.git/MERGE_MSG
 |4,39,8,2,1538531144,"~/StevensCodes/.git/MERGE_MSG"
 -'  8  2  ~/StevensCOdes/.git/MERGE_MSG
 |4,39,8,2,1538531144,"~/StevensCOdes/.git/MERGE_MSG"
+-'  8  2  ~/StevensCodes/.git/MERGE_MSG
+|4,39,8,2,1538531144,"~/StevensCodes/.git/MERGE_MSG"
+-'  8  2  ~/StevensCOdes/.git/MERGE_MSG
+|4,39,8,2,1538531144,"~/StevensCOdes/.git/MERGE_MSG"
+-'  1  0  ~/StevensCOdes/.git/MERGE_MSG
+|4,39,1,0,1538531117,"~/StevensCOdes/.git/MERGE_MSG"
 -'  1  0  ~/StevensCOdes/.git/MERGE_MSG
 |4,39,1,0,1538531117,"~/StevensCOdes/.git/MERGE_MSG"
 -'  13  5  ~/.gitconfig
@@ -76,10 +92,26 @@ $
 |4,39,13,5,1538445735,"~/.gitconfig"
 -'  13  5  ~/.gitconfig
 |4,39,13,5,1538445735,"~/.gitconfig"
+-'  13  5  ~/.gitconfig
+|4,39,13,5,1538445735,"~/.gitconfig"
+-'  13  5  ~/.gitconfig
+|4,39,13,5,1538445735,"~/.gitconfig"
+-'  13  5  ~/.gitconfig
+|4,39,13,5,1538445735,"~/.gitconfig"
+-'  13  5  ~/.gitconfig
+|4,39,13,5,1538445735,"~/.gitconfig"
 -'  13  19  ~/.gitconfig
 |4,39,13,19,1538445680,"~/.gitconfig"
 -'  13  19  ~/.gitconfig
 |4,39,13,19,1538445680,"~/.gitconfig"
+-'  13  19  ~/.gitconfig
+|4,39,13,19,1538445680,"~/.gitconfig"
+-'  13  19  ~/.gitconfig
+|4,39,13,19,1538445680,"~/.gitconfig"
+-'  13  20  ~/.gitconfig
+|4,39,13,20,1538445638,"~/.gitconfig"
+-'  13  20  ~/.gitconfig
+|4,39,13,20,1538445638,"~/.gitconfig"
 -'  13  20  ~/.gitconfig
 |4,39,13,20,1538445638,"~/.gitconfig"
 -'  13  20  ~/.gitconfig
@@ -100,6 +132,58 @@ $
 |4,39,1,0,1538445592,"~/.gitconfig"
 -'  1  0  ~/.gitconfig
 |4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445592,"~/.gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
+-'  1  0  ~/gitconfig
+|4,39,1,0,1538445584,"~/gitconfig"
 -'  1  0  ~/gitconfig
 |4,39,1,0,1538445584,"~/gitconfig"
 -'  1  0  ~/gitconfig
@@ -144,98 +228,14 @@ $
 |4,39,1,0,1538445546,"~/.gitconfig"
 -'  1  0  ~/.gitconfig
 |4,39,1,0,1538445546,"~/.gitconfig"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
--'  8  0  ~/.git/refs
-|4,39,8,0,1538445530,"~/.git/refs"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445546,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445546,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445546,"~/.gitconfig"
+-'  1  0  ~/.gitconfig
+|4,39,1,0,1538445546,"~/.gitconfig"
 -'  8  0  ~/.git/refs
 |4,39,8,0,1538445530,"~/.git/refs"
 -'  8  0  ~/.git/refs
@@ -258,6 +258,15 @@ $
 |4,39,8,0,1538445530,"~/.git/refs"
 
 # 文件内的标记历史记录 (从新到旧):
+
+> ~/MyLearningSpot/.git/MERGE_MSG
+	*	1541038410	0
+	"	8	9
+	^	8	10
+	.	8	9
+	+	8	0
+	+	9	0
+	+	8	9
 
 > ~/StevensCodes/.git/MERGE_MSG
 	*	1540412932	0

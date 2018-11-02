@@ -7,7 +7,7 @@
 	name = Master-Alcy
 	email = aijingxuan92@gmail.com
 [winUpdater]
-	recentlySeenVersion = 2.19.0.windows.1
+	recentlySeenVersion = 2.19.1.windows.1
 [alias]
 	s = status
 	ca = commit -m
@@ -16,3 +16,5 @@
 [github]
 	user = Master-Alcy
 	token = b39993783302075fb80357b01cd371955f9303f3
+[core]
+	editor = 'C:\\Academic\\Sublime Text 3\\sublime_text.exe' -w
