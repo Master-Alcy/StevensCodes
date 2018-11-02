@@ -1,0 +1,6 @@
+{
+    "mongoConfig": {
+        "serverUrl": "mongodb://localhost:27017/myDB",
+        "database": "Jingxuan_Ai_lab4"
+    }
+}

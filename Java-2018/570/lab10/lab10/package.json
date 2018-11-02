@@ -1,0 +1,12 @@
+{
+  "name": "BFS",
+  "version": "1.0.0",
+  "main": "BFS.java",
+  "scripts": {
+  	"build": "javac BFS.java && java BFS",
+    "start": "javac BFS.java && java BFS"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

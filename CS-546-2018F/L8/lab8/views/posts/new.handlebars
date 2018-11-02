@@ -1,0 +1,37 @@
+<article class="new-post">
+  <h1>The Best Palindrome Checker in the World!</h1>
+
+  <h2>A brif intro</h2>
+  <p>A palindrome is a phrase that is spelled the same way, backwards and forwards
+    (ignoring spacing and punctuation; only alphanumeric characters matter)
+    the following phrases are palindromes: </p>
+  <p>Madam</p>
+  <p>Was it a cat I saw?</p>
+  <p>He did, eh?</p>
+  <p>Go hang a salami, I’m a lasagna hog.</p>
+  <p>Poor Dan is in a droop</p>
+  <p>Taco cat? Taco cat.</p>
+
+  <h3>Make a Test</h3>
+  <form action="/result" method="POST" class="new-post-form">
+
+    <label for="post-line">
+      Write palindrome below:
+      <input id="post-line" type="text" name="text-to-test" class="full-width-input" 
+      placeholder="Your Palindrome Here" value="{{palindrome}}"/>
+    </label>
+
+    <button type="submit">Test this text</button>
+  </form>
+
+  {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+
+</article>

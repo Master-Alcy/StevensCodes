@@ -1,0 +1,15 @@
+{
+  "name": "546-lab-6",
+  "version": "1.0.0",
+  "description": "546-lab-6",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Jingxuan Ai, 10431517",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

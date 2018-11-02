@@ -1,0 +1,28 @@
+<<<<<<< HEAD
+void  setup () {
+  int a = 3;
+  float b = 1.5f;
+  float c = 2;
+  float f = 1.234567f;
+  double d = 1.23456789012345; //processing makes this 7 digts
+                      // no float for any computation use double
+  println(d);         //println only works for 7 digts
+  System.out.println(d);
+  
+  
+  exit();
+=======
+void  setup () {
+  int a = 3;
+  float b = 1.5f;
+  float c = 2;
+  float f = 1.234567f;
+  double d = 1.23456789012345; //processing makes this 7 digts
+                      // no float for any computation use double
+  println(d);         //println only works for 7 digts
+  System.out.println(d);
+  
+  
+  exit();
+>>>>>>> abbee7cfb9dbed3396995ffaa67b3bad7c5ed8eb
+}

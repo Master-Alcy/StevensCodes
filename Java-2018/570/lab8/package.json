@@ -1,0 +1,12 @@
+{
+  "name": "lab8",
+  "version": "1.0.0",
+  "main": "lab8.java",
+  "scripts": {
+  	"build": "javac lab8.java && java lab8",
+    "start": "javac lab8.java && java lab8"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

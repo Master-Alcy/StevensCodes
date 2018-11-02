@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 14pt;
+    background-color: antiquewhite;
+  }
+
+  header,footer {
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+    text-align: center;
+  }
+  
+  body {
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+  
+  main {
+    max-width: 75%;
+    margin: auto;
+  }
+  
+  h1,h2,h3,h4,h5,h6 {
+    color: #222;
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+  }
+  
+  h5 {
+    font-size: 1.15rem;
+  }
+  
+  h6 {
+    font-size: 1.05rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  label {
+    color: brown;
+  }
+  
+  .post .new-post{
+    width: 75%;
+  }
+  
+  .new-post-form {
+    max-width: 300px;
+  }
+  
+  .new-post-form .full-width-input {
+    display: block;
+    min-height: 3em;
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .error-list li {
+    color: #ff0000;
+  }
+
+  .success {
+    color: #28a745;
+  }
+
+  .failure {
+    color: #dc3545;
+  }
+
+  .error {
+    display: block;
+    background-color: cyan;
+    color: red;
+    font-size: 1.25rem;
+    text-align: center;
+  }

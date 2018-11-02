@@ -1,0 +1,31 @@
+<article class="post">
+  <h1>The Palindrome Results!</h1>
+  
+  <p>text-to-test</p>
+  {{#if isRev}}
+  <p class="success">
+    {{ theBody }}
+  </p>
+  <p>
+    This string is a palindorme!
+  </p>
+  {{else}}
+  <p class="failure">
+    {{ theBody }}
+  </p>
+  <p>
+    This string is NOT a palindorme!
+  </p>
+  {{/if}}
+
+  {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+
+</article>

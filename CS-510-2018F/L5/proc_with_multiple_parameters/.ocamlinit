@@ -1,0 +1,9 @@
+#use "topfind";;
+#directory "_build";;
+#load_rec "interp.cmo";;
+open Interp;;
+(* Added by OPAM. *)
+let () =
+  try Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH")
+  with Not_found -> ()
+;;

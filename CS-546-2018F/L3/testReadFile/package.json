@@ -1,0 +1,15 @@
+{
+  "name": "testReadFile",
+  "version": "1.0.0",
+  "description": "testReadFile",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jingxuan Ai, 10431517",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}

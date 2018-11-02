@@ -1,0 +1,12 @@
+{
+  "name": "LinkStateRouter",
+  "version": "1.0.0",
+  "main": "LinkStateRouter.java",
+  "scripts": {
+  	"build": "javac LinkStateRouter.java && java LinkStateRouter",
+    "start": "javac LinkStateRouter.java && java LinkStateRouter"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

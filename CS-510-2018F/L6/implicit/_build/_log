@@ -1,0 +1,42 @@
+### Starting build.
+# Target: interp.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:interp.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules interp.ml > interp.ml.depends
+# Target: ast.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:ast.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules ast.ml > ast.ml.depends
+# Target: ds.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:ds.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules ds.ml > ds.ml.depends
+# Target: ast.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:ast.cmo, file:ast.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o ast.cmo ast.ml
+# Target: store.mli.depends, tags: { package(oUnit), bin_annot, extension:mli, file:store.mli, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules store.mli > store.mli.depends
+# Target: store.cmi, tags: { package(oUnit), bin_annot, byte, compile, extension:mli, file:store.mli, interf, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o store.cmi store.mli
+# Target: lexer.mll, tags: { package(oUnit), bin_annot, extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
+ocamllex.opt -q lexer.mll
+# Target: lexer.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules lexer.ml > lexer.ml.depends
+# Target: parser.mly.depends, tags: { package(oUnit), bin_annot, extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
+menhir --raw-depend --ocamldep 'ocamlfind ocamldep -modules' parser.mly > parser.mly.depends
+# Target: parser.mly, tags: { package(oUnit), bin_annot, byte, compile, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet }
+menhir --ocamlc 'ocamlfind ocamlc -bin-annot -package oUnit' --infer parser.mly
+# Target: parser.mli.depends, tags: { package(oUnit), bin_annot, extension:mli, file:parser.mli, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules parser.mli > parser.mli.depends
+# Target: parser.cmi, tags: { package(oUnit), bin_annot, byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o parser.cmi parser.mli
+# Target: ds.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:ds.cmo, file:ds.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o ds.cmo ds.ml
+# Target: lexer.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o lexer.cmo lexer.ml
+# Target: interp.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:interp.cmo, file:interp.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o interp.cmo interp.ml
+# Target: parser.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules parser.ml > parser.ml.depends
+# Target: store.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:store.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -package oUnit -modules store.ml > store.ml.depends
+# Target: parser.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:parser.cmo, file:parser.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o parser.cmo parser.ml
+# Target: store.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:store.cmo, file:store.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -bin-annot -package oUnit -o store.cmo store.ml
+# Target: interp.byte, tags: { package(oUnit), bin_annot, byte, dont_link_with, extension:byte, file:interp.byte, link, ocaml, program, quiet }
+ocamlfind ocamlc -linkpkg -package oUnit ast.cmo store.cmo ds.cmo parser.cmo lexer.cmo interp.cmo -o interp.byte
+# Compilation successful.
