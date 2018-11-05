@@ -14,6 +14,7 @@ The user collection will store all users and their profiles. Users will be able 
 ```
 {
     "_id":"7b7997a2-c0d2-4f8c-b27a-6a1d4b5b6310",
+    "sessionId":"b3988882-627f-4c59-8d5d-54b7a43b030e",
     "username": "masterGroup",
     "hashedPassword":"$2a$08$XdvNkfdNIL8Fq7l8xsuIUeSbNOFgK0M0iV5HOskfVn7",
     "identity": "student",
@@ -45,14 +46,15 @@ The user collection will store all users and their profiles. Users will be able 
 }
 ```
 
-| Name           | Type         | Description                                   |
-| -------------- | ------------ | --------------------------------------------- |
-| _id            | string       | Globally unique id for user's current session |
-| username       | string       | User's login name                             |
-| hashedpassword | string       | A hashed version of the user's password       |
-| identity       | String       | Student or staff                              |
-| profile        | User Profile | User's profile                                |
-| record         | User Record  | User's records                                |
+| Name           | Type         | Description                                                  |
+| -------------- | ------------ | ------------------------------------------------------------ |
+| _id            | string       | A globally unique identifier to represent the user           |
+| sessionid      | string       | A globally unique identifier to represent the user's current session |
+| username       | string       | User's login name                                            |
+| hashedpassword | string       | A hashed version of the user's password                      |
+| identity       | String       | Student or staff                                             |
+| profile        | User Profile | User's profile                                               |
+| record         | User Record  | User's records                                               |
 
 ## User Profile (subdocument)
 
