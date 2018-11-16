@@ -109,7 +109,6 @@ This subdocument is used to describe the user's records, stored as a list. Stude
 | bookid     | string | As it is                           |
 | time       | string | The time this action was taken     |
 | action     | string | Borrow or rent                     |
-| returnTime | string | Return date                        |
 | staffid    | string | Operated by staff                  |
 
 ## Book
@@ -180,7 +179,7 @@ This subdocument is used to describe the book's profile.
 | Author      | string | As it is                          |
 | ISBN        | string | As it is                          |
 | description | string | What this book is about           |
-| tag         | string | For search and placement easiness |
+| tag         | Array | For search and placement easiness |
 
 ## Book Record (subdocument)
 
