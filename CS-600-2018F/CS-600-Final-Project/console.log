@@ -21452,3 +21452,81 @@ Enter search string in one line, and "qqq" to exit
 Word javacccc not found.
 ==============================================
 Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: 1
+Your craw limit: 1
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: 1
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: 1
+Your craw limit: 1
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: 1
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: 1
+Your craw limit: 1
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: 1
+Error: Malformed URL: 1
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Program fully exit.
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: www.haskdasnqkwsnakj.com
+Your craw limit: 20
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: www.haskdasnqkwsnakj.com
+Error: Malformed URL: www.haskdasnqkwsnakj.com
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Word "aaa" not found.
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Empty search word. Maybe you entered a stopword.
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Program fully exit.
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: www.httosssa.com
+Your craw limit: -1
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+----------- We visited 0 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Your craw limit: -10
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+----------- We visited 0 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: www.hheee.com
+Your craw limit: 20
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: www.hheee.com
+Error: Malformed URL: www.hheee.com
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 

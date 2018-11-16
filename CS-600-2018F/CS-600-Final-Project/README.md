@@ -10,21 +10,23 @@ get data. A short video contains a testing video.
 1. Simple Search Engine
 2. Index of Full Document
 3. Compile and run
-  1. JSoup
-  2. Javac
-  3. For Node.js on Windows
-  4. For Windows Console
-  5. For Mac's Console
-  6. Eclipse Alternate
+    1. JSoup
+    2. Javac
+    3. For Node.js on Windows
+    4. For Windows Console
+    5. For Mac's Console
+    6. Eclipse Alternate
 4. My Approach to Problem
-  1. Main.java
-  2. MyCrawler.java
-  3. MyPrinter.java
-  4. MyCompressedTrie.java
-  5. MyTreeMapByValue.java
-  6. MyProcessor.java
+    1. Main.java
+    2. MyCrawler.java
+    3. MyPrinter.java
+    4. MyCompressedTrie.java
+    5. MyTreeMapByValue.java
+    6. MyProcessor.java
 5. Testing on Boundary Conditions
-6. Some Analyzing on Time Complexity
+6. Some Analyzing on Complexity
+    1. Time Complexity
+    2. Space Complexity
 
 ## Compile and run
 
@@ -189,10 +191,10 @@ This class only have two method as public and all data are declared as private.
 
 This is the entrance to call a private method: insert(root,word, url, 0, 0) like 
 a setter which described four cases:  
-Insert a new word for a new node  
-Insert a new word when a node contains the prefix of this word  
-Insert a new word when a node contains this whole word exist  
-Insert a new word when a node contains part of this word's prefix  
+* Insert a new word for a new node  
+* Insert a new word when a node contains the prefix of this word  
+* Insert a new word when a node contains this whole word exist  
+* Insert a new word when a node contains part of this word's prefix  
 Note that there are two helper functions to help put data in and rebuild the 
 string.
 
@@ -202,10 +204,10 @@ This function get node returned from the private get function and get the HashMa
 stored inside and out the wordCount from the node into the return HashMap, too. 
 In this way I can get both data from HashMap (url and occurence) and the Integer 
 total word count. The function is handling four cases:  
-Word not exist  
-Word is a prefix of in the whole word in this chain of nodes  
-The word exist in chain of nodes is just a prefix of searched word  
-Only the prefix of this word exist  
+* Word not exist  
+* Word is a prefix of in the whole word in this chain of nodes  
+* The word exist in chain of nodes is just a prefix of searched word  
+* Only the prefix of this word exist  
 
 ### MyTreeMapByValue.java
 
@@ -219,11 +221,62 @@ Similarly, this class only have two public class and all other functions and dat
 are declared private. This class does two things: process raw data then inserting 
 into Trie and do the searching.
 
-#### public static void process(String page, String currentURL) {...}
+#### private static String cleansing(String page) {...}
 
-
-
-
+This one used both before inserting into Trie and before search from Trie. It cast all 
+string into letters in lowercase without stop words.
 
 #### public static String searchEngine(String input) {...}
 
+Search against Trie and get the HashMap from it and cast into TreeMap for ranking. 
+It saves some time in inserting data but do slower than save as TreeMap in the first 
+place. Since the amount of data searched is way smaller than what is inserted, I suppose 
+this is a more efficient approach in my case.
+
+## Testing on Boundary Conditions
+
+As Indicated in **private static void Asker(){...}**, the boundary conditions are:  
+* Invalid URL
+* Invalid crawl limit
+* Invalid searching.
+
+The URL Exception would carry on with no data inserted until search session. Then 
+user can enter qqq to exist.  
+
+Similarly, when crawl limit is smaller than 1, no data would be inserted but the 
+program would carry on to next session.  
+
+The successful crawl would be a log says "Craw: URL" and no Error message shown.  
+
+The searching validation is as described in previous session:  
+* Empty Search Word or Only Stop Words
+* Word Not Found
+
+## Some Analyzing on Complexity
+
+### Time Complexity
+
+The speed of search for url and getting data is controled by Jsoup functions and 
+internet speed. The data insertion is in path with each URL into the HashMap in 
+Trie structure.  
+
+For each insertion, in other word, one word, the time complexity is O(m), where m 
+is the length of the word inserted. For n words, the insertion would cost O(nm). 
+Note that I didn't count the time for transforming words into the form acceptable 
+for the Trie. In more complex Trie, I can use a Node capacity of Full ASCII 
+Size (256) instead of a-z (26) to avoid this processing time, but since my search 
+engine does not need to support non-letters I ignored this case.  
+
+Also the url and its occurence for each word is stored as HashMap, since the 
+insertion for HashMap only cost O(1), which make data insertions a lot faster 
+considering the large amount of data. The time for re-arranging the data into TreeMap 
+is O(logn) but searching operation is a lot less than the times of data insertion.  
+
+### Space Complexity
+
+The Compressed Trie Structure uses way smaller space than the normal Trie Structure. 
+The data in HashMap is seperated at each node of the Trie, and we can store all them 
+in seperated disk easily. All heavy space consuming data are stored in the 
+MyCompressedTrie Class and thus easier for further usage and storage. The only place 
+called the MyCompressedTrie is the MyProcessor class, which means the Trie only exist 
+when we need to use MyProcessor, after that all data is marked as dump.

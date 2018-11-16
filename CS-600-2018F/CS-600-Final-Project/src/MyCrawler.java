@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
@@ -21,7 +20,7 @@ public class MyCrawler {
 		ArrayList<String> visitedURLs = new ArrayList<>();
 		pendingURLs.add(url);
 		// pending not empty and visited <= 50
-		while (!pendingURLs.isEmpty() && visitedURLs.size() < limit) {
+		pending: while (!pendingURLs.isEmpty() && visitedURLs.size() < limit) {
 			String currentURL = pendingURLs.remove(0);
 			// check if visited already
 			if (!visitedURLs.contains(currentURL)) {
@@ -31,8 +30,9 @@ public class MyCrawler {
 					Document doc = Jsoup.connect(currentURL).get();
 					String page = doc.text(); // Note this one has no HTML
 					MyProcessor.process(page, currentURL);	// Inserting data
-				} catch (IOException e) {
+				} catch (Exception e) {
 					MyPrinter.ptln("Error: " + e.getMessage());
+					continue pending;
 				}
 				// Populate pendingURLs
 				for (String s : getSubURLs(currentURL)) {
@@ -62,7 +62,7 @@ public class MyCrawler {
 					list.add(link.absUrl("href"));
 				}
 				break;
-			} catch (IOException e) {
+			} catch (Exception e) {
 				MyPrinter.ptln("Error: " + e.getMessage());
 				break sub;
 			}
