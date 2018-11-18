@@ -40,7 +40,7 @@ const userSchema =  mongoose.Schema({
 const bookSchema = new mongoose.Schema({
     _id:{type : String, 'require':true},
     title : {type:String, 'require':true},
-    edition : Number,
+    edition : {type: Number, 'require':true},
     storage : {type: Number, 'require':true},
     totalStorage:{type: Number, 'require':true},
     location : String,
