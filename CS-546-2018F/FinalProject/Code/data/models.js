@@ -3,9 +3,16 @@ const config = require('./config')
 
 
 const DB_URL = config.serverUrl + config.database
+
 mongoose.connect(DB_URL,{
-    useNewUrlParser: true 
-});
+        useNewUrlParser: true 
+    }, (err)=>{
+        if(err){
+            console.warn('cannot connected to database! ' +err)
+        }else{
+            console.log('connected to datbase: ' + DB_URL)
+        }
+    });
 
 
 const userSchema =  mongoose.Schema({
@@ -55,6 +62,7 @@ const bookSchema = new mongoose.Schema({
 
 mongoose.model('User', userSchema)
 mongoose.model('Book', bookSchema)
+
 module.exports = {
     getModel:function(name){
         return mongoose.model(name)

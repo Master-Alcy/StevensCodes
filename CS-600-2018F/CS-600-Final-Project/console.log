@@ -21530,3 +21530,305 @@ All data inserted by now. Begin searching:
 ~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
 ==============================================
 Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Program fully exit.
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: https://www.google.com/
+Your craw limit: 10
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.google.com/
+Craw: https://www.google.com/intl/en/about/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header
+Craw: https://store.google.com/?utm_source=hp_header&utm_medium=google_oo&utm_campaign=GS100042
+Craw: https://mail.google.com/mail/?tab=wm
+Error: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+Craw: https://www.google.com/imghp?hl=en&tab=wi
+Craw: https://www.google.com/intl/en/options/
+Craw: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/
+Craw: 
+Error: Must supply a valid URL
+Craw: https://www.google.com/url?q=https://www.google.com/history/optout%3Fpa%3D1%26utm_source%3Dgoogle%26utm_medium%3Dcallout-unauth%26utm_campaign%3Dglobal-privacy-advisor-q4&source=hpp&id=19009357&ct=7&usg=AFQjCNHps6THIPnGIsIuxexlcT4qmdrblw
+Craw: https://www.google.com/#
+----------- We visited 10 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Searched against: google 
+Total occurence: 132
+Rank 1: https://www.google.com/intl/en/options/
+All words' total occurences on this site is: 95
+Rank 2: https://www.google.com/url?q=https://www.google.com/history/optout%3Fpa%3D1%26utm_source%3Dgoogle%26utm_medium%3Dcallout-unauth%26utm_campaign%3Dglobal-privacy-advisor-q4&source=hpp&id=19009357&ct=7&usg=AFQjCNHps6THIPnGIsIuxexlcT4qmdrblw
+All words' total occurences on this site is: 11
+Rank 3: https://www.google.com/intl/en/about/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header
+All words' total occurences on this site is: 8
+Rank 4: https://store.google.com/?utm_source=hp_header&utm_medium=google_oo&utm_campaign=GS100042
+All words' total occurences on this site is: 6
+Rank 5: https://www.google.com/
+All words' total occurences on this site is: 4
+Rank 6: https://www.google.com/#
+All words' total occurences on this site is: 4
+Rank 7: https://www.google.com/imghp?hl=en&tab=wi
+All words' total occurences on this site is: 3
+Rank 8: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/
+All words' total occurences on this site is: 1
+This search ends.
+
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Word "java" not found.
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Your craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: www.google.com
+Your craw limit: 10
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: www.google.com
+Error: Malformed URL: www.google.com
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Error: Received fatal alert: handshake_failure
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Default URL: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Default craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#content
+Craw: https://www.rainerhahnekamp.com/en/
+Craw: https://www.rainerhahnekamp.com/en
+Craw: https://www.rainerhahnekamp.com/en/about-me/
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#pll_switcher
+Craw: https://www.rainerhahnekamp.com/de/
+Craw: https://www.rainerhahnekamp.com/en/author/rainer-hahnekamp/
+Craw: https://github.com/rainerhahnekamp/ignore-exception
+Craw: https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html
+Craw: https://www.artima.com/intv/handcuffs.html
+Craw: http://www.informit.com/articles/article.aspx?p=2171751&seqNum=3
+Craw: https://github.com/rainerhahnekamp/sneakythrow
+Craw: https://projectlombok.org/features/SneakyThrows
+Craw: https://github.com/pivovarit/ThrowingFunction
+Craw: https://github.com/vavr-io/vavr
+Craw: http://www.baeldung.com/java-lambda-exceptions
+Craw: https://www.rainerhahnekamp.com/en/category/development/
+Craw: https://www.rainerhahnekamp.com/en/tag/java/
+Craw: https://www.rainerhahnekamp.com/en/tag/softwarepractice/
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-125
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-126
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-139
+Craw: https://github.com/rainerhahnekamp/sneakythrow/tree/v1.1
+Error: HTTP error fetching URL
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#respond
+Craw: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#
+Craw: https://www.rainerhahnekamp.com/comment-subscriptions/?srp=2899&srk=6be961709ff214cc5875b5559dcf546b&sra=s&srsrc=f
+Craw: https://www.rainerhahnekamp.com/en/2888-2/
+Craw: https://www.rainerhahnekamp.com/en/javascript-essentials-the-engine/
+Craw: https://www.rainerhahnekamp.com/en/javascript-and-object-oriented-programming/
+Craw: https://www.rainerhahnekamp.com/en/publishing-a-java-library-to-maven-central/
+Craw: https://www.rainerhahnekamp.com/en/5-pillars-of-learning-programming/
+Craw: https://www.rainerhahnekamp.com/en/announcing-sneakythrow/
+Craw: https://www.rainerhahnekamp.com/en/qcon-london-2018/
+Craw: https://www.rainerhahnekamp.com/en/tag/agile/
+Craw: https://www.rainerhahnekamp.com/en/tag/angular/
+Craw: https://www.rainerhahnekamp.com/en/tag/angularcli/
+Craw: https://www.rainerhahnekamp.com/en/tag/aws/
+Craw: https://www.rainerhahnekamp.com/en/tag/codecoverage/
+Craw: https://www.rainerhahnekamp.com/en/tag/compiler/
+Craw: https://www.rainerhahnekamp.com/en/tag/cssinjs/
+Craw: https://www.rainerhahnekamp.com/en/tag/devops/
+Craw: https://www.rainerhahnekamp.com/en/tag/docker/
+Craw: https://www.rainerhahnekamp.com/en/tag/ecs/
+Craw: https://www.rainerhahnekamp.com/en/tag/exceptionhandling/
+Craw: https://www.rainerhahnekamp.com/en/tag/inlinecaching/
+Craw: https://www.rainerhahnekamp.com/en/tag/interpreter/
+Craw: https://www.rainerhahnekamp.com/en/tag/jackson/
+Craw: https://www.rainerhahnekamp.com/en/tag/jacoco/
+Craw: https://www.rainerhahnekamp.com/en/tag/java9/
+----------- We visited 50 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Searched against: java 
+Total occurence: 481
+Rank 1: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#
+All words' total occurences on this site is: 31
+Rank 2: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#pll_switcher
+All words' total occurences on this site is: 31
+Rank 3: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-125
+All words' total occurences on this site is: 31
+Rank 4: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-126
+All words' total occurences on this site is: 31
+Rank 5: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#respond
+All words' total occurences on this site is: 31
+Rank 6: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/
+All words' total occurences on this site is: 31
+Rank 7: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#content
+All words' total occurences on this site is: 31
+Rank 8: https://www.rainerhahnekamp.com/en/ignoring-exceptions-in-java/#comment-139
+All words' total occurences on this site is: 31
+Rank 9: https://www.rainerhahnekamp.com/en/qcon-london-2018/
+All words' total occurences on this site is: 25
+Rank 10: https://www.rainerhahnekamp.com/en/publishing-a-java-library-to-maven-central/
+All words' total occurences on this site is: 16
+Rank 11: http://www.baeldung.com/java-lambda-exceptions
+All words' total occurences on this site is: 12
+Rank 12: https://www.rainerhahnekamp.com/en/announcing-sneakythrow/
+All words' total occurences on this site is: 11
+Rank 13: https://github.com/pivovarit/ThrowingFunction
+All words' total occurences on this site is: 11
+Rank 14: https://www.rainerhahnekamp.com/en/tag/java/
+All words' total occurences on this site is: 11
+Rank 15: https://github.com/rainerhahnekamp/sneakythrow
+All words' total occurences on this site is: 10
+Rank 16: http://www.informit.com/articles/article.aspx?p=2171751&seqNum=3
+All words' total occurences on this site is: 9
+Rank 17: https://www.rainerhahnekamp.com/en/
+All words' total occurences on this site is: 8
+Rank 18: https://github.com/vavr-io/vavr
+All words' total occurences on this site is: 8
+Rank 19: https://www.rainerhahnekamp.com/en/category/development/
+All words' total occurences on this site is: 8
+Rank 20: https://www.rainerhahnekamp.com/en
+All words' total occurences on this site is: 8
+Rank 21: https://www.rainerhahnekamp.com/en/author/rainer-hahnekamp/
+All words' total occurences on this site is: 8
+Rank 22: https://www.rainerhahnekamp.com/en/javascript-and-object-oriented-programming/
+All words' total occurences on this site is: 6
+Rank 23: https://www.rainerhahnekamp.com/en/tag/softwarepractice/
+All words' total occurences on this site is: 5
+Rank 24: https://www.rainerhahnekamp.com/en/tag/java9/
+All words' total occurences on this site is: 5
+Rank 25: https://www.rainerhahnekamp.com/en/javascript-essentials-the-engine/
+All words' total occurences on this site is: 5
+Rank 26: https://www.rainerhahnekamp.com/en/tag/exceptionhandling/
+All words' total occurences on this site is: 4
+Rank 27: https://www.rainerhahnekamp.com/en/2888-2/
+All words' total occurences on this site is: 4
+Rank 28: https://www.rainerhahnekamp.com/en/5-pillars-of-learning-programming/
+All words' total occurences on this site is: 4
+Rank 29: https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html
+All words' total occurences on this site is: 4
+Rank 30: https://github.com/rainerhahnekamp/ignore-exception
+All words' total occurences on this site is: 4
+Rank 31: https://www.rainerhahnekamp.com/en/tag/ecs/
+All words' total occurences on this site is: 3
+Rank 32: https://www.rainerhahnekamp.com/en/tag/jacoco/
+All words' total occurences on this site is: 3
+Rank 33: https://www.rainerhahnekamp.com/en/tag/devops/
+All words' total occurences on this site is: 3
+Rank 34: https://www.rainerhahnekamp.com/en/tag/docker/
+All words' total occurences on this site is: 3
+Rank 35: https://www.rainerhahnekamp.com/en/tag/jackson/
+All words' total occurences on this site is: 3
+Rank 36: https://www.rainerhahnekamp.com/en/tag/compiler/
+All words' total occurences on this site is: 3
+Rank 37: https://www.rainerhahnekamp.com/en/tag/cssinjs/
+All words' total occurences on this site is: 3
+Rank 38: https://www.rainerhahnekamp.com/en/tag/agile/
+All words' total occurences on this site is: 3
+Rank 39: https://www.rainerhahnekamp.com/en/tag/inlinecaching/
+All words' total occurences on this site is: 3
+Rank 40: https://www.rainerhahnekamp.com/en/tag/angular/
+All words' total occurences on this site is: 3
+Rank 41: https://www.rainerhahnekamp.com/en/tag/codecoverage/
+All words' total occurences on this site is: 3
+Rank 42: https://www.rainerhahnekamp.com/en/tag/angularcli/
+All words' total occurences on this site is: 3
+Rank 43: https://www.rainerhahnekamp.com/en/tag/interpreter/
+All words' total occurences on this site is: 3
+Rank 44: https://www.rainerhahnekamp.com/en/tag/aws/
+All words' total occurences on this site is: 3
+Rank 45: https://www.artima.com/intv/handcuffs.html
+All words' total occurences on this site is: 2
+Rank 46: https://projectlombok.org/features/SneakyThrows
+All words' total occurences on this site is: 2
+Rank 47: https://www.rainerhahnekamp.com/comment-subscriptions/?srp=2899&srk=6be961709ff214cc5875b5559dcf546b&sra=s&srsrc=f
+All words' total occurences on this site is: 1
+This search ends.
+
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Searched against: javac 
+Total occurence: 2
+Rank 1: https://projectlombok.org/features/SneakyThrows
+All words' total occurences on this site is: 2
+This search ends.
+
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Program fully exit.

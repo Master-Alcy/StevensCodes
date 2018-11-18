@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_144"/>
 	<classpathentry kind="lib" path="C:/Users/aijin/github/git/StevensCodes/CS-600-2018F/CS-600-Final-Project/jsoup-1.11.3.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/aijin/github/git/StevensCodes/CS-600-2018F/CS-600-Final-Project/jsoup-1.11.3-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/aijin/github/git/StevensCodes/CS-600-2018F/CS-600-Final-Project/jsoup-1.11.3-javadoc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
