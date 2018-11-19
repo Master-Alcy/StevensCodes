@@ -158,6 +158,7 @@ The book collection will store all books and their records. Staff can add, updat
 | totalStorage | int          | Not all book stored in library.                |
 | location     | String       | Avaliable book's location in library           |
 | Price        | Float        | As it is                                       |
+| ISBN         | string       | As it is                                       |
 | profile      | book profile | Description for this book                      |
 | record       | book record  | Record for this book (Could be 100 same books) |
 
@@ -177,7 +178,6 @@ This subdocument is used to describe the book's profile.
 | Name        | Type   | Description                       |
 | ----------- | ------ | --------------------------------- |
 | Author      | string | As it is                          |
-| ISBN        | string | As it is                          |
 | description | string | What this book is about           |
 | tag         | Array | For search and placement easiness |
 

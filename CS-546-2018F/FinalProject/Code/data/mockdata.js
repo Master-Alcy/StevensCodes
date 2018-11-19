@@ -54,9 +54,9 @@ async function createBook(num){
             totalStorage: storage,
             location : Random.word(3,10),
             price: Random.integer(10,50),
+            ISBN: uuid.v4(),
             profile : {
                 author : Random.word(3,10),
-                ISBN: uuid.v4(),
                 description : Random.paragraph(3),
                 tag : [Random.pick(["nodejs","react","web"],2)],
             },

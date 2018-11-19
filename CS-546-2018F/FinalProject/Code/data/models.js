@@ -45,9 +45,9 @@ const bookSchema = new mongoose.Schema({
     totalStorage:{type: Number, 'require':true},
     location : String,
     price: Number,
+    ISBN: {type : String, 'require':true},
     profile : {
         author : String,
-        ISBN: String,
         description : String,
         tag : [{type:String}],
     },

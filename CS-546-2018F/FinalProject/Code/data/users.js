@@ -145,9 +145,8 @@ async function getRecordByRecordId(id){
         return { success : false, desc: "invalid params"}
     }
      
-    let result = await userModel.findOne({'record._id':id}, (err,doc)=>{
-        return doc.record;
-    })
+    let result = await userModel.findOne({'record._id':id})
+    
     if( result ){
         let data;
         result.record.forEach(element => {
