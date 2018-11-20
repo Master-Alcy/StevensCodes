@@ -173,7 +173,7 @@ get all links' elements and add all sub URLS to a list to be returned.
 ### MyPrinter.java
 
 This class can print both to console and a file "console.log" in the same folder, 
-which makes the data of the output saved for later use such as: debugging nad data 
+which makes the data of the output saved for later use such as: debugging and data 
 analyzing.
 
 ### **MyCompressedTrie.java (Core Class)**
