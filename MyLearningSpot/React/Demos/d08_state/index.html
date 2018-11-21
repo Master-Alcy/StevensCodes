@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>d08</title>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script type="text/babel">
+    let LikeButton = React.createClass({
+      // All components are state machine
+      // With a initial state, and as user's interaction. 
+      // The state changes and thus, re-render UI
+      getInitialState() {
+        return {liked: false};
+      },
+      // Now initial state is set, we can use this.state to get it
+      handleClick(event) {
+        this.setState({
+          liked: !this.state.liked
+        });
+      },
+      // this.props is the im-mutable things
+      // this.state is the mutable things 
+      render() {
+        let text = this.state.liked ? 'like' : 'haven\'t liked';
+        return (
+          <p 
+          onClick={this.handleClick}
+          >
+          You {text} this. Click to toggle.
+          </p>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <LikeButton />,
+      document.getElementById('example')
+    );
+  </script>
+</body>
+
+</html>

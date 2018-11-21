@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>do7</title>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script type="text/babel">
+    let MyComponent = React.createClass({
+      handleClick() {
+        // this.refs.[refName] returns the real DOM node
+        // Note that must wait virtual DOM inserted to 
+        // take effect. Use Click call back can avoid this.
+        // Or KeyDown, Copy, Scroll, etc.
+        this.refs.myTextInput.focus();
+      },
+      render() {
+        // ref is needed to get user input within component
+        return (
+          <div>
+            <input type="text" ref="myTextInput" />
+            <input 
+            type="button" 
+            value="Focus the text input" 
+            onClick={this.handleClick} 
+            />
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <MyComponent />,
+      document.getElementById('example')
+    );
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>d10</title>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script type="text/babel">
+    // component life spawn: 
+    // Mounting: Real DOM Inserted
+    // Updating: Re-Rendering
+    // Unmounting: Removed from Real DOM
+    let Hello = React.createClass({
+      getInitialState() {
+        return {opacity: 1.0};
+      },
+      //componentWillMount()  //will is triggered before status
+      //componentDidMount()   //did is triggered after status
+      //componentWillUpdate(object nextProps, object nextState)
+      //componentDidUpdate(object prevProps, object prevState)
+      //componentWillUnmount()
+      componentDidMount() {
+        this.timer = setInterval(() => {
+          let opacity = this.state.opacity;
+          opacity -= .05;
+          if (opacity < 0.1) {
+            opacity = 1.0;
+          }
+          this.setState({
+            opacity: opacity
+          });
+        }.bind(this), 100);
+      },
+      //componentWillReceiveProps(object nextProps): 
+      //called when loaded component received new props
+      //shouldComponentUpdate(object nextProps, object nextState)：
+      //called when component decides to re-rendering
+      render() {
+        return (
+          // Note that first {} means this is a JavaScript language
+          // the second {} means style object
+          <div style={{opacity: this.state.opacity}}>
+            Hello {this.props.name}
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <Hello name="world"/>,
+      document.getElementById('example')
+    );
+  </script>
+</body>
+
+</html>

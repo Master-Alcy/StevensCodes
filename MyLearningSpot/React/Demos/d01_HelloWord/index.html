@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>d01</title>
+  // react.js is core
+  <script src="../build/react.js"></script>
+  // react-dom.js is DOM functions
+  <script src="../build/react-dom.js"></script>
+  // Browser is change JSX to Javascript, TIME CONSUMING
+  // This should be placed in server
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  // This div is called with line 24!
+  <div id="example"></div>
+  // type="text/babel" is React's JSX
+  // JSX is not compatible with javascript
+  <script type="text/babel">
+    // ReactDOM.render is turning module into HTML
+    ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      // and inserts at some DOM section
+      document.getElementById('example')
+    );
+  </script>
+</body>
+
+</html>
+// babel src --out-dir build
+// This could grammar change *.js in src/ and put in build/

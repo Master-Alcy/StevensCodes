@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>d02</title>
+  <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+</head>
+
+<body>
+  <div id="example"></div>
+  <script type="text/babel">
+  //  type="text/bebel" => JSX
+    var names = ['Alice', 'Emily', 'Kate'];
+    // "<" => compile with HTML
+    // "{" => compile with JavaScript
+    ReactDOM.render(
+      <div>{
+        // Note that map is used
+        names.map(function (name, index) {
+          return (<div key={index}>
+          Hello, {name}!
+          </div>);
+        })
+      }</div>,
+      document.getElementById('example')
+    );
+    </script>
+</body>
+
+</html>
