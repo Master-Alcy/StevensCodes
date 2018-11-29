@@ -1,3 +1,4 @@
+"use strict";
 const uuid = require('uuid')
 const models = require('./models')
 const bookModel = models.getModel('Book')

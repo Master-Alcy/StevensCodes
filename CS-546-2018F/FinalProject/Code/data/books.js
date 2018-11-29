@@ -1,3 +1,4 @@
+"use strict";
 const models = require('./models')
 const bookModel = models.getModel('Book')
 const userModel = models.getModel('User')

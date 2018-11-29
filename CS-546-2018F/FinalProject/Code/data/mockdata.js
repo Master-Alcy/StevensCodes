@@ -1,3 +1,4 @@
+"use strict";
 const mock = require('mockjs')
 const uuid = require('uuid')
 const Random = mock.Random
