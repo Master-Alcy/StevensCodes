@@ -78,24 +78,28 @@ public class MyCompressedTrie {
 					Node newNext = new Node(1);
 					putData(newNext,url);
 					StringBuilder remainingLabel = restString(label, labelIndex);
-
+					int labelAt = remainingLabel.charAt(0) - BASE;
+					
 					label.setLength(labelIndex); // making "faceboook" as "face"
 					current.next[charIndex] = newNext; // new node for "face"
-					newNext.next[remainingLabel.charAt(0) - BASE] = oldNext;
-					newNext.edge[remainingLabel.charAt(0) - BASE] = remainingLabel;
+					newNext.next[labelAt] = oldNext;
+					newNext.edge[labelAt] = remainingLabel;
 				} else { 
 					// inserting word which has a partial match with existing word
-					StringBuilder remainingLabel = restString(label, labelIndex);
-					Node newNext = new Node(0);
-					StringBuilder remainingWord = restString(word, wordIndex);
 					Node oldNext = current.next[charIndex];	
+					Node newNext = new Node(0);
+					StringBuilder remainingLabel = restString(label, labelIndex);
+					StringBuilder remainingWord = restString(word, wordIndex);
+					int labelAt = remainingLabel.charAt(0) - BASE;
+					int wordAt = remainingWord.charAt(0) - BASE;
 					
 					label.setLength(labelIndex);
 					current.next[charIndex] = newNext;
-					newNext.edge[remainingLabel.charAt(0) - BASE] = remainingLabel;
-					newNext.next[remainingLabel.charAt(0) - BASE] = oldNext;
-					newNext.edge[remainingWord.charAt(0) - BASE] = remainingWord;
-					Node temp = newNext.next[remainingWord.charAt(0) - BASE] = new Node(1);
+					newNext.edge[labelAt] = remainingLabel;
+					newNext.next[labelAt] = oldNext;
+					newNext.edge[wordAt] = remainingWord;
+					
+					Node temp = newNext.next[wordAt] = new Node(1);
 					putData(temp, url);
 				}
 				return;
@@ -104,8 +108,9 @@ public class MyCompressedTrie {
 
 		if (wordIndex < word.length()) { 
 			// inserting new node for new word
-			current.edge[word.charAt(wordIndex) - BASE] = restString(word, wordIndex);
-			Node temp = current.next[word.charAt(wordIndex) - BASE] = new Node(1);
+			int wordAt = word.charAt(wordIndex) - BASE;
+			current.edge[wordAt] = restString(word, wordIndex);
+			Node temp = current.next[wordAt] = new Node(1);
 			putData(temp, url);
 		} else {
 			// inserting "there" when "therein" and "thereafter" are existing

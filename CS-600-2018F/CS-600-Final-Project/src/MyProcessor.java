@@ -85,12 +85,17 @@ public class MyProcessor {
 		StringBuilder result = new StringBuilder();
 		
 		result.append("Searched against: ");
-		for (String word : words){
+		lookup: for (String word : words){
 			// If not found => NullPointerException
 			try {
 				oneMap = trie.get(word);
 			} catch (NullPointerException e) {
-				return "Word \"" + word + "\" not found.";
+				result.append(word + "(Not Found) ");
+				if (word.equals(words[words.length-1])) {
+					break;
+				}else {
+					continue lookup;					
+				}
 			}
 			wordsTotalOccurence += oneMap.remove("WordCount"); //word count for this word
 			iter = oneMap.entrySet().iterator();
@@ -101,6 +106,7 @@ public class MyProcessor {
 			}// End of iterator of oneMap
 			result.append(word + " ");
 		}// End of words for loop
+		
 		String newline = System.getProperty("line.separator");
 		result.append(newline + "Total occurence: " + wordsTotalOccurence);
 		result.append(newline);
