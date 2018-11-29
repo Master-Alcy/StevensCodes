@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>User Data</title>
+  <link rel="stylesheet" href="../../public/css/main.css">
+  <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+  <!-- Load react and jq -->
+  <!-- Something Codes is not supported by new react
+  <script src="../build/react.production.min.js"></script>
+  <script src="../build/react-dom.production.min.js"></script>
+  -->
+  <script src="../../build/babel.min.js"></script>
+  <script src="../../build/jquery-3.3.1.min.js"></script>
+  <!-- Old react -->
+  <script src="../../build/react.js"></script>
+  <script src="../../build/react-dom.js"></script>
+  <!-- Old babel and jq
+  <script src="../build/browser.min.js"></script>
+  <script src="../build/jquery.min.js"></script>
+  -->
+</head>
+
+<body>
+
+  <header>
+    <h1>A Simple User Login System</h1>
+    <p>This would take a few seconds to search</p>
+  </header>
+
+  <div id="example"></div>
+  <script type="text/babel">
+    let UserGist = React.createClass({
+      getInitialState() {
+        return {
+          username: '',
+          lastGistUrl: ''
+        };
+      },
+
+      componentDidMount() {
+        $.get(this.props.source, function(result) {
+        let lastGist = result[0];
+        this.setState({
+          username: lastGist.owner.login,
+          lastGistUrl: lastGist.html_url
+        });
+        }.bind(this));
+      },
+
+      render() {
+        return (
+          <div>
+            {this.state.username}'s last gist is 
+            <a href={this.state.lastGistUrl}>here</a>.
+          </div>
+        );
+      }
+    });
+
+    ReactDOM.render(
+      <UserGist source="https://api.github.com/users/octocat/gists"/>,
+      document.getElementById('example')
+    );
+  </script>
+
+  <footer>
+    <article>
+      <h3>Jingxuan Ai, 10431517</h3>
+      <p>This is a brief introduction: ... The end.</p>
+    </article>
+  </footer>
+
+</body>
+
+</html>
