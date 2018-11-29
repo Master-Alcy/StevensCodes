@@ -105,9 +105,12 @@ async function changeTotalStorageById(id, action){
 }
 
 async function addBook(data){
+    if(data === undefined){
+        return {success: false, desc: "invalid params"}
+    }
     ISBN = data.ISBN
     if(ISBN === undefined){
-        return {success: false, desc: "invalid params"};
+        return {success: false, desc: "invalid params"}
     }
     let info = await getBooksByISBN(ISBN); 
     //ISBN已存在
@@ -145,13 +148,22 @@ async function addBook(data){
             "ISBN": data.ISBN,
             "profile": data.profile,
             "record": data.record
-        });
-        if(new_book){
-            return {success: true, data: new_book};
-        }
-        else{
-            return {success: false};
-        }
+        })
+        new_book.save(function(err, docs){
+            if(err){
+                console.log(err)
+                return {success: false};
+            }else{
+                return {success: true, data: new_book}
+                
+            }
+        })
+        // if(new_book){
+        //     return {success: true, data: new_book};
+        // }
+        // else{
+        //     return {success: false};
+        // }
     }
 }
 
