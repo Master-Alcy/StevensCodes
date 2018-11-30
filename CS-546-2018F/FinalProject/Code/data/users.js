@@ -92,22 +92,29 @@ async function updateUserProfilebyId(id, profile){
 }
 
 async function addUser(data){
-    let result = await new userModel({
+    if(typeof data === "undefined" || typeof data == "null"){
+        return { success : false, desc: "invalid params"}
+    }
+    if(typeof data.username === "undefined" || typeof data.hashedPassword === "undefined" || typeof data.identity === "undefined"){
+        return { success : false, desc: "invalid params"}
+    }
+    let newuser = await new userModel({
         '_id': uuid.v4(),
         'sessionId' : uuid.v4(),
         'username' : data.username,
         'hashedPassword' :data.hashedPassword,
         'identity' : data.identity,
     })
-    if(result){
-        return { success : true , data : result}
-    }else{
-        return { success : false}
+    try{
+        await newuser.save()
+        return {success: true, data: newuser}
+    }catch(err){
+        return {success: false, data: err}
     }
 }
 
 async function updateHashedPasswordById(id, hashedPassword){
-    if(typeof id !== 'string'){
+    if(typeof id !== 'string' || typeof hashedPassword === "undefined" || typeof hashedPassword == "null"){
         return { success : false, desc: "invalid params"}
     }
     let result = await userModel.updateOne({'_id':id},{'$set':{
@@ -121,7 +128,10 @@ async function updateHashedPasswordById(id, hashedPassword){
 }
 
 async function addRecordById(id, data){
-    if(typeof id !== 'string'){
+    if(typeof id !== 'string' || typeof data === "undefined" || typeof data == "null"){
+        return { success : false, desc: "invalid params"}
+    }
+    if(typeof data.bookid === "undefined" || typeof data.time == "undefined" ||typeof data.action == "undefined" ||typeof data.staffid == "undefined"  ){
         return { success : false, desc: "invalid params"}
     }
     let newRecordId = uuid.v4()

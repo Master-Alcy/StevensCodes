@@ -124,9 +124,9 @@ The book collection will store all books and their records. Staff can add, updat
     "totalStorage": 20,
     "location": "Library 2nd floor 2B-5-20",
     "price": 20.98,
+    "ISBN": "978-0-321-57351-3",
     "profile":{
         "Author": "Someone",
-        "ISBN": "978-0-321-57351-3",
         "description":"This is a book",
         "tag": "Tech"
     },
@@ -169,7 +169,6 @@ This subdocument is used to describe the book's profile.
 ```
 {
     "Author": "Someone",
-    "ISBN": "978-0-321-57351-3",
     "description":"This is a book",
     "tag": "Tech"
 }
