@@ -6,8 +6,8 @@ import NavBar from './HeaderComponent/NavBar';
 import Footer from './FooterComponent/Footer';
 
 import HomePage from './HomePage';
-import SignupPage from './Auth/SignupPage';
-import LoginPage from './Auth/LoginPage';
+import SignupPage from './AuthComponent/SignupPage';
+import LoginPage from './AuthComponent/LoginPage';
 
 class App extends Component {
 
