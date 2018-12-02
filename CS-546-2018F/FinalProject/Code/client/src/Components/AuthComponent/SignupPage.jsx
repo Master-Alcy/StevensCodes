@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Segment, Radio } from 'semantic-ui-react'
-
-const choice = [
-    { key: 'sta', text: 'Staff', value: 'staff' },
-    { key: 'stu', text: 'Student', value: 'student' },
-]
+import * as $ from 'jquery';
 
 class SignupPage extends Component {
     constructor() {
@@ -15,78 +11,114 @@ class SignupPage extends Component {
         this.state = {
             username: "",
             hashedPassword: "",
-            identity: ""
+            identity: "",
+            hasId: false
         };
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = event.target;
-        console.log(data);
-        console.log(data.username);
-        console.log(data.hashedPassword);
-        console.log(data.identity);
-        console.log(value);
+    handleSubmit() {
+        console.log("In submit 222");
+        //event.preventDefault();
+        const formdata = {
+            username: this.state.username,
+            hashedPassword: this.state.hashedPassword,
+            identity: this.state.identity
+        };
 
-        fetch('/user', {
+        if (formdata.identity === "") {
+            console.log("No ID");
+            return;
+        }
+
+        console.log(formdata);
+
+        fetch('http://localhost:3000/user', {
             method: 'POST',
-            body: data,
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(formdata)
+        }).then((response)=>response.json()).then((result)=>{
+            console.log(result);
+        })
+
+        /*
+        let requestConfig = {
+            type: 'POST',
+            url: "https://http://localhost:3000/user",
+            data: formdata,
+            dataType: JSON,
+            success: (data) => {
+                if (data.success === "true") {
+                    console.log("We did it");
+                } else {
+                    console.log(data.msg);
+                }
+            },
+            error: () => {
+                console.log(error);
+            }
+        };
+
+        $.ajax(requestConfig).then((responseMessage) => {
+            let newRes = $(responseMessage);
+            console.log(newRes);
+        });
+        */
+    }
+
+    handleInput(event, { name, value }) {
+        this.setState({
+            [name]: value
         });
     }
 
-    handleInput(event) {
-        let target = event.target.name;
-        let data = event.target;
+    handleOption(event, { name, value }) {
         this.setState({
-            [target]: data.value
+            [name]: value,
+            hasId: true
         });
-
-        console.log(this.state)
-        console.log(data.name);
-        // console.log(data.hashedPassword);
-        // console.log(data.identity);
     }
 
-    handleOption(event, { value }) {
-        this.setState({
-            value
-        });
-        console.log(value)
-        console.log(this.state)
-        // console.log(event.target.value);
+    checkName(input) {
+        return input + " mhm";
+    }
+
+    checkPass(input) {
+        return input + " mhm";
     }
 
     render() {
-        const { value } = this.state
+        const { username, hashedPassword } = this.state
+        console.log(this.state);
         return (
             <Segment raised>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                         <Form.Input fluid label='Username' name="username"
-                            onChange={this.handleInput} value={this.state.username}
+                            value={username} onChange={this.handleInput}
                             placeholder='Your Username' />
+                        <p>{this.checkName(this.state.username)}</p>
                     </Form.Field>
                     <Form.Field>
                         <Form.Input fluid label='Password' name="hashedPassword"
-                            onChange={this.handleInput} value={this.state.hashedPassword}
+                            value={hashedPassword} onChange={this.handleInput}
                             placeholder='Your Password' />
+                        <p>{this.checkPass(this.state.hashedPassword)}</p>
                     </Form.Field>
                     <Form.Group inline>
                         <label>Identity</label>
-                        <Form.Field
-                            control={Radio}
-                            label='Staff'
-                            value='staff'
-                            checked={value === 'staff'}
+                        <Form.Field control={Radio} label='Staff'
+                            value='staff' name="identity"
+                            checked={this.state.identity === 'staff'}
                             onChange={this.handleOption}
                         />
-                        <Form.Field
-                            control={Radio}
-                            label='Student'
-                            value='student'
-                            checked={value === 'student'}
+                        <Form.Field control={Radio} label='Student'
+                            value='student' name="identity"
+                            checked={this.state.identity === 'student'}
                             onChange={this.handleOption}
                         />
+                        <p>{this.state.identity}</p>
                     </Form.Group>
                     <Form.Button>Submit</Form.Button>
                 </Form>
