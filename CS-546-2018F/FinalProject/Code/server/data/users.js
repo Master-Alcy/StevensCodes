@@ -93,10 +93,10 @@ async function updateUserProfilebyId(id, profile){
 
 async function addUser(data){
     if(typeof data === "undefined" || typeof data == "null"){
-        return { success : false, desc: "invalid params"}
+        return { success : false, desc: "invalid params 111"}
     }
     if(typeof data.username === "undefined" || typeof data.hashedPassword === "undefined" || typeof data.identity === "undefined"){
-        return { success : false, desc: "invalid params"}
+        return { success : false, desc: "invalid params 222"}
     }
     let newuser = await new userModel({
         '_id': uuid.v4(),
