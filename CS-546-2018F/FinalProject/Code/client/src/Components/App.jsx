@@ -89,6 +89,7 @@ class App extends Component {
                             this.setState({
                                 loader: "student"
                             });
+                            return;
                         }
                         debugger;
                         this.setState({
@@ -106,22 +107,7 @@ class App extends Component {
     render() {
         const input = this.state.loader;
         console.log(input);
-
-        if (input === 'init') {
-            return (
-                <Router>
-                    <div>
-                        <NavBar />
-                        <Switch>
-                            <Route name="home" exact path="/" component={HomePage} />
-                            <Route name="sign" exact path="/signup" component={SignupPage} />
-                            <Route name="log" exact path="/login" component={LoginPage} />
-                        </Switch>
-                        <Footer />
-                    </div>
-                </Router>
-            );
-        } else if (input === 'student') {
+        if (input === 'student') {
             return (
                 <Router>
                     <div>
@@ -131,6 +117,7 @@ class App extends Component {
                             <Route name="sign" exact path="/signup" component={SignupPage} />
                             <Route name="log" exact path="/login" component={LoginPage} />
                             <Route name="student" path="/student" component={Students} />
+                            <Route component={NotFound} />
                         </Switch>
                         <Footer />
                     </div>
@@ -146,6 +133,7 @@ class App extends Component {
                             <Route name="sign" exact path="/signup" component={SignupPage} />
                             <Route name="log" exact path="/login" component={LoginPage} />
                             <Route name="staff" path="/staff" component={Staffs} />
+                            <Route component={NotFound} />
                         </Switch>
                         <Footer />
                     </div>

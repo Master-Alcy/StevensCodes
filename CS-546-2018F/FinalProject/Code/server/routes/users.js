@@ -28,11 +28,16 @@ router.post("/:id", async (req, res) => {
         const find = await userData.getUserBySessionId(req.params.id);
         console.log(find);
         if (find) {
-            console.log("Caught the theif");
-            res.json({isFind: true});
+            console.log("Welcome dude");
+            res.json({
+                isFind: true
+            });
+        } else {
+            console.log("Not found");
+            res.json({
+                isFind: false
+            });
         }
-        console.log("Welcome");
-        res.json({isFind: false});
     } catch (e) {
         res.status(500).json({
             error: "At post /user/:id " + e
