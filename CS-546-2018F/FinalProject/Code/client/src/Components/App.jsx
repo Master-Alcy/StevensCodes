@@ -55,6 +55,10 @@ class App extends Component {
         this.protector = this.protector.bind(this);
     }
 
+    componentWillMount() {
+        
+    }
+
     protector() {
         debugger;
         const student = cookies.get('student');
