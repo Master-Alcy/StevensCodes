@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Segment, Radio, Icon, Header } from 'semantic-ui-react'
-import * as $ from 'jquery';
+import { Form, Segment, Radio, Icon, Header } from 'semantic-ui-react';
+import $ from 'jquery';
 import Cookies from 'universal-cookie';
 
 class SignupPage extends Component {
@@ -105,7 +105,7 @@ class SignupPage extends Component {
                 <div>
                     <Form.Button>Submit</Form.Button>
                     <Segment inverted color='red'>
-                        <Icon name='check' />
+                        <Icon loading name='spinner' />
                         Invalid Input. Must finish all three fields.
                     </Segment>
                 </div>
@@ -139,58 +139,55 @@ class SignupPage extends Component {
             identity: this.state.identity
         };
         const cookies = new Cookies();
-        // fetch method success. Turn to ajax to fullfill
-        // CS-546 Requirement
-        fetch('/user', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(formdata)
-        })
-        .then((response) => response.json())
-        .then((result) => {
+        // fetch method is fully functional. All tests passed 
+        // Turn to ajax to fullfill CS-546 Requirement
+        
+        // fetch('/user/signup', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(formdata)
+        // })
+        // .then((response) => response.json())
+        // .then((result) => {
+        //     debugger;
+        //     console.log(result);
+        //     if (result.success) {
+        //         cookies.set(result.identity,result.sessionId,{path: '/'});
+        //         window.location.replace("http://localhost:3000/"+result.identity);
+        //     } else {
+        //         window.location.replace("http://localhost:3000/");
+        //     }
+        // });
+        
+
+        // AJAX
+        let requestConfig = {
+            url: "http://localhost:3000/user/signup",
+            data: formdata,
+            type: 'POST',
+            dataType: 'json'
+        };
+
+        $.ajax(requestConfig).then((responseMessage) => {
             debugger;
-            console.log(result);
-            if (result.success) {
-                cookies.set(result.identity,result.sessionId,{path: '/'});
-                window.location.replace("http://localhost:3000/"+result.identity);
+            let newRes = $(responseMessage)[0];
+            console.log(newRes);
+            if (newRes.success) {
+                cookies.set(newRes.identity,newRes.sessionId,{path: '/'});
+                window.location.replace("http://localhost:3000/"+newRes.identity);
             } else {
                 window.location.replace("http://localhost:3000/");
             }
         });
-
 
         if (!this.state.isSubmitted) {
             this.setState({ 
                 isInvalid: false,
                 isSubmitted: true 
             });
-        }
-
-        /*
-        let requestConfig = {
-            type: 'POST',
-            url: "https://http://localhost:3000/user",
-            data: formdata,
-            dataType: JSON,
-            success: (data) => {
-                if (data.success === "true") {
-                    console.log("We did it");
-                } else {
-                    console.log(data.msg);
-                }
-            },
-            error: () => {
-                console.log(error);
-            }
-        };
-
-        $.ajax(requestConfig).then((responseMessage) => {
-            let newRes = $(responseMessage);
-            console.log(newRes);
-        });
-        */
+        }   
     }
 
     render() {

@@ -96,10 +96,16 @@ class App extends Component {
                             loader: "staff"
                         });
                     }
+                })
+                .catch((e) => {
+                    this.setState({
+                        loader: "notfound"
+                    });
                 });
         } catch (err) {
+            console.log(err);
             this.setState({
-                loader: "notfound"
+                loader: "error"
             });
         }
     }
