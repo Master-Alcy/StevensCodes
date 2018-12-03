@@ -52,14 +52,12 @@ const Staffs = ({ match }) => (
 class App extends Component {
     constructor() {
         super();
-        this.protector = this.protector.bind(this);
+        this.state = {
+            loader: 'init'
+        }
     }
 
-    componentWillMount() {
-        
-    }
-
-    protector() {
+    componentDidMount() {
         debugger;
         const student = cookies.get('student');
         const staff = cookies.get('staff');
@@ -78,7 +76,7 @@ class App extends Component {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({isFind: false})
+                body: JSON.stringify({ isFind: false })
             })
                 .then((response) => response.json())
                 .then((result) => {
@@ -88,19 +86,72 @@ class App extends Component {
                         debugger;
                         if (isStudent) {
                             debugger;
-                            return (<Route name="student" path="/student" component={Students} />);
+                            this.setState({
+                                loader: "student"
+                            });
                         }
                         debugger;
-                        return (<Route name="staff" path="/staff" component={Staffs} />);
+                        this.setState({
+                            loader: "staff"
+                        });
                     }
                 });
         } catch (err) {
-            return (<Route component={NotFound} />);
+            this.setState({
+                loader: "notfound"
+            });
         }
     }
 
-
     render() {
+        const input = this.state.loader;
+        console.log(input);
+
+        if (input === 'init') {
+            return (
+                <Router>
+                    <div>
+                        <NavBar />
+                        <Switch>
+                            <Route name="home" exact path="/" component={HomePage} />
+                            <Route name="sign" exact path="/signup" component={SignupPage} />
+                            <Route name="log" exact path="/login" component={LoginPage} />
+                        </Switch>
+                        <Footer />
+                    </div>
+                </Router>
+            );
+        } else if (input === 'student') {
+            return (
+                <Router>
+                    <div>
+                        <NavBar />
+                        <Switch>
+                            <Route name="home" exact path="/" component={HomePage} />
+                            <Route name="sign" exact path="/signup" component={SignupPage} />
+                            <Route name="log" exact path="/login" component={LoginPage} />
+                            <Route name="student" path="/student" component={Students} />
+                        </Switch>
+                        <Footer />
+                    </div>
+                </Router>
+            );
+        } else if (input === 'staff') {
+            return (
+                <Router>
+                    <div>
+                        <NavBar />
+                        <Switch>
+                            <Route name="home" exact path="/" component={HomePage} />
+                            <Route name="sign" exact path="/signup" component={SignupPage} />
+                            <Route name="log" exact path="/login" component={LoginPage} />
+                            <Route name="staff" path="/staff" component={Staffs} />
+                        </Switch>
+                        <Footer />
+                    </div>
+                </Router>
+            );
+        }
         return (
             <Router>
                 <div>
@@ -109,12 +160,12 @@ class App extends Component {
                         <Route name="home" exact path="/" component={HomePage} />
                         <Route name="sign" exact path="/signup" component={SignupPage} />
                         <Route name="log" exact path="/login" component={LoginPage} />
-                        {this.protector()}
+                        <Route component={NotFound} />
                     </Switch>
                     <Footer />
                 </div>
             </Router>
-        )
+        );
     }
 }
 

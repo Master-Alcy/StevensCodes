@@ -126,6 +126,7 @@ class SignupPage extends Component {
     }
 
     handleSubmit() {
+        debugger;
         event.preventDefault();
         if (!this.state.checkName || !this.state.checkPass || !this.state.checkId) {
             this.setState({ isInvalid: true });
@@ -149,13 +150,13 @@ class SignupPage extends Component {
         })
         .then((response) => response.json())
         .then((result) => {
+            debugger;
             console.log(result);
             if (result.success) {
                 cookies.set(result.identity,result.sessionId,{path: '/'});
                 window.location.replace("http://localhost:3000/"+result.identity);
             } else {
-                // Submit un-success
-                return;
+                window.location.replace("http://localhost:3000/");
             }
         });
 
