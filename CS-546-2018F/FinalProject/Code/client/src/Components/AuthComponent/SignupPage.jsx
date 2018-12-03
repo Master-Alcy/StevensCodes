@@ -1,30 +1,143 @@
 import React, { Component } from 'react';
 import { Form, Segment, Radio, Icon, Header } from 'semantic-ui-react'
 import * as $ from 'jquery';
+import Cookies from 'universal-cookie';
 
 class SignupPage extends Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.checkName = this.checkName.bind(this);
+        this.checkPass = this.checkPass.bind(this);
+        this.checkId = this.checkId.bind(this);
+        this.checkSubmit = this.checkSubmit.bind(this);
         this.state = {
             username: "",
             hashedPassword: "",
-            identity: ""
+            identity: "",
+            checkName: false,
+            checkPass: false,
+            checkId: false,
+            isSubmitted: false,
+            isInvalid: false
         };
     }
 
+    handleChange(event, { name, value }) { this.setState({ [name]: value }); }
+
+    checkName() {
+        let input = this.state.username;
+        if (input === "") {
+            return;
+        } else if (/^[a-z]+$/i.test(input) && input.length >= 4) {
+            if (!this.state.checkName) {
+                this.setState({ checkName: true });
+            }
+            return (
+                <div>
+                    <Segment inverted color='green'>
+                        <Icon name='check' />
+                        Valid Username
+                    </Segment>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Segment inverted color='yellow'>
+                        <Icon loading name='spinner' />
+                        Letters only, length 4 minimum, and no spaces.
+                    </Segment>
+                </div>
+            );
+        }
+    }
+
+    checkPass() {
+        let input = this.state.hashedPassword;
+        if (input === "") {
+            return;
+        } else if (/^[a-z0-9]+$/i.test(input) && input.length >= 8) {
+            if (!this.state.checkPass) {
+                this.setState({ checkPass: true });
+            }
+            return (
+                <div>
+                    <Segment inverted color='green'>
+                        <Icon name='check' />
+                        Valid Password
+                    </Segment>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <Segment inverted color='yellow'>
+                        <Icon loading name='spinner' />
+                        Letters and numbers only, length 8 minimum, and no spaces.
+                    </Segment>
+                </div>
+            );
+        }
+    }
+
+    checkId() {
+        let input = this.state.identity;
+        if (input !== "") {
+            if (!this.state.checkId) {
+                this.setState({ checkId: true });
+            }
+            return (
+                <div>
+                    <Segment inverted color='green'>
+                        <Icon name='check' />
+                        You are a {input}
+                    </Segment>
+                </div>
+            );
+        }
+    }
+
+    checkSubmit() {
+        if (this.state.isInvalid) {
+            return (
+                <div>
+                    <Form.Button>Submit</Form.Button>
+                    <Segment inverted color='red'>
+                        <Icon name='check' />
+                        Invalid Input. Must finish all three fields.
+                    </Segment>
+                </div>
+            );
+        }
+        if (this.state.isSubmitted) {
+            return (
+                <div>
+                    <Segment inverted color='green'>
+                        <Icon name='check' />
+                        Valid Input. Submitted.
+                    </Segment>
+                </div>
+            );
+        } else {
+            return (<Form.Button>Submit</Form.Button>);
+        }
+    }
+
     handleSubmit() {
-        console.log("In submit 3");
         event.preventDefault();
+        if (!this.state.checkName || !this.state.checkPass || !this.state.checkId) {
+            this.setState({ isInvalid: true });
+            return;
+        }
+
         const formdata = {
             username: this.state.username,
             hashedPassword: this.state.hashedPassword,
             identity: this.state.identity
         };
-
-        console.log(formdata);
-
+        const cookies = new Cookies();
         // fetch method success. Turn to ajax to fullfill
         // CS-546 Requirement
         fetch('/user', {
@@ -33,9 +146,26 @@ class SignupPage extends Component {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(formdata)
-        }).then((response) => response.json()).then((result) => {
+        })
+        .then((response) => response.json())
+        .then((result) => {
             console.log(result);
+            if (result.success) {
+                cookies.set(result.identity,result.sessionId,{path: '/'});
+                window.location.replace("http://localhost:3000/"+result.identity);
+            } else {
+                // Submit un-success
+                return;
+            }
         });
+
+
+        if (!this.state.isSubmitted) {
+            this.setState({ 
+                isInvalid: false,
+                isSubmitted: true 
+            });
+        }
 
         /*
         let requestConfig = {
@@ -62,73 +192,6 @@ class SignupPage extends Component {
         */
     }
 
-    handleChange(event, { name, value }) {
-        this.setState({
-            [name]: value
-        });
-    }
-
-    checkName(input) {
-        if (input === "") {
-            return;
-        } else if (/^[a-z]+$/i.test(input) && input.length >= 4) {
-            return (
-                <div>
-                    <Segment inverted color='green'>
-                        <Icon name='check' />
-                        Valid Username
-                    </Segment>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Segment inverted color='yellow'>
-                        <Icon loading name='spinner' />
-                        Letters only, length 4 minimum, and no spaces.
-                    </Segment>
-                </div>
-            );
-        }
-    }
-
-    checkPass(input) {
-        if (input === "") {
-            return;
-        } else if (/^[a-z0-9]+$/i.test(input) && input.length >= 8) {
-            return (
-                <div>
-                    <Segment inverted color='green'>
-                        <Icon name='check' />
-                        Valid Password
-                    </Segment>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Segment inverted color='yellow'>
-                        <Icon loading name='spinner' />
-                        Letters and numbers only, length 8 minimum, and no spaces.
-                    </Segment>
-                </div>
-            );
-        }
-    }
-
-    checkId() {
-        if (this.state.identity !== "") {
-            return (
-                <div>
-                    <Segment inverted color='green'>
-                        <Icon name='check' />
-                        You are a {this.state.identity}
-                    </Segment>
-                </div>
-            );
-        }
-    }
-
     render() {
         const { username, hashedPassword } = this.state
         console.log(this.state);
@@ -142,14 +205,14 @@ class SignupPage extends Component {
                         <Form.Input fluid label='Username' name="username"
                             value={username} onChange={this.handleChange}
                             placeholder='Your Username' />
-                        {this.checkName(this.state.username)}
+                        {this.checkName()}
                     </Form.Field>
 
                     <Form.Field>
                         <Form.Input fluid label='Password' name="hashedPassword"
                             value={hashedPassword} onChange={this.handleChange}
                             placeholder='Your Password' />
-                        {this.checkPass(this.state.hashedPassword)}
+                        {this.checkPass()}
                     </Form.Field>
 
                     <Form.Group inline>
@@ -159,7 +222,6 @@ class SignupPage extends Component {
                             checked={this.state.identity === 'staff'}
                             onChange={this.handleChange}
                         />
-
                         <Form.Field control={Radio} label='Student'
                             value='student' name="identity"
                             checked={this.state.identity === 'student'}
@@ -167,8 +229,7 @@ class SignupPage extends Component {
                         />
                         {this.checkId()}
                     </Form.Group>
-
-                    <Form.Button>Submit</Form.Button>
+                    {this.checkSubmit()}
                 </Form>
 
             </Segment>

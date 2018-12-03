@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Image, Container, Divider, Segment, List, Icon, Table, Header, Grid } from 'semantic-ui-react';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class HomePage extends Component {
+    componentDidMount(){
+        if (cookies.get('student')) {
+            cookies.remove('student');
+        }else if (cookies.get('staff')) {
+            cookies.remove('staff');
+        }
+    }
+
     render() {
         return (
             <div>

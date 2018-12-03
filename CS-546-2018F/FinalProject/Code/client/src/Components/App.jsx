@@ -7,6 +7,8 @@ import {
     Redirect,
     Switch
 } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 import NavBar from './HeaderComponent/NavBar';
 import Footer from './FooterComponent/Footer';
@@ -45,7 +47,55 @@ const Staffs = ({ match }) => (
     </Switch>
 );
 
+
+
 class App extends Component {
+    constructor() {
+        super();
+        this.protector = this.protector.bind(this);
+    }
+
+    protector() {
+        debugger;
+        const student = cookies.get('student');
+        const staff = cookies.get('staff');
+        let searchId;
+        let isStudent;
+
+        if (student) {
+            searchId = '/user/' + student;
+            isStudent = true;
+        } else if (staff) {
+            searchId = '/user/' + staff;
+        }
+        try {
+            fetch(searchId, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({isFind: false})
+            })
+                .then((response) => response.json())
+                .then((result) => {
+                    debugger;
+                    console.log(result);
+                    if (result.isFind) {
+                        debugger;
+                        if (isStudent) {
+                            debugger;
+                            return (<Route name="student" path="/student" component={Students} />);
+                        }
+                        debugger;
+                        return (<Route name="staff" path="/staff" component={Staffs} />);
+                    }
+                });
+        } catch (err) {
+            return (<Route component={NotFound} />);
+        }
+    }
+
+
     render() {
         return (
             <Router>
@@ -55,9 +105,7 @@ class App extends Component {
                         <Route name="home" exact path="/" component={HomePage} />
                         <Route name="sign" exact path="/signup" component={SignupPage} />
                         <Route name="log" exact path="/login" component={LoginPage} />
-                        <Route name="student" path="/student" component={Students} />
-                        <Route name="staff" path="/staff" component={Staffs} />
-                        <Route component={NotFound} />
+                        {this.protector()}
                     </Switch>
                     <Footer />
                 </div>

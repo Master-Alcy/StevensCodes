@@ -8,7 +8,7 @@ class NavBar extends Component {
             window.location.pathname === "/student/record") {
             return (
                 <List bulleted horizontal link>
-                    <List.Item as='a' href='/'>Home</List.Item>
+                    <List.Item as='a' href='/'>Home(log out)</List.Item>
                     <List.Item as='a' href='/student'>Student Page</List.Item>
                     <List.Item as='a' href='/student/search'>Search Book</List.Item>
                     <List.Item as='a' href='/student/record'>Check Rental Record</List.Item>
@@ -21,7 +21,7 @@ class NavBar extends Component {
             window.location.pathname === "/staff/checkbook") {
             return (
                 <List bulleted horizontal link>
-                    <List.Item as='a' href='/'>Home</List.Item>
+                    <List.Item as='a' href='/'>Home(log out)</List.Item>
                     <List.Item as='a' href='/staff'>Staff Page</List.Item>
                     <List.Item as='a' href='/staff/bookstorage'>Book Add/Remove</List.Item>
                     <List.Item as='a' href='/staff/bookinteraction'>Book Rent/Receive</List.Item>
