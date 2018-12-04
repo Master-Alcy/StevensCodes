@@ -13,10 +13,10 @@ class StaffBookAddRemove extends Component {
 
         this.state = {
             isSubmitted: false,
-            isInvalid: false,
+            isWrong: false,
             message: "",
             errors: "",
-            
+
             chooseFormButton: "",
             title: "",
             edition: "",
@@ -34,45 +34,32 @@ class StaffBookAddRemove extends Component {
     handleChange(event, { name, value }) { this.setState({ [name]: value }); }
     // Check Add Book Submit
     checkAddSubmit() {
-
-
-
-
-        if (this.state.isInvalid) {
+        if (this.state.isWrong) {
             const msg = this.state.message;
-            if (msg !== "") {
-                return (
-                    <div>
-                        <Form.Button>Submit</Form.Button>
-                        <Segment inverted color='red'>
-                            <Icon loading name='spinner' />
-                            {msg}
-                        </Segment>
-                    </div>
-                );
-            }
             return (
                 <div>
-                    <Form.Button>Submit</Form.Button>
+                    <Form.Button>Submit Again</Form.Button>
                     <Segment inverted color='red'>
                         <Icon loading name='spinner' />
-                        Invalid Input. Must finish all three fields.
+                        {msg}
                     </Segment>
                 </div>
             );
+
         }
         if (this.state.isSubmitted) {
             return (
                 <div>
+                    <Form.Button>Another Submit</Form.Button>
                     <Segment inverted color='green'>
                         <Icon name='check' />
                         Valid Input. Submitted.
                     </Segment>
                 </div>
             );
-        } else {
-            return (<Form.Button>Submit</Form.Button>);
         }
+
+        return (<Form.Button>Submit</Form.Button>);
     }
     // Check Update Book Submit
     checkUpdateSubmit() {
@@ -81,16 +68,33 @@ class StaffBookAddRemove extends Component {
     // Handle Add Book Submit
     handleAddSubmit() {
         event.preventDefault();
+        // Note this is checked by require key word in HTML!
+        // Here is for double check
+        if (this.state.title === "" || this.state.storage === "" || this.state.totalStorage === ""
+            || this.state.edition === "" || this.state.ISBN === "") {
+            this.setState({
+                isWrong: true,
+                message: "All require fields must be filled!"
+            });
+            return;
+        }
 
-        debugger;
-        console.log(event.target);
         const formdata = {
-
+            title: this.state.title,
+            edition: this.state.edition,
+            storage: this.state.storage,
+            totalStorage: this.state.totalStorage,
+            location: this.state.location,
+            price: this.state.price,
+            ISBN: this.state.ISBN,
+            profile: {
+                author: this.state.author,
+                description: this.state.description,
+                tag: this.state.tag.split(' '),
+            }
         };
-        return;
-        // Signup is implemented as jquery's AJAX
-        // This is the same thing but with fetch
-        fetch('/user/login', {
+
+        fetch('/book/add', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -100,12 +104,11 @@ class StaffBookAddRemove extends Component {
             .then((response) => response.json())
             .then((result) => {
                 console.log(result);
-                if (result.isFind) {
-                    cookies.set(result.identity, result.sessionId, { path: '/' });
-                    window.location.replace("http://localhost:3000/" + result.identity);
+                if (result.success) {
+
                 } else {
                     this.setState({
-                        isInvalid: true,
+                        isWrong: true,
                         message: result.msg
                     });
                     return;
@@ -114,7 +117,7 @@ class StaffBookAddRemove extends Component {
 
         if (!this.state.isSubmitted) {
             this.setState({
-                isInvalid: false,
+                isWrong: false,
                 isSubmitted: true
             });
         }
@@ -186,7 +189,7 @@ class StaffBookAddRemove extends Component {
                             value={ISBN} onChange={this.handleChange} />
                         <Form.Input fluid label='Author' placeholder='Author' name="author"
                             value={author} onChange={this.handleChange} />
-                        <Form.Input fluid label='Tag' placeholder='Tag' name="tag"
+                        <Form.Input fluid label='Tag' placeholder='Tags should be seperated with one space' name="tag"
                             value={tag} onChange={this.handleChange} />
                         <Form.TextArea fluid label='Description' placeholder='Description' name="description"
                             value={description} onChange={this.handleChange} />
@@ -290,8 +293,8 @@ class StaffBookAddRemove extends Component {
                             <List.Content>
                                 <List.Header >ISBN</List.Header>
                                 <List.Description >
-                                    necessary <strong>(NOTE: If adding to existing Book, ISBN must be correct.)</strong>
-                                    </List.Description>
+                                    necessary <strong>(NOTE: Using ISBN to check if book exist already)</strong>
+                                </List.Description>
                             </List.Content>
                         </List.Item>
 

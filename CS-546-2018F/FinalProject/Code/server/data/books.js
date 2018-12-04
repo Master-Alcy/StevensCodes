@@ -104,8 +104,6 @@ async function changeTotalStorageById(id, action){
 }
 
 async function addBook(data){
-    console.log("BackEnd/addBook/begining")
-    console.log(data)
     if(data === undefined){
         return {success: false, desc: "No book received at server."}
     }
@@ -139,7 +137,6 @@ async function addBook(data){
     // }
     //ISBN不存在，初始化现有存储量和总量 
     else{
-        console.log('enter noISBN part');
         let new_book = await new bookModel({
             "_id": uuid.v4(),
             "title": data.title,
@@ -151,7 +148,7 @@ async function addBook(data){
             "ISBN": data.ISBN,
             "profile": data.profile,
             "record": data.record
-        })
+        });
         
         try{
             await new_book.save()

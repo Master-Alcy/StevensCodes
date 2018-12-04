@@ -10,6 +10,7 @@ router.post("/add", async (req, res) => {
             success: false,
             msg: "Server does not get the book!"
         });
+        return;
     }
     try {
         const newBook = await bookData.addBook(clientBook);
@@ -19,15 +20,16 @@ router.post("/add", async (req, res) => {
                 success: true,
                 msg: "Adding success"
             });
+            return;
         }
         res.json({
             success: false,
             msg: newBook.desc
         });
     } catch (e) {
-        res.status(500).json({
+        res.json({
             success: false,
-            error: "At post /book/add " + e
+            msg: "At post /book/add " + e
         });
     }
 });
