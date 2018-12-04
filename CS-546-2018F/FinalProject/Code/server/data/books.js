@@ -1,8 +1,6 @@
-"use strict";
-const models = require('./models')
-const bookModel = models.getModel('Book')
-const userModel = models.getModel('User')
-const uuid = require('uuid')
+const models = require('./models');
+const bookModel = models.getModel('Book');
+const uuid = require('uuid');
 //测试用
 async function getAllBooks(){
     let result = await bookModel.find({});
@@ -105,39 +103,45 @@ async function changeTotalStorageById(id, action){
 
 }
 
-async function addBook(data){
+async function addBook(data) {
+    
+    console.log("BackEnd/addBook/begining");
+    console.log(data);
+
     if(data === undefined){
-        return {success: false, desc: "invalid params"}
+        return {success: false, desc: "no data"}
     }
-    ISBN = data.ISBN
+    ISBN = data.ISBN;
     if(ISBN === undefined){
-        return {success: false, desc: "invalid params"}
+        return {success: false, desc: "no ISBN"}
     }
     let info = await getBooksByISBN(ISBN); 
     //ISBN已存在
     if(info.success === true){
         let id = info.data._id;
         //现有量和总量加action
-        storageInfo = await changeStorageById(id, data.storage);
-        
+        storageInfo = await changeStorageById(id, data.storage);   
         totalStorageInfo = await changeTotalStorageById(id, data.totalStorage);
-        console.log(storageInfo)
-        console.log(totalStorageInfo)
+        console.log(storageInfo);
+        console.log(totalStorageInfo);
+
         if(storageInfo.success && totalStorageInfo.success){
             let data = await getBookById(id);
             return {success: true, data: data};
         }
-        if(storageInfo.success === false)
-        {
+        if(storageInfo.success === false) {
             return {success: false, desc: storageInfo.desc};
         }
-        if(totalStorageInfo.success === false)
-        {
+        if(totalStorageInfo.success === false) {
             return {success: false, desc: totalStorageInfo.desc};
         }
     }
     //ISBN不存在，初始化现有存储量和总量 
     else{
+
+        console.log("BackEnd/addBook/noISBN");
+        console.log(data);
+
         let new_book = await new bookModel({
             "_id": uuid.v4(),
             "title": data.title,

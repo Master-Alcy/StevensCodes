@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
     console.log("Trying to /user/login");
     const username = req.body.username;
-    const password = req.body.hashedPassword
+    const password = req.body.hashedPassword;
     // username and password must be valid, checked in LoginPage.jsx
     try {
         const foundUser = await userData.getUserByUsername(username);

@@ -58,7 +58,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        debugger;
         const student = cookies.get('student');
         const staff = cookies.get('staff');
         let searchId;
@@ -80,18 +79,14 @@ class App extends Component {
             })
                 .then((response) => response.json())
                 .then((result) => {
-                    debugger;
                     console.log(result);
                     if (result.isFind) {
-                        debugger;
                         if (isStudent) {
-                            debugger;
                             this.setState({
                                 loader: "student"
                             });
                             return;
                         }
-                        debugger;
                         this.setState({
                             loader: "staff"
                         });

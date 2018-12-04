@@ -126,7 +126,6 @@ class SignupPage extends Component {
     }
 
     handleSubmit() {
-        debugger;
         event.preventDefault();
         if (!this.state.checkName || !this.state.checkPass || !this.state.checkId) {
             this.setState({ isInvalid: true });
@@ -151,7 +150,6 @@ class SignupPage extends Component {
         // })
         // .then((response) => response.json())
         // .then((result) => {
-        //     debugger;
         //     console.log(result);
         //     if (result.success) {
         //         cookies.set(result.identity,result.sessionId,{path: '/'});
@@ -171,7 +169,6 @@ class SignupPage extends Component {
         };
 
         $.ajax(requestConfig).then((responseMessage) => {
-            debugger;
             let newRes = $(responseMessage)[0];
             console.log(newRes);
             if (newRes.success) {
@@ -229,7 +226,6 @@ class SignupPage extends Component {
                     </Form.Group>
                     {this.checkSubmit()}
                 </Form>
-
             </Segment>
         )
     }

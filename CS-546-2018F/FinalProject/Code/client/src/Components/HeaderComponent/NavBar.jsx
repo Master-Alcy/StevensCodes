@@ -23,7 +23,7 @@ class NavBar extends Component {
                 <List bulleted horizontal link>
                     <List.Item as='a' href='/'>Home(log out)</List.Item>
                     <List.Item as='a' href='/staff'>Staff Page</List.Item>
-                    <List.Item as='a' href='/staff/bookstorage'>Book Add/Remove</List.Item>
+                    <List.Item as='a' href='/staff/bookstorage'>Book Add/Update</List.Item>
                     <List.Item as='a' href='/staff/bookinteraction'>Book Rent/Receive</List.Item>
                     <List.Item as='a' href='/staff/checkstudent'>Check Student Record</List.Item>
                     <List.Item as='a' href='/staff/checkbook'>Check Book Record</List.Item>

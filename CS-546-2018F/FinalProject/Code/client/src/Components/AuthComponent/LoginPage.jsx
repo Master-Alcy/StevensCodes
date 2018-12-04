@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Radio, Icon, Header } from 'semantic-ui-react';
+import { Form, Segment, Icon, Header } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 
 class LoginPage extends Component {
@@ -119,7 +119,6 @@ class LoginPage extends Component {
   }
 
   handleSubmit() {
-    debugger;
     event.preventDefault();
     if (!this.state.checkName || !this.state.checkPass) {
       this.setState({ isInvalid: true });
@@ -132,6 +131,8 @@ class LoginPage extends Component {
     };
     const cookies = new Cookies();
 
+    // Signup is implemented as jquery's AJAX
+    // This is the same thing but with fetch
     fetch('/user/login', {
       method: 'POST',
       headers: {
@@ -141,7 +142,6 @@ class LoginPage extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
-        debugger;
         console.log(result);
         if (result.isFind) {
           cookies.set(result.identity, result.sessionId, { path: '/' });
@@ -187,7 +187,6 @@ class LoginPage extends Component {
           </Form.Field>
           {this.checkSubmit()}
         </Form>
-
       </Segment>
     )
   }
