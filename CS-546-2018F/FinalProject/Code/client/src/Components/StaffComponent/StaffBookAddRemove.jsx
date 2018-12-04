@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Form, Segment, Radio, Icon, Header, Divider, List, Grid, Button } from 'semantic-ui-react';
+import { Form, Segment, Icon, Header, Divider, List, Grid, Button } from 'semantic-ui-react';
 
 class StaffBookAddRemove extends Component {
     constructor() {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.chooseForm = this.chooseForm.bind(this);
-        this.checkAddSubmit = this.checkAddSubmit.bind(this);
-        this.checkUpdateSubmit = this.checkUpdateSubmit.bind(this);
+        this.checkSubmit = this.checkSubmit.bind(this);
         this.handleAddSubmit = this.handleAddSubmit.bind(this);
         this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
 
@@ -15,9 +14,8 @@ class StaffBookAddRemove extends Component {
             isSubmitted: false,
             isWrong: false,
             message: "",
-            errors: "",
-
             chooseFormButton: "",
+
             title: "",
             edition: "",
             storage: "",
@@ -33,7 +31,7 @@ class StaffBookAddRemove extends Component {
     // Handle displayed values
     handleChange(event, { name, value }) { this.setState({ [name]: value }); }
     // Check Add Book Submit
-    checkAddSubmit() {
+    checkSubmit() {
         if (this.state.isWrong) {
             const msg = this.state.message;
             return (
@@ -42,10 +40,13 @@ class StaffBookAddRemove extends Component {
                     <Segment inverted color='red'>
                         <Icon loading name='spinner' />
                         {msg}
+                        <Button color='red' as='a'
+                            href='http://localhost:3000/staff/bookstorage'>
+                            Or Back
+                        </Button>
                     </Segment>
                 </div>
             );
-
         }
         if (this.state.isSubmitted) {
             return (
@@ -54,16 +55,16 @@ class StaffBookAddRemove extends Component {
                     <Segment inverted color='green'>
                         <Icon name='check' />
                         Valid Input. Submitted.
+                        <Button color='green' as='a'
+                            href='http://localhost:3000/staff/bookstorage'>
+                            Or Back
+                        </Button>
                     </Segment>
                 </div>
             );
         }
 
         return (<Form.Button>Submit</Form.Button>);
-    }
-    // Check Update Book Submit
-    checkUpdateSubmit() {
-
     }
     // Handle Add Book Submit
     handleAddSubmit() {
@@ -78,14 +79,27 @@ class StaffBookAddRemove extends Component {
             });
             return;
         }
+        let storeInfo, editionInfo, totStoreInfo, priceInfo;
+        try {
+            storeInfo = parseInt(this.state.storage, 10);
+            editionInfo = parseInt(this.state.edition, 10);
+            totStoreInfo = parseInt(this.state.totalStorage, 10);
+            priceInfo = parseInt(this.state.price, 10);
+        } catch (e) {
+            this.setState({
+                isWrong: true,
+                message: "edition, storage, totalStorage and price must be integers!"
+            });
+            return;
+        }
 
         const formdata = {
             title: this.state.title,
-            edition: this.state.edition,
-            storage: this.state.storage,
-            totalStorage: this.state.totalStorage,
+            edition: editionInfo,
+            storage: storeInfo,
+            totalStorage: totStoreInfo,
             location: this.state.location,
-            price: this.state.price,
+            price: priceInfo,
             ISBN: this.state.ISBN,
             profile: {
                 author: this.state.author,
@@ -105,7 +119,12 @@ class StaffBookAddRemove extends Component {
             .then((result) => {
                 console.log(result);
                 if (result.success) {
-
+                    console.log("Add Book Success");
+                    this.setState({
+                        isWrong: false,
+                        isSubmitted: true
+                    });
+                    return;
                 } else {
                     this.setState({
                         isWrong: true,
@@ -124,7 +143,71 @@ class StaffBookAddRemove extends Component {
     }
     // Handle Update Book Submit
     handleUpdateSubmit() {
+        event.preventDefault();
+        // Note this is checked by require key word in HTML!
+        // Here is for double check
+        if (this.state.ISBN === "" || this.state.storage === ""
+            || this.state.totalStorage === "") {
+            this.setState({
+                isWrong: true,
+                message: "All require fields must be filled!"
+            });
+            return;
+        }
+        let storeInfo, totStoreInfo;
+        try {
+            storeInfo = parseInt(this.state.storage, 10);
+            totStoreInfo = parseInt(this.state.totalStorage, 10);
+        } catch (e) {
+            this.setState({
+                isWrong: true,
+                message: "Storage must be integers!"
+            });
+            return;
+        }
 
+        const formdata = {
+            ISBN: this.state.ISBN,
+            storage: storeInfo,
+            totalStorage: totStoreInfo,
+            profile: {
+                author: this.state.author,
+                description: this.state.description,
+                tag: this.state.tag.split(' ')
+            }
+        };
+
+        fetch('/book/update', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(formdata)
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result);
+                if (result.success) {
+                    console.log("Update Successed");
+                    this.setState({
+                        isWrong: false,
+                        isSubmitted: true
+                    });
+                } else {
+                    this.setState({
+                        isWrong: true,
+                        message: result.msg
+                    });
+                    return;
+                }
+            });
+
+        if (!this.state.isSubmitted) {
+            this.setState({
+                isWrong: false,
+                isSubmitted: true
+            });
+        }
     }
     // Handle rendered elements
     chooseForm() {
@@ -145,20 +228,28 @@ class StaffBookAddRemove extends Component {
         if (chooseFormButton === "upd") {
             return (
                 <Form onSubmit={this.handleUpdateSubmit}>
-                    <Form.Input fluid label='Title' placeholder='Title' name="title" required />
+                    <Form.Field>
+                        <Form.Input fluid label='ISBN' placeholder='ISBN' name="ISBN" required
+                            value={ISBN} onChange={this.handleChange} />
+                    </Form.Field>
 
                     <Form.Group unstackable widths={2}>
-                        <Form.Input label='Storage' placeholder='Storage' name="storage" />
-                        <Form.Input label='TotalStorage' placeholder='TotalStorage' name="totalStorage" />
+                        <Form.Input label='Storage' placeholder='Storage' name="storage"
+                            value={storage} onChange={this.handleChange} required />
+                        <Form.Input label='TotalStorage' placeholder='TotalStorage' name="totalStorage"
+                            value={totalStorage} onChange={this.handleChange} required />
                     </Form.Group>
 
                     <Form.Field>
-                        <Form.Input fluid label='Author' placeholder='Author' name="author" />
-                        <Form.Input fluid label='Tag' placeholder='Tag' name="tag" />
-                        <Form.TextArea fluid label='Description' placeholder='Description' name="description" />
+                        <Form.Input fluid label='Author' placeholder='Author' name="author"
+                            value={author} onChange={this.handleChange} />
+                        <Form.Input fluid label='Tag' placeholder='Tags should be seperated with one space' name="tag"
+                            value={tag} onChange={this.handleChange} />
+                        <Form.TextArea fluid label='Description' placeholder='Description' name="description"
+                            value={description} onChange={this.handleChange} />
                     </Form.Field>
 
-                    {this.checkUpdateSubmit()}
+                    {this.checkSubmit()}
                 </Form>
             );
         }
@@ -195,7 +286,7 @@ class StaffBookAddRemove extends Component {
                             value={description} onChange={this.handleChange} />
                     </Form.Field>
 
-                    {this.checkAddSubmit()}
+                    {this.checkSubmit()}
                 </Form>
             );
         }

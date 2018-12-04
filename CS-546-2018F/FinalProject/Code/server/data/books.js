@@ -58,7 +58,7 @@ async function updateBookProfileById(id, profile) {
     let result = await bookModel.updateOne({_id: id},{"$set":{
         'profile':{
             'author': profile.author,
-            'description': profile.desc,
+            'description': profile.description,
             'tag': profile.tag
         }
     }})
