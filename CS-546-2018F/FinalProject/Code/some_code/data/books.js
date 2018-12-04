@@ -109,7 +109,7 @@ async function addBook(data){
     if(data === undefined){
         return {success: false, desc: "invalid params"}
     }
-    ISBN = data.ISBN
+    let ISBN = data.ISBN
     if(ISBN === undefined){
         return {success: false, desc: "invalid params"}
     }
@@ -118,11 +118,9 @@ async function addBook(data){
     if(info.success === true){
         let id = info.data._id;
         //现有量和总量加action
-        storageInfo = await changeStorageById(id, data.storage);
+        let storageInfo = await changeStorageById(id, data.storage);
         
-        totalStorageInfo = await changeTotalStorageById(id, data.totalStorage);
-        console.log(storageInfo)
-        console.log(totalStorageInfo)
+        let totalStorageInfo = await changeTotalStorageById(id, data.totalStorage);
         if(storageInfo.success && totalStorageInfo.success){
             let data = await getBookById(id);
             return {success: true, data: data};
@@ -150,21 +148,13 @@ async function addBook(data){
             "profile": data.profile,
             "record": data.record
         })
-        new_book.save(function(err, docs){
-            if(err){
-                console.log(err)
-                return {success: false};
-            }else{
-                return {success: true, data: new_book}
-                
-            }
-        })
-        // if(new_book){
-        //     return {success: true, data: new_book};
-        // }
-        // else{
-        //     return {success: false};
-        // }
+        
+        try{
+            await new_book.save()
+            return {success: true, data: new_book}
+        }catch(err){
+            return {success: false, data: err}
+        }
     }
 }
 

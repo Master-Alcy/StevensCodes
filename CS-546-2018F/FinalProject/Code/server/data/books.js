@@ -103,45 +103,43 @@ async function changeTotalStorageById(id, action){
 
 }
 
-async function addBook(data) {
-    
-    console.log("BackEnd/addBook/begining");
-    console.log(data);
-
+async function addBook(data){
+    console.log("BackEnd/addBook/begining")
+    console.log(data)
     if(data === undefined){
-        return {success: false, desc: "no data"}
+        return {success: false, desc: "No book received at server."}
     }
-    ISBN = data.ISBN;
+    let ISBN = data.ISBN
     if(ISBN === undefined){
-        return {success: false, desc: "no ISBN"}
+        return {success: false, desc: "No ISBN received at server."}
     }
     let info = await getBooksByISBN(ISBN); 
     //ISBN已存在
-    if(info.success === true){
-        let id = info.data._id;
-        //现有量和总量加action
-        storageInfo = await changeStorageById(id, data.storage);   
-        totalStorageInfo = await changeTotalStorageById(id, data.totalStorage);
-        console.log(storageInfo);
-        console.log(totalStorageInfo);
-
-        if(storageInfo.success && totalStorageInfo.success){
-            let data = await getBookById(id);
-            return {success: true, data: data};
-        }
-        if(storageInfo.success === false) {
-            return {success: false, desc: storageInfo.desc};
-        }
-        if(totalStorageInfo.success === false) {
-            return {success: false, desc: totalStorageInfo.desc};
-        }
+    if (info.success) {
+        return {success: false, desc: "Book already exist. Use book update."}
     }
+    // if(info.success === true){
+    //     let id = info.data._id;
+    //     //现有量和总量加action
+    //     let storageInfo = await changeStorageById(id, data.storage);
+        
+    //     let totalStorageInfo = await changeTotalStorageById(id, data.totalStorage);
+    //     if(storageInfo.success && totalStorageInfo.success){
+    //         let data = await getBookById(id);
+    //         return {success: true, data: data};
+    //     }
+    //     if(storageInfo.success === false)
+    //     {
+    //         return {success: false, desc: storageInfo.desc};
+    //     }
+    //     if(totalStorageInfo.success === false)
+    //     {
+    //         return {success: false, desc: totalStorageInfo.desc};
+    //     }
+    // }
     //ISBN不存在，初始化现有存储量和总量 
     else{
-
-        console.log("BackEnd/addBook/noISBN");
-        console.log(data);
-
+        console.log('enter noISBN part');
         let new_book = await new bookModel({
             "_id": uuid.v4(),
             "title": data.title,
@@ -154,23 +152,37 @@ async function addBook(data) {
             "profile": data.profile,
             "record": data.record
         })
-        new_book.save(function(err, docs){
-            if(err){
-                console.log(err)
-                return {success: false};
-            }else{
-                return {success: true, data: new_book}
-                
-            }
-        })
-        // if(new_book){
-        //     return {success: true, data: new_book};
-        // }
-        // else{
-        //     return {success: false};
-        // }
+        
+        try{
+            await new_book.save()
+            return {success: true, data: new_book}
+        }catch(err){
+            return {success: false, desc: err}
+        }
     }
 }
+
+async function addRecordById(id, data){
+    if(typeof id !== 'string'){
+        return {success: false, desc: "invalid params"};
+    }
+    let newRecordId = uuid.v4()
+    let result = await bookModel.updateOne({_id: id},{"$addToSet":{
+        "record":{
+            "_id": newRecordId,
+            "studentid": data.studentid,
+            "action": data.action,
+            "time": data.time,
+            "staffid": data.staffid
+        }
+    }})
+    if(result.n > 0){
+        return { success : true , data : await getRecordByRecordId(newRecordId)}
+    }else{
+        return { success : false, desc: `can't find ${id} in database`}
+    }
+}
+
 
 async function addRecordById(id, data){
     if(typeof id !== 'string'){
