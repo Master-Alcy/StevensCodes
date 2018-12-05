@@ -4,6 +4,9 @@ Data folder is moved to ./server/data for clearer purpose.
 
 ## Some Commands
 
+Install Environment:  
+npm install
+
 Start server/index.js (our main):  
 npm start  
 
