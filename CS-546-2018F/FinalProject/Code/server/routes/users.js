@@ -60,6 +60,36 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.post("/search", async (req, res) => {
+    const username = req.body.studentName;
+    if (!username || username === "") {
+        res.json({
+            success: false,
+            msg: "Invalid name"
+        });
+        return;
+    }
+    try {
+        const foundStudent = await userData.getUserByUsername(username);
+        if (foundStudent.success || foundStudent.identity === "student") {
+            const record = foundStudent.data.record;
+            res.json({
+                success: true,
+                data: record
+            });
+        } else {
+            res.json({
+                success: false,
+                msg: "Record not found!"
+            });
+        }
+    } catch (e) {
+        res.status(500).json({
+            msg: "At post /user/login " + e
+        });
+    }
+});
+
 // This is to check authentication
 // Note that /:id may confuse the function
 // Should be placed as last post method

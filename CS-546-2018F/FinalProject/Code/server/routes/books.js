@@ -137,7 +137,7 @@ router.post("/changeRecord", async (req, res) => {
 
         const newBookRecord = await bookData.addRecordById(book.data._id, bookRecordData);
         const newStudentRecord = await userData.addRecordById(student.data._id, studentRecordData);
-        
+
         if (newBookRecord.success && newStudentRecord.success) {
             res.json({
                 success: true,
@@ -157,6 +157,33 @@ router.post("/changeRecord", async (req, res) => {
     }
 });
 
-
+router.post("/search", async (req, res) => {
+    const title = req.body.title;
+    if (!title || title === "") {
+        res.json({
+            success: false,
+            msg: "Invalid title"
+        });
+        return;
+    }
+    try {
+        const foundBook = await bookData.getBookIdByTitle(title);
+        if (foundBook.success) {
+            res.json({
+                success: true,
+                data: foundBook.data
+            });
+        } else {
+            res.json({
+                success: false,
+                msg: "Book not found!"
+            });
+        }
+    } catch (e) {
+        res.status(500).json({
+            msg: "At post /user/login " + e
+        });
+    }
+});
 
 module.exports = router;
