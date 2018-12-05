@@ -7,6 +7,10 @@ Data folder is moved to ./server/data for clearer purpose.
 Install Environment:  
 npm install
 
+Install bundle.js:  
+npm run react-dev  
+After Build done, ctrl + c exist.
+
 Start server/index.js (our main):  
 npm start  
 
