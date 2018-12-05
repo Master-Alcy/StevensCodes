@@ -158,6 +158,7 @@ router.post("/changeRecord", async (req, res) => {
 });
 
 router.post("/search", async (req, res) => {
+    // Note this is for search by title
     const title = req.body.title;
     if (!title || title === "") {
         res.json({
@@ -168,6 +169,64 @@ router.post("/search", async (req, res) => {
     }
     try {
         const foundBook = await bookData.getBookIdByTitle(title);
+        if (foundBook.success) {
+            res.json({
+                success: true,
+                data: foundBook.data
+            });
+        } else {
+            res.json({
+                success: false,
+                msg: "Book not found!"
+            });
+        }
+    } catch (e) {
+        res.status(500).json({
+            msg: "At post /user/login " + e
+        });
+    }
+});
+
+router.post("/search/ISBN", async (req, res) => {
+    const ISBN = req.body.ISBN;
+    if (!ISBN || ISBN === "") {
+        res.json({
+            success: false,
+            msg: "Invalid ISBN"
+        });
+        return;
+    }
+    try {
+        const foundBook = await bookData.getBooksByISBN(ISBN);
+        if (foundBook.success) {
+            res.json({
+                success: true,
+                data: foundBook.data
+            });
+        } else {
+            res.json({
+                success: false,
+                msg: "Book not found!"
+            });
+        }
+    } catch (e) {
+        res.status(500).json({
+            msg: "At post /user/login " + e
+        });
+    }
+});
+
+router.post("/search/key", async (req, res) => {
+    const key = req.body.key;
+    if (!key || key === "") {
+        res.json({
+            success: false,
+            msg: "Invalid ISBN"
+        });
+        return;
+    }
+    try {
+        const foundBook = await bookData.fuzzySearch(key);
         if (foundBook.success) {
             res.json({
                 success: true,
