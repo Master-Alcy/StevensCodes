@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const bookData = require("../data").books;
+const userData = require("../data").users;
 
 router.post("/add", async (req, res) => {
     const clientBook = req.body;
@@ -74,8 +75,7 @@ router.post("/update", async (req, res) => {
         // Continue update storage
         const storageInfo = await bookData.changeStorageById(bookId, clientBook.storage);
         const totalStorageInfo = await bookData.changeTotalStorageById(bookId, clientBook.totalStorage);
-        console.log(storageInfo);
-        console.log(totalStorageInfo);
+
         if (storageInfo.success && totalStorageInfo.success) {
             res.json({
                 success: true,
@@ -94,5 +94,69 @@ router.post("/update", async (req, res) => {
         });
     }
 });
+
+router.post("/changeRecord", async (req, res) => {
+    // Need to add to both student record and book record
+    const clientRequest = req.body;
+    let action = (clientRequest.action === "ren") ? "rent out" : "receive";
+    const date = clientRequest.time;
+    try {
+        const student = await userData.getUserByUsername(clientRequest.studentName);
+        const staff = await userData.getUserByUsername(clientRequest.staffName);
+        const book = await bookData.getBooksByISBN(clientRequest.ISBN);
+        if (!student.success || !staff.success || !book.success ||
+            clientRequest.action === "" || !date) {
+            res.json({
+                success: false,
+                msg: "Server does not get all valid information!"
+            });
+            return;
+        }
+        if (student.data.identity !== "student" || staff.data.identity !== "staff") {
+            res.json({
+                success: false,
+                msg: "Identity Invalid!"
+            });
+            return;
+        }
+
+        const bookRecordData = {
+            studentid: student.data._id,
+            staffid: staff.data._id,
+            time: date,
+            action: action
+        }
+
+        action = (action === "rent out") ? "borrow" : "return";
+        const studentRecordData = {
+            bookid: student.data._id,
+            staffid: staff.data._id,
+            time: date,
+            action: action
+        }
+
+        const newBookRecord = await bookData.addRecordById(book.data._id, bookRecordData);
+        const newStudentRecord = await userData.addRecordById(student.data._id, studentRecordData);
+        
+        if (newBookRecord.success && newStudentRecord.success) {
+            res.json({
+                success: true,
+                msg: "Both records update successfully."
+            });
+            return;
+        }
+        res.json({
+            success: false,
+            msg: "Records update failed."
+        });
+    } catch (e) {
+        res.status(500).json({
+            success: false,
+            msg: "At post /book/add " + e
+        });
+    }
+});
+
+
 
 module.exports = router;

@@ -24,7 +24,6 @@ async function getBookById(id) {
     }
 }
 
-
 async function getBooksByISBN(ISBN){
     if(typeof ISBN !== 'string'){
         return {success: false, desc: "invalid params"};
@@ -50,6 +49,7 @@ async function getBookIdByTitle(title){
         return {success: false, desc: `can't find matched item with ${title} in database`};
     }
 }
+
 //要求传入所有的profile信息
 async function updateBookProfileById(id, profile) {
     if(typeof id !== 'string'){
@@ -100,7 +100,6 @@ async function changeTotalStorageById(id, action){
     else{
         return {success: false, desc: `can't find matched item with ${id} in database`}
     }
-
 }
 
 async function addBook(data){
@@ -180,28 +179,6 @@ async function addRecordById(id, data){
     }
 }
 
-
-async function addRecordById(id, data){
-    if(typeof id !== 'string'){
-        return {success: false, desc: "invalid params"};
-    }
-    let newRecordId = uuid.v4()
-    let result = await bookModel.updateOne({_id: id},{"$addToSet":{
-        "record":{
-            "_id": newRecordId,
-            "studentid": data.studentid,
-            "action": data.action,
-            "time": data.time,
-            "staffid": data.staffid
-        }
-    }})
-    if(result.n > 0){
-        return { success : true , data : await getRecordByRecordId(newRecordId)}
-    }else{
-        return { success : false, desc: `can't find ${id} in database`}
-    }
-}
-
 async function getRecordByRecordId(id){
     if(typeof id !== 'string'){
         return { success : false, desc: "invalid params"}
@@ -256,4 +233,3 @@ module.exports = {
     getRecordByRecordId,
     fuzzySearch
 }
-

@@ -124,22 +124,13 @@ class StaffBookAddRemove extends Component {
                         isWrong: false,
                         isSubmitted: true
                     });
-                    return;
                 } else {
                     this.setState({
                         isWrong: true,
                         message: result.msg
                     });
-                    return;
                 }
             });
-
-        if (!this.state.isSubmitted) {
-            this.setState({
-                isWrong: false,
-                isSubmitted: true
-            });
-        }
     }
     // Handle Update Book Submit
     handleUpdateSubmit() {
@@ -198,16 +189,8 @@ class StaffBookAddRemove extends Component {
                         isWrong: true,
                         message: result.msg
                     });
-                    return;
                 }
             });
-
-        if (!this.state.isSubmitted) {
-            this.setState({
-                isWrong: false,
-                isSubmitted: true
-            });
-        }
     }
     // Handle rendered elements
     chooseForm() {

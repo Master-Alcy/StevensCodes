@@ -64,7 +64,6 @@ router.post("/login", async (req, res) => {
 // Note that /:id may confuse the function
 // Should be placed as last post method
 router.post("/:id", async (req, res) => {
-    console.log("Finding the theif");
     try {
         const find = await userData.getUserBySessionId(req.params.id);
         console.log(find);

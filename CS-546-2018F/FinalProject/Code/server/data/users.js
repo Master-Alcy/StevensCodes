@@ -134,7 +134,7 @@ async function addRecordById(id, data){
     if(typeof data.bookid === "undefined" || typeof data.time == "undefined" ||typeof data.action == "undefined" ||typeof data.staffid == "undefined"  ){
         return { success : false, desc: "invalid params"}
     }
-    let newRecordId = uuid.v4()
+    let newRecordId = uuid.v4();
     let result = await userModel.updateOne({'_id':id},{'$addToSet':{
         'record':{
             '_id' : newRecordId,
