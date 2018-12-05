@@ -100,7 +100,8 @@ router.post("/:id", async (req, res) => {
         if (find) {
             console.log("Welcome dude");
             res.json({
-                isFind: true
+                isFind: true,
+                record: find.data.record
             });
         } else {
             console.log("Not found");
