@@ -7,6 +7,8 @@ Data folder is moved to ./server/data for clearer purpose.
 Start server/index.js (our main):  
 npm start  
 
+### For Development
+
 Use nodemon:  
 npm run server-dev  
 
