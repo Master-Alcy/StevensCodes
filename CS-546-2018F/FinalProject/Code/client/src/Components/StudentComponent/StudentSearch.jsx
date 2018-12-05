@@ -173,6 +173,11 @@ class StudentSearch extends Component {
                             <Segment vertical>ISBN &nbsp;  &ensp;:  &ensp;{thisBook.ISBN}</Segment>
                             <Segment vertical>Location:  &ensp;{thisBook.location}</Segment>
                             <Segment vertical>Price &nbsp;  &ensp;:  &ensp;{thisBook.price}</Segment>
+                            <Segment vertical>Author  &ensp;:  &ensp;{thisBook.profile.author}</Segment>
+                            <Segment vertical>
+                                Description:  &ensp;
+                                    {thisBook.profile.description}
+                            </Segment>
                         </Segment>
                     </List.Item>
                 );
@@ -198,6 +203,11 @@ class StudentSearch extends Component {
                                 <Segment vertical>ISBN &nbsp;  &ensp;:  &ensp;{result.ISBN}</Segment>
                                 <Segment vertical>Location:  &ensp;{result.location}</Segment>
                                 <Segment vertical>Price &nbsp;  &ensp;:  &ensp;{result.price}</Segment>
+                                <Segment vertical>Author  &ensp;:  &ensp;{result.profile.author}</Segment>
+                                <Segment vertical>
+                                    Description:  &ensp;
+                                    {result.profile.description}
+                                </Segment>
                             </Segment>
                         </List.Item>
                     </List>

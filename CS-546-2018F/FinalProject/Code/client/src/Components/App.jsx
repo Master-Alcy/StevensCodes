@@ -79,7 +79,6 @@ class App extends Component {
             })
                 .then((response) => response.json())
                 .then((result) => {
-                    console.log(result);
                     if (result.isFind) {
                         if (isStudent) {
                             this.setState({
@@ -98,7 +97,6 @@ class App extends Component {
                     });
                 });
         } catch (err) {
-            console.log(err);
             this.setState({
                 loader: "error"
             });
@@ -107,7 +105,6 @@ class App extends Component {
 
     render() {
         const input = this.state.loader;
-        console.log(input);
         if (input === 'student') {
             return (
                 <Router>
