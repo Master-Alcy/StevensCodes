@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Divider, Card, Button } from 'semantic-ui-react';
+import { Segment, Header, Divider, Card, Button, List } from 'semantic-ui-react';
 
 class StaffPage extends Component {
     render() {

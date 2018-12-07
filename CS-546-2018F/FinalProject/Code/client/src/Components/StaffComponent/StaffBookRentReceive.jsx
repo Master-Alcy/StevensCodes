@@ -114,9 +114,9 @@ class StaffBookRentReceive extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Rent/Receive Successed");
+                    //console.log("Rent/Receive Successed");
                     this.setState({
                         isWrong: false,
                         isSubmitted: true
@@ -197,7 +197,7 @@ class StaffBookRentReceive extends Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <Segment raised>
                 <Header size='medium'>Our Library Book Interaction</Header>

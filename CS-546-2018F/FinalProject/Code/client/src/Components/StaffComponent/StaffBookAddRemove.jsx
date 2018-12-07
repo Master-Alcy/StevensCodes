@@ -117,9 +117,9 @@ class StaffBookAddRemove extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Add Book Success");
+                    //console.log("Add Book Success");
                     this.setState({
                         isWrong: false,
                         isSubmitted: true
@@ -177,9 +177,9 @@ class StaffBookAddRemove extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Update Successed");
+                    //console.log("Update Successed");
                     this.setState({
                         isWrong: false,
                         isSubmitted: true
@@ -304,7 +304,7 @@ class StaffBookAddRemove extends Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
 
         return (
             <Segment raised>

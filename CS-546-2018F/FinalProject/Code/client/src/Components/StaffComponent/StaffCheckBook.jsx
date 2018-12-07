@@ -38,10 +38,10 @@ class StaffCheckBook extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Record found");
-                    console.log(result.data);
+                    //console.log("Record found");
+                    //console.log(result.data);
                     this.setState({
                         loading: false,
                         results: result.data
@@ -104,7 +104,7 @@ class StaffCheckBook extends Component {
 
     render() {
         const { title } = this.state;
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <Segment raised>
                 <Header size='medium'>Our Library Check Book Record</Header>

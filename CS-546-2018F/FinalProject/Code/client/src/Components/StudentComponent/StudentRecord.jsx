@@ -32,9 +32,9 @@ class StudentRecord extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.isFind) {
-                    console.log("Record found");
+                    //console.log("Record found");
                     this.setState({
                         loading: false,
                         results: result.record
@@ -92,7 +92,7 @@ class StudentRecord extends Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <Segment raised>
                 <Header size='medium'>Find Your Record</Header>

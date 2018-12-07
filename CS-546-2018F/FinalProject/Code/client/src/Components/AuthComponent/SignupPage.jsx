@@ -170,7 +170,7 @@ class SignupPage extends Component {
 
         $.ajax(requestConfig).then((responseMessage) => {
             let newRes = $(responseMessage)[0];
-            console.log(newRes);
+            //console.log(newRes);
             if (newRes.success) {
                 this.setState({
                     isInvalid: false,
@@ -190,7 +190,7 @@ class SignupPage extends Component {
 
     render() {
         const { username, password } = this.state
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <Segment raised>
                 <Segment stacked inverted color='teal'>

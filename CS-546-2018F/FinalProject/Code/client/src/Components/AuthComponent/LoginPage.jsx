@@ -142,7 +142,7 @@ class LoginPage extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result.isFind) {
           cookies.set(result.identity, result.sessionId, { path: '/' });
           window.location.replace("http://localhost:3000/" + result.identity);
@@ -165,7 +165,7 @@ class LoginPage extends Component {
 
   render() {
     const { username, password } = this.state
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <Segment raised>
         <Segment stacked inverted color='teal'>

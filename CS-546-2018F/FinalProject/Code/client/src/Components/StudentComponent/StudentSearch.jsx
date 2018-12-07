@@ -62,10 +62,10 @@ class StudentSearch extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Book found by title");
-                    console.log(result.data);
+                    //console.log("Book found by title");
+                    //console.log(result.data);
                     this.setState({
                         loading: false,
                         results: result.data
@@ -95,10 +95,10 @@ class StudentSearch extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Book found by ISBN");
-                    console.log(result.data);
+                    //console.log("Book found by ISBN");
+                    //console.log(result.data);
                     this.setState({
                         loading: false,
                         results: result.data
@@ -128,10 +128,10 @@ class StudentSearch extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Book found by key");
-                    console.log(result.data);
+                    //console.log("Book found by key");
+                    //console.log(result.data);
                     this.setState({
                         loading: false,
                         results: result.data

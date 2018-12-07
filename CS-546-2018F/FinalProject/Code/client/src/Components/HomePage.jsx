@@ -26,7 +26,7 @@ class HomePage extends Component {
                     </List>
                 </Segment>
                 <Container textAlign='center'><h1>Home of Our Library</h1></Container>
-                <Image src='public/Library-Wallpaper.png' fluid />
+                <Image src='public/Library-Wallpaper.png' alt="HomePage wall paper" fluid />
                 <Container textAlign='justified'>
                     <Divider />
                     <Grid>

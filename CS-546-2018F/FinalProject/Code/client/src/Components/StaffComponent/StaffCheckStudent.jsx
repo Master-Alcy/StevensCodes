@@ -38,9 +38,9 @@ class StaffCheckStudent extends Component {
         })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                //console.log(result);
                 if (result.success) {
-                    console.log("Record found");
+                    //console.log("Record found");
                     this.setState({
                         loading: false,
                         results: result.data
@@ -99,7 +99,7 @@ class StaffCheckStudent extends Component {
 
     render() {
         const { studentName } = this.state;
-        console.log(this.state);
+        //console.log(this.state);
         return (
             <Segment raised>
                 <Header size='medium'>Our Library Check Student Record</Header>
