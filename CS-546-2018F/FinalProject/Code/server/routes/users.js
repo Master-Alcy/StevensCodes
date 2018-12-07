@@ -9,13 +9,19 @@ router.post("/signup", async (req, res) => {
     const formData = req.body;
     try {
         formData.hashedPassword = await bcrypt.hash(formData.hashedPassword, 10);
+        const foundUser = await userData.getUserByUsername(formData.username);
+        if (foundUser.success) {
+            res.json({
+                success: false
+            });
+            return;
+        }
         const newPost = await userData.addUser(formData);
-        const clientRes = {
+        res.json({
             success: newPost.success,
             sessionId: newPost.data.sessionId,
             identity: newPost.data.identity
-        };
-        res.json(clientRes);
+        });
     } catch (e) {
         res.status(500).json({
             error: "At post /user " + e

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Icon, Header } from 'semantic-ui-react';
+import { Form, Segment, Icon, Header, List } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 
 class LoginPage extends Component {
@@ -12,7 +12,7 @@ class LoginPage extends Component {
     this.checkSubmit = this.checkSubmit.bind(this);
     this.state = {
       username: "",
-      hashedPassword: "",
+      password: "",
       identity: "",
       checkName: false,
       checkPass: false,
@@ -53,7 +53,7 @@ class LoginPage extends Component {
   }
 
   checkPass() {
-    let input = this.state.hashedPassword;
+    let input = this.state.password;
     if (input === "") {
       return;
     } else if (/^[a-z0-9]+$/i.test(input) && input.length >= 8) {
@@ -90,7 +90,7 @@ class LoginPage extends Component {
             <Segment inverted color='red'>
               <Icon loading name='spinner' />
               {msg}
-                </Segment>
+            </Segment>
           </div>
         );
       }
@@ -127,7 +127,7 @@ class LoginPage extends Component {
 
     const formdata = {
       username: this.state.username,
-      hashedPassword: this.state.hashedPassword
+      hashedPassword: this.state.password
     };
     const cookies = new Cookies();
 
@@ -164,10 +164,16 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { username, hashedPassword } = this.state
+    const { username, password } = this.state
     console.log(this.state);
     return (
       <Segment raised>
+        <Segment stacked inverted color='teal'>
+          <Header size='tiny'>Guide</Header>
+          <List bulleted>
+            <List.Item>Input username and password from signing up to login into homepage with correct identity</List.Item>
+          </List>
+        </Segment>
         <Header size='medium'>User Log In</Header>
         <p>Please finish all fields.</p>
 
@@ -180,8 +186,8 @@ class LoginPage extends Component {
           </Form.Field>
 
           <Form.Field>
-            <Form.Input fluid label='Password' name="hashedPassword"
-              value={hashedPassword} onChange={this.handleChange}
+            <Form.Input fluid label='Password' name="password" type="password"
+              value={password} onChange={this.handleChange}
               placeholder='Your Password' />
             {this.checkPass()}
           </Form.Field>

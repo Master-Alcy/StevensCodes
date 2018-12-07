@@ -3,7 +3,8 @@ logs
 *.Logs
 # Compiled directory and file
 build/
-bundle.js
+# Upload bundle.js for easier use 
+
 # Dependency directories
 node_modules/
 package-lock.json

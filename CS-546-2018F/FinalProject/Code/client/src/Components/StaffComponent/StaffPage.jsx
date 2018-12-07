@@ -5,6 +5,14 @@ class StaffPage extends Component {
     render() {
         return (
             <Segment raised>
+                <Segment stacked inverted color='teal'>
+                    <Header size='tiny'>Guide</Header>
+                    <List bulleted>
+                        <List.Item>A book should only be rented by a staff. Use the Book Rental and Return Section</List.Item>
+                        <List.Item>For new book arrives, staff can use Book Addition and Update.</List.Item>
+                        <List.Item>Check Student and Check Book are self explained</List.Item>
+                    </List>
+                </Segment>
                 <Header size='medium'>Welcome Staff At Our Library</Header>
                 <Divider />
                 <Card.Group>

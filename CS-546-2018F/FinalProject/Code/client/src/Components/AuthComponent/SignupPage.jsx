@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Radio, Icon, Header } from 'semantic-ui-react';
+import { Form, Segment, Radio, Icon, Header, List } from 'semantic-ui-react';
 import $ from 'jquery';
 import Cookies from 'universal-cookie';
 
@@ -14,7 +14,7 @@ class SignupPage extends Component {
         this.checkSubmit = this.checkSubmit.bind(this);
         this.state = {
             username: "",
-            hashedPassword: "",
+            password: "",
             identity: "",
             checkName: false,
             checkPass: false,
@@ -55,7 +55,7 @@ class SignupPage extends Component {
     }
 
     checkPass() {
-        let input = this.state.hashedPassword;
+        let input = this.state.password;
         if (input === "") {
             return;
         } else if (/^[a-z0-9]+$/i.test(input) && input.length >= 8) {
@@ -106,7 +106,7 @@ class SignupPage extends Component {
                     <Form.Button>Submit</Form.Button>
                     <Segment inverted color='red'>
                         <Icon loading name='spinner' />
-                        Invalid Input. Must finish all three fields.
+                        Invalid Input. Must finish all three fields or username is taken.
                     </Segment>
                 </div>
             );
@@ -134,13 +134,13 @@ class SignupPage extends Component {
 
         const formdata = {
             username: this.state.username,
-            hashedPassword: this.state.hashedPassword,
+            hashedPassword: this.state.password,
             identity: this.state.identity
         };
         const cookies = new Cookies();
         // fetch method is fully functional. All tests passed 
         // Turn to ajax to fullfill CS-546 Requirement
-        
+
         // fetch('/user/signup', {
         //     method: 'POST',
         //     headers: {
@@ -158,7 +158,7 @@ class SignupPage extends Component {
         //         window.location.replace("http://localhost:3000/");
         //     }
         // });
-        
+
 
         // AJAX
         let requestConfig = {
@@ -172,26 +172,34 @@ class SignupPage extends Component {
             let newRes = $(responseMessage)[0];
             console.log(newRes);
             if (newRes.success) {
-                cookies.set(newRes.identity,newRes.sessionId,{path: '/'});
-                window.location.replace("http://localhost:3000/"+newRes.identity);
+                this.setState({
+                    isInvalid: false,
+                    isSubmitted: true
+                });
+                cookies.set(newRes.identity, newRes.sessionId, { path: '/' });
+                window.location.replace("http://localhost:3000/" + newRes.identity);
             } else {
-                window.location.replace("http://localhost:3000/");
+                this.setState({
+                    isInvalid: true,
+                    isSubmitted: false
+                });
+                //window.location.replace("http://localhost:3000/");
             }
         });
-
-        if (!this.state.isSubmitted) {
-            this.setState({ 
-                isInvalid: false,
-                isSubmitted: true 
-            });
-        }   
     }
 
     render() {
-        const { username, hashedPassword } = this.state
+        const { username, password } = this.state
         console.log(this.state);
         return (
             <Segment raised>
+                <Segment stacked inverted color='teal'>
+                    <Header size='tiny'>Guide</Header>
+                    <List bulleted>
+                        <List.Item>Username must be unique.</List.Item>
+                        <List.Item>The selection of identity should be replaced with input student_id/staff_id, it's implemented this way to make things easier.</List.Item>
+                    </List>
+                </Segment>
                 <Header size='medium'>User Sign Up</Header>
                 <p>Please finish all fields.</p>
 
@@ -204,8 +212,8 @@ class SignupPage extends Component {
                     </Form.Field>
 
                     <Form.Field>
-                        <Form.Input fluid label='Password' name="hashedPassword"
-                            value={hashedPassword} onChange={this.handleChange}
+                        <Form.Input fluid label='Password' name="password" type="password"
+                            value={password} onChange={this.handleChange}
                             placeholder='Your Password' />
                         {this.checkPass()}
                     </Form.Field>

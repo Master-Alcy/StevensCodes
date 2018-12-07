@@ -192,6 +192,7 @@ class StudentSearch extends Component {
             );
         } else if (result.ISBN) {
             // Found by ISBN gives one profiles back
+            // Or found an existing book not returned as list
             return (
                 <Segment raised>
                     <Header size='medium'>Found Record</Header>

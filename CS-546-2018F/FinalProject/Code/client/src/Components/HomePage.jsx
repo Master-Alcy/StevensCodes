@@ -4,10 +4,10 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class HomePage extends Component {
-    componentDidMount(){
+    componentDidMount() {
         if (cookies.get('student')) {
             cookies.remove('student');
-        }else if (cookies.get('staff')) {
+        } else if (cookies.get('staff')) {
             cookies.remove('staff');
         }
     }
@@ -15,7 +15,17 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Container textAlign='center'><h1>Home page</h1></Container>
+                <Segment stacked inverted color='teal'>
+                    <Header size='tiny'>Guide</Header>
+                    <List bulleted>
+                        <List.Item>To test this website, please use the staff functions to Add/update books, rent/receive books, check book/student</List.Item>
+                        <List.Item>Then use student account to search book and check his/her record</List.Item>
+                        <List.Item>All Guides are added for testing helper.</List.Item>
+                        <List.Item>Core design is all operation can only be performed as staff. Student can only search or check.</List.Item>
+                        <List.Item>Home Page's news are all empty. Just to show we can add links there.</List.Item>
+                    </List>
+                </Segment>
+                <Container textAlign='center'><h1>Home of Our Library</h1></Container>
                 <Image src='public/Library-Wallpaper.png' fluid />
                 <Container textAlign='justified'>
                     <Divider />

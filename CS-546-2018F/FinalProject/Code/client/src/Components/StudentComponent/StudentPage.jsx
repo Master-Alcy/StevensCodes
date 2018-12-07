@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Segment, Header, Divider, Card, Button, Icon } from 'semantic-ui-react';
+import { Segment, Header, Divider, Card, Button, Icon, List } from 'semantic-ui-react';
 
 class StudentPage extends Component {
     render() {
         return (
             <Segment raised>
+                <Segment stacked inverted color='teal'>
+                    <Header size='tiny'>Guide</Header>
+                    <List bulleted>
+                        <List.Item>Find book has three functions. All will return all matched books</List.Item>
+                        <List.Item>Check Record is implemented against sessionID, thus no input needed.</List.Item>
+                        <List.Item>Profile is extra in proposal.</List.Item>
+                    </List>
+                </Segment>
                 <Header size='medium'>Welcome Student</Header>
                 <Divider />
                 <Segment.Group horizontal>
