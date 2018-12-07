@@ -184,7 +184,7 @@ class StudentSearch extends Component {
             }
             return (
                 <Segment raised>
-                    <Header size='medium'>Found Record</Header>
+                    <Header size='medium'>Found Book</Header>
                     <List bulleted>
                         {renderResult}
                     </List>
@@ -195,7 +195,7 @@ class StudentSearch extends Component {
             // Or found an existing book not returned as list
             return (
                 <Segment raised>
-                    <Header size='medium'>Found Record</Header>
+                    <Header size='medium'>Found Book</Header>
                     <List bulleted>
                         <List.Item>
                             <Segment raised>
@@ -205,10 +205,7 @@ class StudentSearch extends Component {
                                 <Segment vertical>Location:  &ensp;{result.location}</Segment>
                                 <Segment vertical>Price &nbsp;  &ensp;:  &ensp;{result.price}</Segment>
                                 <Segment vertical>Author  &ensp;:  &ensp;{result.profile.author}</Segment>
-                                <Segment vertical>
-                                    Description:  &ensp;
-                                    {result.profile.description}
-                                </Segment>
+                                <Segment vertical>Description:  &ensp;{result.profile.description}</Segment>
                             </Segment>
                         </List.Item>
                     </List>
@@ -218,7 +215,7 @@ class StudentSearch extends Component {
 
         return (
             <Segment raised>
-                <Header size='medium'>No Record</Header>
+                <Header size='medium'>No Book Found</Header>
             </Segment>
         );
     }

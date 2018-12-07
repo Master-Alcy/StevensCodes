@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "start": "node ./server/index.js",
+    "seed": "node ./server/data/mockdata.js",
     "build": "webpack -p",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js"

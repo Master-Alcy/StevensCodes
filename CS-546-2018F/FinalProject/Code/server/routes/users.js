@@ -31,7 +31,7 @@ router.post("/signup", async (req, res) => {
 
 // Finding existing user
 router.post("/login", async (req, res) => {
-    console.log("Trying to /user/login");
+    //console.log("Trying to /user/login");
     const username = req.body.username;
     const password = req.body.hashedPassword;
     // username and password must be valid, checked in LoginPage.jsx
@@ -77,7 +77,7 @@ router.post("/search", async (req, res) => {
     }
     try {
         const foundStudent = await userData.getUserByUsername(username);
-        if (foundStudent.success || foundStudent.identity === "student") {
+        if (foundStudent.success && foundStudent.data.identity === "student") {
             const record = foundStudent.data.record;
             res.json({
                 success: true,
@@ -102,15 +102,15 @@ router.post("/search", async (req, res) => {
 router.post("/:id", async (req, res) => {
     try {
         const find = await userData.getUserBySessionId(req.params.id);
-        console.log(find);
+        //console.log(find);
         if (find) {
-            console.log("Welcome dude");
+            //console.log("Welcome dude");
             res.json({
                 isFind: true,
                 record: find.data.record
             });
         } else {
-            console.log("Not found");
+            //console.log("Not found");
             res.json({
                 isFind: false
             });

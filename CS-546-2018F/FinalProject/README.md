@@ -6,11 +6,12 @@ This is the base directory of final project
 
 Server Code is at /Code/server  
 Client Code is at /Code/client
+Detail instructions in /Code/README.md
 
 ## Document
 
-Included Proposals, Site design and test feedbacks
+Included Proposals, Site design and test feedbacks from teamates.
 
 ## Sample
 
-Containing some samples from insturctor.
+Containing some meterials from insturctor.

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Segment, Icon, Header, List } from 'semantic-ui-react';
+import { Form, Segment, Icon, Header } from 'semantic-ui-react';
 import Cookies from 'universal-cookie';
 
 class LoginPage extends Component {
@@ -168,12 +168,6 @@ class LoginPage extends Component {
     //console.log(this.state);
     return (
       <Segment raised>
-        <Segment stacked inverted color='teal'>
-          <Header size='tiny'>Guide</Header>
-          <List bulleted>
-            <List.Item>Input username and password from signing up to login into homepage with correct identity</List.Item>
-          </List>
-        </Segment>
         <Header size='medium'>User Log In</Header>
         <p>Please finish all fields.</p>
 
