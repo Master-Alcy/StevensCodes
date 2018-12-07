@@ -1,6 +1,6 @@
 ### Starting build.
 # Target: interp.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:interp.ml, ocaml, ocamldep, quiet }
-ocamlfind ocamldep -package oUnit -modules interp.ml > interp.ml.depends
+ocamlfind ocamldep -package oUnit -modules interp.ml > interp.ml.depends # cached
 # Target: ast.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:ast.ml, ocaml, ocamldep, quiet }
 ocamlfind ocamldep -package oUnit -modules ast.ml > ast.ml.depends # cached
 # Target: ast.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:ast.cmo, file:ast.ml, implem, ocaml, quiet }
@@ -28,7 +28,7 @@ ocamlfind ocamlc -c -bin-annot -package oUnit -o parser.cmi parser.mli # cached
 # Target: lexer.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
 ocamlfind ocamlc -c -bin-annot -package oUnit -o lexer.cmo lexer.ml # cached
 # Target: interp.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:interp.cmo, file:interp.ml, implem, ocaml, quiet }
-ocamlfind ocamlc -c -bin-annot -package oUnit -o interp.cmo interp.ml
+ocamlfind ocamlc -c -bin-annot -package oUnit -o interp.cmo interp.ml # cached
 # Target: parser.ml.depends, tags: { package(oUnit), bin_annot, extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
 ocamlfind ocamldep -package oUnit -modules parser.ml > parser.ml.depends # cached
 # Target: parser.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:parser.cmo, file:parser.ml, implem, ocaml, quiet }
@@ -38,5 +38,5 @@ ocamlfind ocamldep -package oUnit -modules store.ml > store.ml.depends # cached
 # Target: store.cmo, tags: { package(oUnit), bin_annot, byte, compile, extension:cmo, extension:ml, file:store.cmo, file:store.ml, implem, ocaml, quiet }
 ocamlfind ocamlc -c -bin-annot -package oUnit -o store.cmo store.ml # cached
 # Target: interp.byte, tags: { package(oUnit), bin_annot, byte, dont_link_with, extension:byte, file:interp.byte, link, ocaml, program, quiet }
-ocamlfind ocamlc -linkpkg -package oUnit ast.cmo store.cmo ds.cmo parser.cmo lexer.cmo interp.cmo -o interp.byte
+ocamlfind ocamlc -linkpkg -package oUnit ast.cmo store.cmo ds.cmo parser.cmo lexer.cmo interp.cmo -o interp.byte # cached
 # Compilation successful.

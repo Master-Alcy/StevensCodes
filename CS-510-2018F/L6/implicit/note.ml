@@ -58,3 +58,17 @@ let a = [|1;2;3|];;
 a.(1);;
 a.(1) <- 4;;
 a;;
+(*
+set is evaluated to cause an effect on
+store/memory. return void.
+set is modifying the reference stored 
+*)
+(*
+Call-by-value implemented in implicit refs
+maybe implementing call-by-reference
+Call-by-value:
+    a new location is created for every evaluation of an operand
+Call-by-reference:
+    a new location is created for every evaluation of an operand
+other than a variable.
+*)

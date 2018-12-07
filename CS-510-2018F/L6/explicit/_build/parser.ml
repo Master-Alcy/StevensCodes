@@ -372,7 +372,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
         let (((_menhir_stack, _menhir_s, (e1 : (Ast.expr))), _), _, (e2 : (Ast.expr))) = _menhir_stack in
         let _2 = () in
         let _v : (Ast.expr) = 
-# 141 "parser.mly"
+# 142 "parser.mly"
                                   ( Mul(e1,e2) )
 # 378 "parser.ml"
          in
@@ -391,7 +391,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let (((_menhir_stack, _menhir_s, (e1 : (Ast.expr))), _), _, (e2 : (Ast.expr))) = _menhir_stack in
             let _2 = () in
             let _v : (Ast.expr) = 
-# 139 "parser.mly"
+# 140 "parser.mly"
                                  ( Add(e1,e2) )
 # 397 "parser.ml"
              in
@@ -406,7 +406,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
         let (((_menhir_stack, _menhir_s, (e1 : (Ast.expr))), _), _, (e2 : (Ast.expr))) = _menhir_stack in
         let _2 = () in
         let _v : (Ast.expr) = 
-# 142 "parser.mly"
+# 143 "parser.mly"
                                     ( Div(e1,e2) )
 # 412 "parser.ml"
          in
@@ -425,7 +425,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let (((_menhir_stack, _menhir_s, (e1 : (Ast.expr))), _), _, (e2 : (Ast.expr))) = _menhir_stack in
             let _2 = () in
             let _v : (Ast.expr) = 
-# 140 "parser.mly"
+# 141 "parser.mly"
                                   ( Sub(e1,e2) )
 # 431 "parser.ml"
              in
@@ -455,7 +455,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 149 "parser.mly"
+# 150 "parser.mly"
                                       ( DeRef(e) )
 # 461 "parser.ml"
              in
@@ -598,7 +598,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _3 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 151 "parser.mly"
+# 152 "parser.mly"
                                                       ( ITE(e1,e2,e3) )
 # 604 "parser.ml"
              in
@@ -628,7 +628,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 147 "parser.mly"
+# 148 "parser.mly"
                                        ( IsZero(e) )
 # 634 "parser.ml"
              in
@@ -719,7 +719,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _3 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 143 "parser.mly"
+# 144 "parser.mly"
                                                     ( Let(x,e1,e2) )
 # 725 "parser.ml"
              in
@@ -814,7 +814,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _3 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 144 "parser.mly"
+# 145 "parser.mly"
                                                                                ( Letrec(x,y,e1,e2) )
 # 820 "parser.ml"
              in
@@ -844,7 +844,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 156 "parser.mly"
+# 157 "parser.mly"
                                       ( Sub(Int 0, e) )
 # 850 "parser.ml"
              in
@@ -899,7 +899,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _3 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 154 "parser.mly"
+# 155 "parser.mly"
                                (e)
 # 905 "parser.ml"
              in
@@ -934,7 +934,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _4 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 146 "parser.mly"
+# 147 "parser.mly"
                                            ( App(e1,e2) )
 # 940 "parser.ml"
              in
@@ -966,7 +966,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 148 "parser.mly"
+# 149 "parser.mly"
                                        ( NewRef(e) )
 # 972 "parser.ml"
              in
@@ -1004,7 +1004,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 145 "parser.mly"
+# 146 "parser.mly"
                                                              ( Proc(x,e) )
 # 1010 "parser.ml"
              in
@@ -1038,7 +1038,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _3 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 152 "parser.mly"
+# 153 "parser.mly"
                                     ( Set(x,e) )
 # 1044 "parser.ml"
              in
@@ -1125,7 +1125,7 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let _2 = () in
             let _1 = () in
             let _v : (Ast.expr) = 
-# 150 "parser.mly"
+# 151 "parser.mly"
                                                           ( SetRef(e1,e2) )
 # 1131 "parser.ml"
              in
@@ -1150,18 +1150,18 @@ and _menhir_goto_expr : _menhir_env -> 'ttv_tail -> _menhir_state -> (Ast.expr) 
             let (_menhir_stack, _menhir_s, (e : (Ast.expr))) = _menhir_stack in
             let _2 = () in
             let _v : (
-# 75 "parser.mly"
+# 76 "parser.mly"
        (Ast.prog)
 # 1156 "parser.ml"
             ) = 
-# 107 "parser.mly"
+# 108 "parser.mly"
                  ( AProg e )
 # 1160 "parser.ml"
              in
             let _menhir_stack = Obj.magic _menhir_stack in
             let _menhir_stack = Obj.magic _menhir_stack in
             let (_1 : (
-# 75 "parser.mly"
+# 76 "parser.mly"
        (Ast.prog)
 # 1167 "parser.ml"
             )) = _v in
@@ -1193,7 +1193,7 @@ and _menhir_goto_loption_separated_nonempty_list_SEMICOLON_expr__ : _menhir_env 
       
     in
     
-# 161 "parser.mly"
+# 162 "parser.mly"
                                             ( es )
 # 1199 "parser.ml"
      in
@@ -1210,7 +1210,7 @@ and _menhir_goto_loption_separated_nonempty_list_SEMICOLON_expr__ : _menhir_env 
         let _3 = () in
         let _1 = () in
         let _v : (Ast.expr) = 
-# 153 "parser.mly"
+# 154 "parser.mly"
                              ( BeginEnd(es) )
 # 1216 "parser.ml"
          in
@@ -1725,7 +1725,7 @@ and _menhir_run13 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
         let _2 = () in
         let _1 = () in
         let _v : (Ast.expr) = 
-# 157 "parser.mly"
+# 158 "parser.mly"
                      ( Unit )
 # 1731 "parser.ml"
          in
@@ -1961,7 +1961,7 @@ and _menhir_run27 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
 # 1962 "parser.ml"
     )) = _v in
     let _v : (Ast.expr) = 
-# 136 "parser.mly"
+# 137 "parser.mly"
               ( Int i )
 # 1967 "parser.ml"
      in
@@ -2020,7 +2020,7 @@ and _menhir_run29 : _menhir_env -> 'ttv_tail -> _menhir_state -> (
 # 2021 "parser.ml"
     )) = _v in
     let _v : (Ast.expr) = 
-# 137 "parser.mly"
+# 138 "parser.mly"
              ( Var x )
 # 2026 "parser.ml"
      in
@@ -2082,7 +2082,7 @@ and _menhir_run32 : _menhir_env -> 'ttv_tail -> _menhir_state -> 'ttv_return =
     let _menhir_stack = Obj.magic _menhir_stack in
     let _1 = () in
     let _v : (Ast.expr) = 
-# 138 "parser.mly"
+# 139 "parser.mly"
             ( Debug )
 # 2088 "parser.ml"
      in
@@ -2149,7 +2149,7 @@ and _menhir_discard : _menhir_env -> _menhir_env =
     }
 
 and prog : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> (
-# 75 "parser.mly"
+# 76 "parser.mly"
        (Ast.prog)
 # 2155 "parser.ml"
 ) =

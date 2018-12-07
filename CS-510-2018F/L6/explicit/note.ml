@@ -11,4 +11,8 @@ store/memory), not return a result
 Like: x := 1*)
 (* value are stored in a store or memory, for our
 interpreter we use store *)
-(*set is modifying the reference stored *)
+(*
+set is evaluated to cause an effect on
+store/memory. return void.
+set is modifying the reference stored 
+*)

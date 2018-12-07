@@ -7,11 +7,13 @@ let from_some = function
     
 let g_store = Store.empty_store 20 (NumVal 0)
 
-let init_env =
+let init_env = EmptyEnv
+(*
   ExtendEnv("i", RefVal (Store.new_ref g_store (NumVal 1)),
-   ExtendEnv("v",RefVal (Store.new_ref g_store (NumVal 5)),
-    ExtendEnv("x",RefVal (Store.new_ref g_store (NumVal 10)),
-      EmptyEnv)))
+    ExtendEnv("v",RefVal (Store.new_ref g_store (NumVal 5)),
+      ExtendEnv("x",RefVal (Store.new_ref g_store (NumVal 10)),
+        EmptyEnv)))
+*)
     
 let rec apply_proc f a =
   match f with

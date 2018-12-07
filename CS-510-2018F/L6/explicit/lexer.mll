@@ -47,6 +47,7 @@ rule read =
   | "{"      { LBRACE }
   | "}"      { RBRACE }
   | ";"      { SEMICOLON }
+
   | ","      { COMMA }
   | "let"    { LET }
   | "="      { EQUALS }

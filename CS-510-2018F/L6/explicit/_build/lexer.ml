@@ -1168,102 +1168,102 @@ and __ocaml_lex_read_rec lexbuf __ocaml_lex_state =
 # 1169 "lexer.ml"
 
   | 10 ->
-# 50 "lexer.mll"
+# 51 "lexer.mll"
              ( COMMA )
 # 1174 "lexer.ml"
 
   | 11 ->
-# 51 "lexer.mll"
+# 52 "lexer.mll"
              ( LET )
 # 1179 "lexer.ml"
 
   | 12 ->
-# 52 "lexer.mll"
+# 53 "lexer.mll"
              ( EQUALS )
 # 1184 "lexer.ml"
 
   | 13 ->
-# 53 "lexer.mll"
+# 54 "lexer.mll"
              ( IN )
 # 1189 "lexer.ml"
 
   | 14 ->
-# 54 "lexer.mll"
+# 55 "lexer.mll"
              ( PROC )
 # 1194 "lexer.ml"
 
   | 15 ->
-# 55 "lexer.mll"
+# 56 "lexer.mll"
              ( ISZERO )
 # 1199 "lexer.ml"
 
   | 16 ->
-# 56 "lexer.mll"
+# 57 "lexer.mll"
              ( IF )
 # 1204 "lexer.ml"
 
   | 17 ->
-# 57 "lexer.mll"
+# 58 "lexer.mll"
              ( THEN )
 # 1209 "lexer.ml"
 
   | 18 ->
-# 58 "lexer.mll"
+# 59 "lexer.mll"
              ( ELSE )
 # 1214 "lexer.ml"
 
   | 19 ->
-# 59 "lexer.mll"
+# 60 "lexer.mll"
              ( LETREC )
 # 1219 "lexer.ml"
 
   | 20 ->
-# 60 "lexer.mll"
+# 61 "lexer.mll"
              ( SET )
 # 1224 "lexer.ml"
 
   | 21 ->
-# 61 "lexer.mll"
+# 62 "lexer.mll"
              ( BEGIN )
 # 1229 "lexer.ml"
 
   | 22 ->
-# 62 "lexer.mll"
+# 63 "lexer.mll"
              ( END )
 # 1234 "lexer.ml"
 
   | 23 ->
-# 63 "lexer.mll"
+# 64 "lexer.mll"
              ( NEWREF )
 # 1239 "lexer.ml"
 
   | 24 ->
-# 64 "lexer.mll"
+# 65 "lexer.mll"
              ( DEREF )
 # 1244 "lexer.ml"
 
   | 25 ->
-# 65 "lexer.mll"
+# 66 "lexer.mll"
              ( SETREF )
 # 1249 "lexer.ml"
 
   | 26 ->
-# 66 "lexer.mll"
+# 67 "lexer.mll"
             ( DEBUG )
 # 1254 "lexer.ml"
 
   | 27 ->
-# 67 "lexer.mll"
+# 68 "lexer.mll"
              ( ID (Lexing.lexeme lexbuf) )
 # 1259 "lexer.ml"
 
   | 28 ->
-# 68 "lexer.mll"
+# 69 "lexer.mll"
              ( INT (int_of_string (Lexing.lexeme lexbuf)) )
 # 1264 "lexer.ml"
 
   | 29 ->
-# 69 "lexer.mll"
+# 70 "lexer.mll"
              ( EOF )
 # 1269 "lexer.ml"
 
