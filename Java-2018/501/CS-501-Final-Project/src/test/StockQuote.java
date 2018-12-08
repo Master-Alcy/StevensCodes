@@ -1,12 +1,9 @@
 package test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 /******************************************************************************
  *  Compilation:  javac StockQuote.java
@@ -54,6 +51,8 @@ public class StockQuote {
 			e.printStackTrace();
 		}
     	String html = doc.html();
+    	System.out.println("/////////////////////////////////////////////////////"
+    			+ html + "//////////////////////////////////////////////////////");
         //In page = new In("http://finance.yahoo.com/quote/" + symbol);
         //String html = page.readAll();
         if (html.contains("<title></title>")) return null;

@@ -21,6 +21,12 @@ I better start wih building a crawler to get data needed
     2. get the slope of prices to see if it's raising or not with custom range
     3. A todo List with a name and note
 
+### Progress
+
+1. Successfully got historical data from finance.yahoo
+2. MySQL installed
+3. Next step: DataBase
+
 ## Chapters / Exercise / Topics
 
 All the preparation needed to start this project.  

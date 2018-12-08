@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StockQuoteTest",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "test.StockQuoteTest",
+            "args": "",
+            "projectName": "CS-501-Final-Project"
+        }
+    ]
+}
