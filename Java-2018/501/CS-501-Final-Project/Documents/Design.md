@@ -2,6 +2,12 @@
 
 I want to make a stock GUI client and a server with database. The idea is server craw stock data from a website and somehow store in database. The client can access the database can view the data.
 
+## Progress
+
+1. Successfully got historical data from finance.yahoo
+2. MySQL installed
+3. Next step: DataBase
+
 ## Some ideas
 
 I better start wih building a crawler to get data needed
@@ -20,12 +26,6 @@ I better start wih building a crawler to get data needed
     1. See the prices, symbols and names stored in the order of date
     2. get the slope of prices to see if it's raising or not with custom range
     3. A todo List with a name and note
-
-### Progress
-
-1. Successfully got historical data from finance.yahoo
-2. MySQL installed
-3. Next step: DataBase
 
 ## Chapters / Exercise / Topics
 

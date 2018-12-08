@@ -9,7 +9,9 @@ public class StockQuoteTest {
 	private static String readHTML(String symbol) {
 		String page = "";
 		try {
-			Document doc = Jsoup.connect("https://finance.yahoo.com/quote/" + symbol + "/history?p=" + symbol).get();
+			Document doc = Jsoup.connect(
+					"https://finance.yahoo.com/quote/" + symbol + "/history?p=" + symbol
+					).get();
 			page = doc.select("table").text();
 		} catch (IOException e) {
 			e.printStackTrace();
