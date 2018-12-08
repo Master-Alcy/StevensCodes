@@ -8,7 +8,6 @@ const userData = require("../data").users;
 router.post("/signup", async (req, res) => {
     const formData = req.body;
     try {
-        formData.hashedPassword = await bcrypt.hash(formData.hashedPassword, 10);
         const foundUser = await userData.getUserByUsername(formData.username);
         if (foundUser.success) {
             res.json({
@@ -16,6 +15,7 @@ router.post("/signup", async (req, res) => {
             });
             return;
         }
+        formData.hashedPassword = await bcrypt.hash(formData.hashedPassword, 10);
         const newPost = await userData.addUser(formData);
         res.json({
             success: newPost.success,
