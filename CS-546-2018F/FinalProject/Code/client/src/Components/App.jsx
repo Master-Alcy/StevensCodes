@@ -36,7 +36,6 @@ const Students = ({ match }) => (
     </Switch>
 );
 
-
 const Staffs = ({ match }) => (
     <Switch>
         <Route path={match.url + "/bookstorage"} component={StaffStore} />
@@ -46,8 +45,6 @@ const Staffs = ({ match }) => (
         <Route path={match.url} component={StaffPage} />
     </Switch>
 );
-
-
 
 class App extends Component {
     constructor() {
