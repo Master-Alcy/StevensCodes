@@ -46,14 +46,7 @@ This video should be 10 to 15 minutes long.
     1. We want to build a website to manage a library.
     2. For staff, handle all book operations and update/check records.
     3. For student, check his/her records and search the book he/she want.
-2. Introduction on the technical background
-    1. Client side React routes handle all get requests
-    2. Client side React also make all style and rendering
-    3. Using semantic-ui as Frontend library for easier development
-    4. Using Mongoose to struct mongodb for it's ability to build model.
-    5. Server side routes handle all post request from client what we learned.
-    6. Else just the express and javascript we learned from lectures.
-3. Routine
+2. Routine
     1. Home Page
         1. Guide can be removed
         2. Show hours and news. Could be filled for real world usage
@@ -96,7 +89,7 @@ This video should be 10 to 15 minutes long.
         1. Brief into, mark that profile is extra
         2. Go to check Record Page first and say that it is tested with session id automaticly
         3. Go to find book page and do the same as satff search book but comment how the data returned is different
-4. Goals. Describe how we completed all of them
+3. Goals. Describe how we completed all of them
     1. Core:
         1. User function:
             1. sign in:
@@ -116,6 +109,13 @@ This video should be 10 to 15 minutes long.
             4. receive returned books
             5. check students’ record by student id or name (Implemented by username)
             6. check book rental record and storage (full list)
+4. Introduction on the technical background
+    1. Client side React routes handle all get requests
+    2. Client side React also make all style and rendering
+    3. Using semantic-ui as Frontend library for easier development
+    4. Using Mongoose to struct mongodb for it's ability to build model.
+    5. Server side routes handle all post request from client what we learned.
+    6. Else just the express and javascript we learned from lectures.
 5. Finally, describe why using react and semantic-ui
     1. Using react can rendering things using seperated components, which makes development on each module clearer
     2. React can update state with each render, which makes it possible to update states in page and inner functions can perform against current state.

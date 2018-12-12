@@ -30,8 +30,7 @@ The user collection will store all users and their profiles. Users will be able 
             "_id":"7b7997a2-abcd-4f8c-b27a-6a1d4b5b6310",
             "bookid":"21123123-abcd-4f8c-b27a-6a1d4b5b6310",
             "time":"EST-2018-11-22-23-59-59",
-            "action":"borrow",
-            “returnTime": "EST-2018-11-23-23-59-59",
+            "action":"borrow"
             "staffid":"7b7997a2-abcd-efgh-b27a-6a1d4b5b6310"
         },
         {
@@ -39,7 +38,6 @@ The user collection will store all users and their profiles. Users will be able 
             "bookid":"2112223123-abcd-4f8c-b27a-6a1d4b5b6310",
             "time":"EST-2018-11-22-23-59-58",
             "action":"rent",
-            “returnTime": "EST-2018-11-23-23-59-59",
             "staffid":"7b7997a2-abcd-efgh-b27a-6a1d4b5b6310"
         }
     ]
@@ -89,15 +87,13 @@ This subdocument is used to describe the user's records, stored as a list. Stude
         "bookid":"21123123-abcd-4f8c-b27a-6a1d4b5b6310",
         "time":"EST-2018-11-22-23-59-59",
         "action":"borrow",
-        “returnTime": "EST-2018-11-23-23-59-59",
         "staffid":"7b7997a2-abcd-efgh-b27a-6a1d4b5b6310"
     },
     {
         "_id":"7b7997a222-abcd-4f8c-b27a-6a1d4b5b6310",
         "bookid":"2112223123-abcd-4f8c-b27a-6a1d4b5b6310",
         "time":"EST-2018-11-22-23-59-58",
-        "action":"rent",
-        “returnTime": "EST-2018-11-23-23-59-59",
+        "action":"return",
         "staffid":"7b7997a2-abcd-efgh-b27a-6a1d4b5b6310"
     }
 ]
@@ -108,7 +104,7 @@ This subdocument is used to describe the user's records, stored as a list. Stude
 | _id        | string | Globally unique id for this action |
 | bookid     | string | As it is                           |
 | time       | string | The time this action was taken     |
-| action     | string | Borrow or rent                     |
+| action     | string | Borrow or return                   |
 | staffid    | string | Operated by staff                  |
 
 ## Book
@@ -207,6 +203,6 @@ This subdocument is used to describe the book's records.
 | --------- | ------ | ---------------------------------- |
 | _id       | String | Globally unique id for this action |
 | studentid | String | Who requred this action            |
-| action    | String | borrow/rent/return/sell            |
+| action    | String | borrow/return                      | 
 | time      | string | Time this action performed         |
 | staffid   | String | Who operated this action           |
