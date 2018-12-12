@@ -17,5 +17,10 @@
   },
   "devDependencies": {
     "babel": "~5.8.21"
+  },
+  "proxy": {
+    "/api/": {
+      "target": "http://localhost:3001"
+    }
   }
 }

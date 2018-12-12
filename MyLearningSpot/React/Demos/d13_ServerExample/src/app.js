@@ -26,7 +26,9 @@ export default class App extends React.Component{
   render() {
     return (
       <div>
-        <button onClick={this.handleClick.bind(this)} disabled={this.state.disabled}>Add Item</button>
+        asdsadas
+        <a href="/api/book">book</a>
+        <button onClick={this.handleClick.bind(this)} disabled={this.state.disabled}>Add Itemjlmlkmlkm </button>
         <ul>
         {
           this.state.items.map(function(item) {
