@@ -106,7 +106,7 @@ class StaffCheckStudent extends Component {
                 <Divider />
 
                 <Segment raised>
-                    <Header size='tiny'>Checking by student name</Header>
+                    <Header size='tiny'>Checking by student's username</Header>
                     <Input fluid placeholder='Search student...'
                         name="studentName" icon='users' iconPosition='left'
                         value={studentName} onChange={this.handleChange} />
