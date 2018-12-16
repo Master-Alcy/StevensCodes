@@ -1,6 +1,6 @@
 # Final Project Design
 
-I want to make a stock GUI client and a server with database. The idea is server craw stock data from a website and somehow store in database. The client can access the database can view the data.
+I want to make a stock GUI client and a server with database. The idea is server craw stock data from a website and somehow store in database. The client can access the database and operate the data.
 
 ## Progress
 
