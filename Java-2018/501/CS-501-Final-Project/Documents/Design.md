@@ -35,7 +35,7 @@ The day I wrote this draft is at the night of **12/7**, the due date is ***12/20
 
 ### Chapters
 
-10, 14, 15, 31, 34, 35  
+10/34/35, 14/15, 31
 
 ### Exercise
 
