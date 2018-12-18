@@ -10,12 +10,6 @@ import java.sql.Statement;
 
 public class TestDataBase {
 
-	/**
-	 * @param JDBC_DRIVER Using the new driver, but is not necessary
-	 * @param DB_URL      default database URL
-	 * @param USER        set as root
-	 * @param PASS        should let user to set password here
-	 */
 	private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/";
 	private static final String USER = "root";

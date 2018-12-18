@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -22,14 +21,18 @@ public class DataBase {
 	private static String DB_URL = "jdbc:mysql://localhost:3306/";
 	private static String USER = "root";
 	private static String PASS = "ajx591301";
-	
+
 	public DataBase() {
 		JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 		DB_URL = "jdbc:mysql://localhost:3306/";
 		USER = "root";
 		PASS = "ajx591301";
 	}
-	
+
+	public static void main(String[] args) {
+		UserCreateTable();
+	}
+
 	public DataBase(String driver, String url, String user, String pass) {
 		JDBC_DRIVER = driver;
 		DB_URL = url;
@@ -40,7 +43,6 @@ public class DataBase {
 		System.out.println("User is: " + USER);
 		System.out.println("Password is: " + PASS);
 	}
-	
 
 	/** Offer this to add data */
 	public static void UserInsertData(ArrayList<String[]> dataList, String name, String symbol) {
@@ -51,6 +53,7 @@ public class DataBase {
 	private static void InsertData(ArrayList<String[]> dataList, String name, String symbol) {
 		Connection conn = null;
 		Statement stmt = null;
+		ResultSet rs = null;
 		String sql = "";
 		try {
 			Class.forName(JDBC_DRIVER);
@@ -68,6 +71,13 @@ public class DataBase {
 			float adj_close = 0;
 			int volume = 0;
 
+			sql = "INSERT INTO companies (name, symbol) VALUES ('" + aName + "','" + aSymbol + "')";
+			stmt.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);
+
+			rs = stmt.getGeneratedKeys();
+			rs.first();
+			int owner_id = rs.getInt(1);
+
 			// Insert Data
 			while (!dataList.isEmpty()) {
 				String[] aRow = dataList.remove(0);
@@ -84,9 +94,10 @@ public class DataBase {
 				close = Float.parseFloat(aRow[6]);
 				adj_close = Float.parseFloat(aRow[7]);
 				volume = Integer.parseInt(aRow[8]);
-				sql = "INSERT INTO quotes (name, symbol, date, open, high, low, close, adj_close, volume) VALUES "
-						+ "(\"" + aName + "\",\"" + aSymbol + "\",\"" + aDate + "\",\"" + open + "\",\"" + high
-						+ "\",\"" + low + "\",\"" + close + "\",\"" + adj_close + "\",\"" + volume + "\");";
+
+				sql = "INSERT INTO quotes ( date, open, high, low, close, adj_close, volume, owner ) VALUES " + "( '"
+						+ aDate + "', '" + open + "', '" + high + "', '" + low + "', '" + close + "', '" + adj_close
+						+ "', '" + volume + "', '" + owner_id + "' );";
 				stmt.executeUpdate(sql);
 			}
 			System.out.println("Records inserted successfully...");
@@ -143,19 +154,25 @@ public class DataBase {
 			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
 			stmt = conn.createStatement();
 
-			sql = "CREATE TABLE quotes ( id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'common id',"
+			sql = "CREATE TABLE companies (" + " company_id int(6) unsigned NOT NULL AUTO_INCREMENT,"
 					+ " name char(40) NOT NULL DEFAULT '' COMMENT 'name for the company',"
 					+ " symbol char(8) NOT NULL DEFAULT '' COMMENT 'symbol for company',"
+					+ " PRIMARY KEY (`company_id`)"
+					+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='This stores the companies.'";
+			stmt.executeUpdate(sql);
+			// quotes is referenced to company_id
+			sql = "CREATE TABLE quotes ( quote_id int(7) unsigned NOT NULL AUTO_INCREMENT,"
 					+ " date date NOT NULL DEFAULT '1000-01-01'," + " open float(7,2) unsigned NOT NULL DEFAULT '0.00',"
 					+ " high float(7,2) unsigned NOT NULL DEFAULT '0.00',"
 					+ " low float(7,2) unsigned NOT NULL DEFAULT '0.00',"
 					+ " close float(7,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '*Close price adjusted for splits.',"
 					+ " adj_close float(7,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '**Adjusted close price adjusted for both dividends and splits.',"
-					+ " volume int(10) unsigned NOT NULL DEFAULT '0'," + "  PRIMARY KEY (`id`)"
-					+ ") ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8";
+					+ " volume int(10) unsigned NOT NULL DEFAULT '0',"
+					+ " owner int(6) unsigned NOT NULL REFERENCES companies(company_id)," + " PRIMARY KEY (`quote_id`)"
+					+ ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='This stores the historical data.'";
 			stmt.executeUpdate(sql);
-			System.out.println("Table quotes created successfully...");
 
+			System.out.println("Table quotes and companies created successfully...");
 			// close should be the opposite order when opening
 			stmt.close();
 			conn.close();

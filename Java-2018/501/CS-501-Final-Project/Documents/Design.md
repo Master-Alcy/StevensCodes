@@ -7,6 +7,11 @@ I want to make a stock GUI client and a server with database. The idea is server
 1. Successfully got historical data from finance.yahoo
 2. MySQL installed
 3. Next step: DataBase
+4. DataBase creation finished
+5. Insertion on Relation DataBase finished
+6. Next step: Set Up Client with GUI and Server Based on console
+7. I feel that there is not enough time for too much client oeprations, I'll show a data table, and an entry for symbol.
+8. Maybe no GUI
 
 ## Some ideas
 
