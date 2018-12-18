@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - TestClient",
+            "request": "launch",
+            "mainClass": "test.TestClient",
+            "projectName": "CS-501-Final-Project"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - StockQuoteTest",
             "request": "launch",
             "cwd": "${workspaceFolder}",
