@@ -1,4 +1,4 @@
-package test;
+package testThread;
 
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.ForkJoinPool;
