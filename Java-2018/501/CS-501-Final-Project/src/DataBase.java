@@ -38,7 +38,7 @@ public class DataBase {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
 			stmt = conn.createStatement();
-			System.out.println("Database: 501_final_project connected successfully...");
+			System.out.println("In GetData: Database: 501_final_project connected successfully...");
 
 			sql = "SELECT * FROM 501_final_project.companies WHERE company_id LIKE '%" + id + "%' LIMIT 1";
 			rs = stmt.executeQuery(sql);
@@ -106,7 +106,7 @@ public class DataBase {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
 			stmt = conn.createStatement();
-			System.out.println("Database: 501_final_project connected successfully...");
+			System.out.println("In Check: Database: 501_final_project connected successfully...");
 
 			sql = "SELECT * FROM 501_final_project.companies WHERE symbol LIKE '%" + symbol + "%' LIMIT 1";
 			rs = stmt.executeQuery(sql);
@@ -157,7 +157,7 @@ public class DataBase {
 			Class.forName(JDBC_DRIVER);
 			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
 			stmt = conn.createStatement();
-			System.out.println("Database: 501_final_project connected successfully...");
+			System.out.println("In Insert: Database: 501_final_project connected successfully...");
 
 			String aName = name;
 			String aSymbol = symbol;
@@ -198,7 +198,6 @@ public class DataBase {
 						+ "', '" + volume + "', '" + owner_id + "' );";
 				stmt.executeUpdate(sql);
 			}
-			System.out.println("Records inserted successfully...");
 
 			// close should be the opposite order when opening
 			rs.close();

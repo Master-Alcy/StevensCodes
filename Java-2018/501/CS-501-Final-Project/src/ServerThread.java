@@ -16,7 +16,7 @@ public class ServerThread extends Thread {
 	public void run() {
 		try (PrintWriter pw = new PrintWriter(socket.getOutputStream(), true); // Try with resource
 				BufferedReader stream = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-			System.out.println("In Server");
+			System.out.println("In Server. Don't write here.");
 			String fromClient;
 
 			outer: while ((fromClient = stream.readLine()) != null) {

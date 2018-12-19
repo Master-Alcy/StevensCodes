@@ -7,11 +7,6 @@ import org.jsoup.nodes.Document;
 public class QuotesCrawler {
 	private static String name = "";
 
-//	public static void main(String[] args) {	// Test
-//		// operateSymbol("GOOG");
-//		operateSymbol("AAPL");
-//	}
-
 	/** The purpose is to add data to existing database */
 	public static void operateSymbol(String symbol) {
 		String rawData = readSymbol(symbol);

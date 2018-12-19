@@ -16,6 +16,7 @@ public class Client {
 				BufferedReader stream = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
 				BufferedReader write = new BufferedReader(new InputStreamReader(System.in))) {
 			System.out.println("In Client, write company's symbol to get its data. Enter 'bye' to exit.");
+			System.out.println("You only need to input here");
 			String toServer;
 
 			outer: while ((toServer = write.readLine()) != null) {
