@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Client",
+            "request": "launch",
+            "mainClass": "Client",
+            "projectName": "CS-501-Final-Project"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Server",
+            "request": "launch",
+            "mainClass": "Server",
+            "projectName": "CS-501-Final-Project"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - TestClient",
             "request": "launch",
             "mainClass": "test.TestClient",

@@ -22,26 +22,124 @@ public class DataBase {
 	private static String USER = "root";
 	private static String PASS = "ajx591301";
 
-	public DataBase() {
-		JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-		DB_URL = "jdbc:mysql://localhost:3306/";
-		USER = "root";
-		PASS = "ajx591301";
+	/** User's entrance to get table data */
+	public static ArrayList<String[]> UserGetData(int id) {
+		return GetDataById(id);
 	}
 
-	public static void main(String[] args) {
-		UserCreateTable();
+	/** the id is already check to be valid */
+	private static ArrayList<String[]> GetDataById(int id) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		ArrayList<String[]> responce = new ArrayList<>();
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
+			stmt = conn.createStatement();
+			System.out.println("Database: 501_final_project connected successfully...");
+
+			sql = "SELECT * FROM 501_final_project.companies WHERE company_id LIKE '%" + id + "%' LIMIT 1";
+			rs = stmt.executeQuery(sql);
+			rs.first();
+			String[] aName = new String[1];
+			aName[0] = rs.getString("name");
+			responce.add(aName);
+
+			sql = "SELECT * FROM 501_final_project.quotes WHERE owner LIKE '%" + id + "%'";
+			rs = stmt.executeQuery(sql);
+			// Insert Data Into res list
+			while (rs.next()) {
+				Date aDate = rs.getDate("date");
+				float open = rs.getFloat("open");
+				float high = rs.getFloat("high");
+				float low = rs.getFloat("low");
+				float close = rs.getFloat("close");
+				float adj_close = rs.getFloat("adj_close");
+				int volume = rs.getInt("volume");
+				String[] aRow = { aDate.toString(), Float.toString(open), Float.toString(high), Float.toString(low),
+						Float.toString(close), Float.toString(adj_close), Integer.toString(volume) };
+				responce.add(aRow);
+			}
+			// close should be the opposite order when opening
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace(); // Handle errors for JDBC
+		} catch (Exception e) {
+			e.printStackTrace(); // Handle errors for Class.forName
+		} finally {
+			// close resource
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException se) {
+			} // nothing to do here
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		} // End finally
+		return responce;
 	}
 
-	public DataBase(String driver, String url, String user, String pass) {
-		JDBC_DRIVER = driver;
-		DB_URL = url;
-		USER = user;
-		PASS = pass;
-		System.out.println("JDBC Driver is: " + JDBC_DRIVER);
-		System.out.println("Database URL is: " + DB_URL);
-		System.out.println("User is: " + USER);
-		System.out.println("Password is: " + PASS);
+	/** Offer this to find if exist */
+	public static int UserCheckExist(String symbol) {
+		// If exist id >= 1, else 0
+		return CheckExistence(symbol);
+	}
+	
+	/** current method to check existence */
+	private static int CheckExistence(String symbol) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "";
+		int respondId = 0;
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
+			stmt = conn.createStatement();
+			System.out.println("Database: 501_final_project connected successfully...");
+
+			sql = "SELECT * FROM 501_final_project.companies WHERE symbol LIKE '%" + symbol + "%' LIMIT 1";
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				respondId = rs.getInt("company_id");
+			} else {
+				respondId = 0;
+			}
+			// close should be the opposite order when opening
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace(); // Handle errors for JDBC
+		} catch (Exception e) {
+			e.printStackTrace(); // Handle errors for Class.forName
+		} finally {
+			// close resource
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException se) {
+			} // nothing to do here
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		} // End finally
+		return respondId;
 	}
 
 	/** Offer this to add data */
@@ -72,7 +170,7 @@ public class DataBase {
 			int volume = 0;
 
 			sql = "INSERT INTO companies (name, symbol) VALUES ('" + aName + "','" + aSymbol + "')";
-			stmt.executeUpdate(sql,Statement.RETURN_GENERATED_KEYS);
+			stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 
 			rs = stmt.getGeneratedKeys();
 			rs.first();
@@ -103,6 +201,7 @@ public class DataBase {
 			System.out.println("Records inserted successfully...");
 
 			// close should be the opposite order when opening
+			rs.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException se) {
@@ -128,7 +227,16 @@ public class DataBase {
 	}
 
 	/** Offer this to create database */
-	public static void UserCreateTable() {
+	public static void UserCreateTable(String jDBC, String dB_URL2, String user2, String pass2) {
+		JDBC_DRIVER = jDBC;
+		DB_URL = dB_URL2;
+		USER = user2;
+		PASS = pass2;
+		System.out.println("JDBC Driver is: " + JDBC_DRIVER);
+		System.out.println("Database URL is: " + DB_URL);
+		System.out.println("User is: " + USER);
+		System.out.println("Password is: " + PASS);
+
 		CreateTable();
 	}
 
