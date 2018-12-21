@@ -20,13 +20,11 @@ public class ServerThread extends Thread {
                 BufferedReader stream = new BufferedReader(new InputStreamReader(s.getInputStream()));
                             ) {
             System.out.println("In Server");
-            String in, out;
+            String in;
             while ((in = stream.readLine()) != null) {
                 System.out.println("Msg 4m client: " + in);
                 if(in.equals("bye"))
                     break;
-                //out = in+"Processed";
-                //out = write.readLine();
                 pw.println(in+"Processed");
             }
 
