@@ -22900,3 +22900,16 @@ This search ends.
 
 ==============================================
 Enter search string in one line, and "qqq" to exit 
+Enter your url in line one and craw limt in line two.
+If you enter one "0" in first line you will enter default mode.
+Your URL: http://www.baidu.com/
+Your craw limit: 50
+~~~~~~~~~~~~~Craw and Data Insertion~~~~~~~~~~~~~~~~~
+Craw: http://www.baidu.com/
+Error: www.baidu.com
+----------- We visited 1 URLs -----------
+All data inserted by now. Begin searching: 
+~~~~~~~~Finished and Starting Search Engine~~~~~~~~~~
+==============================================
+Enter search string in one line, and "qqq" to exit 
+Program fully exit.

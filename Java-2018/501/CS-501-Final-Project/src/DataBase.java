@@ -260,7 +260,8 @@ public class DataBase {
 			// Create Table
 			conn = DriverManager.getConnection(DB_URL + "501_final_project", USER, PASS);
 			stmt = conn.createStatement();
-
+			
+			// Note that int(6) only changes displayed length, not affecting space taken
 			sql = "CREATE TABLE companies (" + " company_id int(6) unsigned NOT NULL AUTO_INCREMENT,"
 					+ " name char(40) NOT NULL DEFAULT '' COMMENT 'name for the company',"
 					+ " symbol char(8) NOT NULL DEFAULT '' COMMENT 'symbol for company',"
