@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
@@ -24,8 +24,10 @@ public class DoublingRatio {
 			a[i] = StdRandom.uniform(-MAX, MAX);
 		}
 		Stopwatch timer = new Stopwatch();
-		// Testing program here
-		ThreeSum.BruteForceCount(a);
+		
+		// ------Testing program here---------
+		TwoSum.MergeSortAndBinarySearch(a);
+		
 		return timer.elapsedTime();
 	}
 }

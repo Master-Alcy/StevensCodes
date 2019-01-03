@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 import java.io.File;
 import java.io.FileNotFoundException;

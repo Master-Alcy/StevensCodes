@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Setup",
+            "request": "launch",
+            "mainClass": "Setup",
+            "console": "integratedTerminal",
+            "projectName": "Financial_Data_Acuiring_Server"
+        }
+    ]
+}

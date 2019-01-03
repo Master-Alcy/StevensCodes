@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 import edu.princeton.cs.algs4.*;
 
@@ -25,19 +25,16 @@ public class Note_2 {
 
 		@Override
 		public int month() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int day() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int year() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 	}

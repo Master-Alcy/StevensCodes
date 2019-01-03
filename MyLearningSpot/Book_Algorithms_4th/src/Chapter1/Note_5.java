@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 @SuppressWarnings("unused")
 public class Note_5 {

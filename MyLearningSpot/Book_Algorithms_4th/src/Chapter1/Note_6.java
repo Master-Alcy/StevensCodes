@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 public class Note_6 {
 

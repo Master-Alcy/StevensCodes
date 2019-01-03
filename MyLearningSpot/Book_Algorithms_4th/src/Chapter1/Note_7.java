@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +29,7 @@ public class Note_7 {
 		MultiThreading R8 = n.new MultiThreading("T8");
 		R8.start();
 		/** Testing passing functions as parameter */
-//		Thread R5 = new Thread(() -> Test(10));
+//		Thread R5 = new Thread(() -> SortUtils(10));
 //		R5.start();
 //		new Thread(() -> TestTwoSum("algs4-data\\2Kints.txt",2000)).start();
 //		new Thread(() -> TestTwoSum("algs4-data\\4Kints.txt",4000)).start();

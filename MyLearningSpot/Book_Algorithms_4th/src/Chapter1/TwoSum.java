@@ -1,7 +1,6 @@
-package Chapter1;
+package chapter1;
 
 import java.util.Arrays;
-
 import edu.princeton.cs.algs4.BinarySearch;
 
 public class TwoSum {
@@ -14,6 +13,9 @@ public class TwoSum {
 			if (BinarySearch.indexOf(a, -a[i]) > i){
 				cnt ++;
 			}
+			// if (Arrays.binarySearch(a, -a[i]) > i){
+			// 	cnt ++;
+			// }
 			// in 0 < j < i => still sum to 0 but duplicated 
 			// failed return -1
 		}

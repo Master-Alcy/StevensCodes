@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 
 @SuppressWarnings("unused")
 public class GeneralTest {
@@ -12,7 +12,7 @@ public class GeneralTest {
 
 	}
 	
-	/** Test A1_ResizingArrayStack */
+	/** SortUtils A1_ResizingArrayStack */
 	private static void Test5() {
 		A1_ResizingArrayStack<String> stringStack = new A1_ResizingArrayStack<>();
 		String str = "";
@@ -28,7 +28,7 @@ public class GeneralTest {
 
 	}
 	
-	/** Test Linked List Queue */
+	/** SortUtils Linked List Queue */
 	private static void Test4() {
 		A3_LinkedListQueue<String> q = new A3_LinkedListQueue<>();
 		q.enqueue("a");
@@ -48,7 +48,7 @@ public class GeneralTest {
 		//q.dequeue();
 	}
 
-	/** Test Linked List Stack */
+	/** SortUtils Linked List Stack */
 	private static void Test3() {
 		A2_LinkedListStack<String> s = new A2_LinkedListStack<>();
 		s.push("1");
@@ -62,7 +62,7 @@ public class GeneralTest {
 		}
 	}
 
-	/** Test ResizableCapacityStack */
+	/** SortUtils ResizableCapacityStack */
 	private static void Test2() {
 		ResizableCapacityStack<String> stringStack = new ResizableCapacityStack<>(
 				100);
@@ -79,7 +79,7 @@ public class GeneralTest {
 		}
 	}
 
-	/** Test FixedCapacityStackOfStrings */
+	/** SortUtils FixedCapacityStackOfStrings */
 	private static void Test1() {
 		FixedCapacityStackOfStrings stringStack = new FixedCapacityStackOfStrings(
 				100);

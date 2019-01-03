@@ -1,4 +1,4 @@
-package Chapter1;
+package chapter1;
 import java.util.Arrays;
 // This is how to use book library
 import edu.princeton.cs.algs4.*;
