@@ -9,11 +9,12 @@ public class TwoSum {
 	public static void main(String[] args) {
 		TwoSum t = new TwoSum();
 		int[] a = { 2, 7, 11, 15 };
-		int[] result = t.twoSum(a, 9);
+		int[] result = t.twoSumX(a, 9);
 		System.out.println(Arrays.toString(result));
 	}
 
-	public int[] twoSum(int[] nums, int target) {
+	/** Optimal */
+	public int[] twoSumX(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
 		
 		// Iterating through array integers

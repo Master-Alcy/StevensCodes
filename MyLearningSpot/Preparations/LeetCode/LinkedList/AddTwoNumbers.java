@@ -1,4 +1,4 @@
-package LinkedList;
+package linkedlist;
 
 import java.math.BigInteger;
 
@@ -37,7 +37,7 @@ public class AddTwoNumbers {
 		l28.next = l29;
 		l29.next = l210;
 
-		ListNode res = ad.addTwoNumbers2(l1, l21);
+		ListNode res = ad.addTwoNumbersX(l1, l21);
 
 		while (res != null) {
 			System.out.println(res.val);
@@ -84,8 +84,8 @@ public class AddTwoNumbers {
 		return root;
 	}
 	
-	/** Passed in 39 ms */
-	private ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+	/** Optimal Passed in 39 ms */
+	private ListNode addTwoNumbersX(ListNode l1, ListNode l2) {
 		int thisRound = 0, stageSum = 0;
 		// Use tail to hold root, a better way than mine
 		// Base root is useless, but don't need to create root inside of the loop
