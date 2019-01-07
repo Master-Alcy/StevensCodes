@@ -39,7 +39,8 @@ public class LRUCache {
 	 * Need to be aware of the possibility of resource leak.
 	 * The space complexity of an algorithm or data structure is the maximum amount of 
 	 * space used at any one time, ignoring the space used by the input to the algorithm.
-	 * For this one it need to hold n items in HashMap, thus space complexity is O(n).
+	 * For this one it need to hold n items in HashMap, thus space complexity is O(n)
+	 * Time Complexity should be O(n) for insert O(1) and get O(1)
 	 */
 	private class LRUCache_DoublyLinkedList {
 		private final int CAPACITY; 

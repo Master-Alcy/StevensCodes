@@ -13,7 +13,7 @@ public class TwoSum {
 		System.out.println(Arrays.toString(result));
 	}
 
-	/** Optimal */
+	/** Optimal Time C: O(n), Space C: O(n)*/
 	public int[] twoSumX(int[] nums, int target) {
 		Map<Integer, Integer> map = new HashMap<>();
 		

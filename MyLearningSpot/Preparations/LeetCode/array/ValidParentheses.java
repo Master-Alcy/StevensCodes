@@ -12,7 +12,7 @@ public class ValidParentheses {
 		System.out.println(test);
 	}
 	
-	/** Optimal 80.3%  5ms */
+	/** Optimal 80.3%  5ms Time C: O(n) Space C: O(n)*/
 	private boolean isValidX(String s) {
 		int N = s.length();
 		char[] stack = new char[N];

@@ -84,7 +84,10 @@ public class AddTwoNumbers {
 		return root;
 	}
 	
-	/** Optimal Passed in 39 ms */
+	/** Optimal Passed in 39 ms 
+	 * Time Complexity O(max(m,n))
+	 * Space Complexity O(max(m,n))
+	 */
 	private ListNode addTwoNumbersX(ListNode l1, ListNode l2) {
 		int thisRound = 0, stageSum = 0;
 		// Use tail to hold root, a better way than mine
@@ -101,9 +104,8 @@ public class AddTwoNumbers {
 			thisRound = stageSum / 10;
 
 			// A bit slower: sum>=10 ? sum-10 : sum
-			ListNode newNode = new ListNode(stageSum % 10);
-			tail.next = newNode;
-			tail = newNode;
+			tail.next = new ListNode(stageSum % 10);
+			tail = tail.next;
 
 			if (l1 != null)
 				l1 = l1.next;
