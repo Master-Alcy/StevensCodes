@@ -1,4 +1,4 @@
-package a_NewQuestions;
+package dfs_bfs;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -8,28 +8,40 @@ public class NumberOfIslands {
 
 	public static void main(String[] args) {
 		NumberOfIslands noi = new NumberOfIslands();
-		char[][] grid1 = { { '1', '1', '1', '1', '0' }, { '1', '1', '0', '1', '0' }, { '1', '1', '0', '0', '0' },
+		char[][] grid1 = { 
+				{ '1', '1', '1', '1', '0' }, 
+				{ '1', '1', '0', '1', '0' }, 
+				{ '1', '1', '0', '0', '0' },
 				{ '0', '0', '0', '0', '0' } };
-		char[][] grid2 = { { '1', '1', '0', '0', '0' }, { '1', '1', '0', '0', '0' }, { '0', '0', '1', '0', '0' },
+		char[][] grid2 = { 
+				{ '1', '1', '0', '0', '0' }, 
+				{ '1', '1', '0', '0', '0' }, 
+				{ '0', '0', '1', '0', '0' },
 				{ '0', '0', '0', '1', '1' } };
 		char[][] grid3 = {};
-		char[][] grid4 = { { '1', '1', '1' }, { '0', '1', '0' }, { '1', '1', '1' }, { '0', '0', '0', '1', '1' } };
+		char[][] grid4 = { 
+				{ '1', '1', '1' }, 
+				{ '0', '1', '0' }, 
+				{ '1', '1', '1' }, 
+				{ '0', '0', '0' } };
 
 		System.out.println(noi.numIslands3(grid4));
 	}
 
-	/** Third try with BFS */
+	/** Third try with BFS 9ms middle speed*/
 	private int numIslands3(char[][] grid) {
 		int count = 0;
-		int row = grid.length;
+		final int row = grid.length;
 		if (row == 0 || grid == null)
 			return 0;
-		int col = grid[0].length;
+		final int col = grid[0].length;
 
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				BFS(grid, i, j, row, col);
-				count++;
+				if (grid[i][j] == '1') {
+					BFS(grid, i, j, row, col);
+					count++;
+				}
 			}
 		} // End of loop
 
@@ -42,12 +54,12 @@ public class NumberOfIslands {
 		int currentIndex = i * col + j;
 		queue.offer(currentIndex);
 		while (!queue.isEmpty()) {
-			currentIndex = queue.poll();
+			currentIndex = queue.poll(); // This is Array-Index
 			i = currentIndex / col; // current row number
 			j = currentIndex % col; // current col number
 			if (i > 0 && grid[i - 1][j] == '1') { // up
-				queue.offer((i - 1) * col + j);
-				grid[i - 1][j] = '0';
+				queue.offer((i - 1) * col + j); // add adj land
+				grid[i - 1][j] = '0'; // set to '0' to avoid double access
 			}
 			if (i < row - 1 && grid[i + 1][j] == '1') { // down
 				queue.offer((i + 1) * col + j);
@@ -86,9 +98,12 @@ public class NumberOfIslands {
 	}
 
 	/**
-	 * R for return 1 1 0 | 0 > 1 0 | 0 < 0 > 0 | R 0 R | 0 R 0 | v | ^ v | ^ | 1 1
-	 * 0 | 1 1 0 | 0 > 1 0 | 0 < 0 > 0 | R 0 R | | v | v | 0 0 0 | 0 0 0 | 0 0 0 | R
-	 * 0 0 | 0 R 0
+	 * R for return
+	 * 1   1   0 | 0 > 1   0 | 0 < 0 > 0 | R   0   R | 0   R   0
+	 * 			 | v		 | ^   v     |	   ^	 |
+	 * 1   1   0 | 1   1   0 | 0 > 1   0 | 0 < 0 > 0 | R   0   R
+	 * 			 |			 | v         |     v     |
+	 * 0   0   0 | 0   0   0 | 0   0   0 | R   0   0 | 0   R   0
 	 */
 	private void DFS(char[][] grid, int i, int j, int row, int col) {
 		if (i < 0 || j < 0 || i >= row || j >= col || grid[i][j] != '1')
