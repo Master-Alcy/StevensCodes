@@ -100,7 +100,20 @@
     * Understand BM, but implementation too long.
     * Due to low efficiency today, need to continue on this question tomorrow
 
-## 2019/1/9
+## 2019/1/9 (Low Efficiency DAMMMMIT)
 
 * **3 - Longest Substring Without Repeating Characters - Medium - *CONTINUE***
-  * a
+  * Dynamic Programming Problem:
+    * Brute Force in O(n^3). Idea: Check Unique with HashSet();
+    * `Set<Character> set = new HashSet<>();`. Iterate once and dynamic check. For char exists in set, move head pointer ahead. For char don't exist, move tail pointer ahead.
+    * **Key is to make sure there are all unique and *new* chars between two pointers.**
+    * `Map<Character, Integer> map = new HashMap<>();` Save char with it's max unique length
+    * `int[] index = new int[256];` ASCII range 256. Optimized
+    * Kadane's Algorithm:
+      * `maxEndingHere = max(newElement, maxEndingHere + newElement)`
+      * if newEle + oldMax smaller than newEle, then dump oldMax and replace with newEle
+      * `maxSoFar = max(maxSoFar, maxEndingHere)`
+      * try if new maxEndhere is larger than total sum
+      * (need to practice)
+
+## 2019/1/10

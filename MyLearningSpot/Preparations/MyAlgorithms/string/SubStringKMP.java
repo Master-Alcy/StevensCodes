@@ -1,6 +1,7 @@
 package string;
 
-//@SuppressWarnings("unused")
+
+@SuppressWarnings("unused")
 public class SubStringKMP {
 
 	public static void main(String[] args) {

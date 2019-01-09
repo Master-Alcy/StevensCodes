@@ -1,5 +1,6 @@
 package string;
 
+
 public class SubStringBM {
 	
 	/** match algorithm Boyer-Moore*/
