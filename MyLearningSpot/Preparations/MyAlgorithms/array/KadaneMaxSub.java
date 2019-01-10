@@ -26,7 +26,8 @@ public class KadaneMaxSub {
 		int max = 0, current = 0;
 		
 		for (int i = 1; i < prices.length; i++) {
-			current = Math.max(0, current += prices[i] - prices[i - 1]);
+			current += prices[i] - prices[i - 1];
+			current = Math.max(0, current);
 			max = Math.max(current, max);
 		}
 		return max;

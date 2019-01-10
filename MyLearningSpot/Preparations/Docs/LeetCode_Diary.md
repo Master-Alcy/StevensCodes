@@ -110,10 +110,10 @@
     * `Map<Character, Integer> map = new HashMap<>();` Save char with it's max unique length
     * `int[] index = new int[256];` ASCII range 256. Optimized
     * Kadane's Algorithm:
-      * `maxEndingHere = max(newElement, maxEndingHere + newElement)`
+      * `current = max(newElement, current + newElement)`
       * if newEle + oldMax smaller than newEle, then dump oldMax and replace with newEle
-      * `maxSoFar = max(maxSoFar, maxEndingHere)`
-      * try if new maxEndhere is larger than total sum
+      * `maxSoFar = max(maxSoFar, current)`
+      * try if new current is larger than old sum
       * (need to practice)
 
 ## 2019/1/10
