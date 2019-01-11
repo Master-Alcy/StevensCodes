@@ -136,3 +136,6 @@ Following this guide from now on!
 ### Dual Pointer
 
 * **167 - Two Sum II - Input array is sorted - Medium**
+  * easy. O(n)
+* **663 - Sum of Square Numbers - Easy**
+  * easy, O(n), much faster than hashset method
