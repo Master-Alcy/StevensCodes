@@ -116,4 +116,17 @@
       * try if new current is larger than old sum
       * (need to practice)
 
-## 2019/1/10
+## 2019/1/10 (Low Efficiency DAMMMMIT)
+
+* **4 - Median of Two Sorted Arrays - Hard**
+  * <https://www.youtube.com/watch?v=LPFhl65R7ww>
+  * KeyPoints:
+    * Understand how to allocate cut1 and cut2
+    * Start from shorter array, define cut1 and calculate cut2, key is balance the number of left and right
+    * Fullfull condition: `maxL1 <= minR2 && maxL2 <= minR1` else move the cut
+    * use `Integer.MIN_VALUE` and `Integer.MAX_VALUE` for boundary condition
+    * (need to practice)
+
+## 2019/1/11
+
+* **904 - Fruit Into Baskets - Medium**

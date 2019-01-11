@@ -1,4 +1,4 @@
-package a_NewQuestions;
+package string;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,36 +10,31 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 	public static void main(String[] args) {
 		LongestSubstringWithoutRepeatingCharacters lo = new LongestSubstringWithoutRepeatingCharacters();
-		int len = lo.lengthOfLongestSubstring2("pwwkew");
+		int len = lo.lengthOfLongestSubstring5("pwwkewabab");
 		System.out.println(len);
 	}
 	
-	/** Kadane's Optimized. Time: O(n), Space O(m), m is size of char-set 35ms */
-	public int lengthOfLongestSubstring(String s) {
+	/** Kadane's Optimized. Time: O(n), Space O(m), m is size of char-set 38ms */
+	private int lengthOfLongestSubstring5(String s) {
 		int lastIndices[] = new int[256];
-		for (int i = 0; i < 256; i++) {
-			lastIndices[i] = -1;
-		}
-
-		int maxLen = 0;
-		int curLen = 0;
-		int start = 0;
-		int bestStart = 0;
-		for (int i = 0; i < s.length(); i++) {
-			char cur = s.charAt(i);
-			if (lastIndices[cur] < start) {
-				lastIndices[cur] = i;
+        int N = s.length();
+		int maxLen = 0, curLen = 0, start = 0;
+		
+		for (int i = 0; i < N; i++) {
+			char ch = s.charAt(i);
+			
+			if (lastIndices[ch] - 1< start) {
+				lastIndices[ch] = i + 1;
 				curLen++;
 			} else {
-				int lastIndex = lastIndices[cur];
+				int lastIndex = lastIndices[ch] - 1;
 				start = lastIndex + 1;
 				curLen = i - start + 1;
-				lastIndices[cur] = i;
+				lastIndices[ch] = i + 1;
 			}
 
 			if (curLen > maxLen) {
 				maxLen = curLen;
-				bestStart = start;
 			}
 		}
 
