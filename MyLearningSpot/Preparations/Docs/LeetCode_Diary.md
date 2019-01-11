@@ -129,4 +129,10 @@
 
 ## 2019/1/11
 
-* **904 - Fruit Into Baskets - Medium**
+This is where to find the order of doing leetcode:  
+***<https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Leetcode%20%E9%A2%98%E8%A7%A3.md>***
+Following this guide from now on!
+
+### Dual Pointer
+
+* **167 - Two Sum II - Input array is sorted - Medium**
