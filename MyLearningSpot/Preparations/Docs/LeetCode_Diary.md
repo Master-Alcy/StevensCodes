@@ -133,9 +133,21 @@ This is where to find the order of doing leetcode:
 ***<https://github.com/CyC2018/CS-Notes/blob/master/docs/notes/Leetcode%20%E9%A2%98%E8%A7%A3.md>***
 Following this guide from now on!
 
-### Dual Pointer
+### Dual Pointer (1)
 
 * **167 - Two Sum II - Input array is sorted - Medium**
   * easy. O(n)
 * **663 - Sum of Square Numbers - Easy**
   * easy, O(n), much faster than hashset method
+
+## 2019/1/14 (12 & 13 are weekends)
+
+### Dual Pointer (2)
+
+* **345 - Reverse Vowels of a String - Easy**
+  * `return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';` a nice way to check characters
+  * This is a better way of incrementation
+    ```java
+      while (i < j && !isVowel(lo))
+          lo = cArr[++i];
+    ```
