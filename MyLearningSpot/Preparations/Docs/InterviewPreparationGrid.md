@@ -2,6 +2,25 @@
 
 ## Prepare Grid
 
+如果你是面的 Java，首先当然是JAVA的基础知识：
+
+* 数据结构
+  * Map
+  * List
+  * Set
+* 设计模式
+* 算法
+* 线程相关
+* IO/NIO
+* 序列化
+* 高级特征
+  * 反射机制
+  * 并发与锁
+  * JVM
+    * GC策略
+    * 类加载机制
+    * 内存模型
+
 **Things need to re-consider:**
 
 * HashMap -> Why Red-Black-Tree -> Simple Implementation

@@ -151,3 +151,23 @@ Following this guide from now on!
       while (i < j && !isVowel(lo))
           lo = cArr[++i];
     ```
+  * `new String(char[])`
+* **680 - Valid Palindrome II - Easy**
+  * first try too slow, string build approch
+  * second try instead of stringbuilder, check the string from two end, Key is:
+    * `return isPalindrome2(s, i, j - 1) || isPalindrome2(s, i + 1, j);`
+  * This can 'delete' the head and tail of remaining string
+* **88 - Merge Sorted Array - Easy**
+  * two while loops's approch is a bit slower
+  * Note that when nums2[] runs out, the rest of nums1[] elements is smaller, thus, no need to further sort
+
+## 2019/1/15
+
+### Dual Pointer (3)
+
+* **141 - Linked List Cycle - Easy**
+  * Succeed with two pointer, but many errors in boundary
+    * need to consider how to avoid NullPointerException
+  * HashSet proceed is much slower
+* **524 - Longest Word in Dictionary through Deleting - Medium**
+  * a
