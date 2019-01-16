@@ -170,4 +170,33 @@ Following this guide from now on!
     * need to consider how to avoid NullPointerException
   * HashSet proceed is much slower
 * **524 - Longest Word in Dictionary through Deleting - Medium**
-  * a
+  * `(String).compareTo((String))` compare in lexicographically order
+  * count number of same char to see if longer string contains shorter one
+
+### Sorting (1)
+
+#### Quick Select, HeapSort
+
+* **215 - Kth Largest Element in an Array - Medium**
+  * Arrays.sort is the Optimal solution with Time: O(n log n) and Space: O(1)
+  * HeapSort with PriorityQueue gives Time: O(n log k), Space O(k)
+  * QuickSelect, Time: O(n) (almost guaranteed) Space: O(1)
+    * shuffle to randomize the array
+    * partition and exch for quick select
+    * Will dig deeper tomorrow
+
+## 2019/1/16 (Low Efficiency: News and Phone)
+
+### Sorting (2)
+
+#### Quick Select
+
+* **215 - Kth Largest Element in an Array - Medium**
+  * QuickSelect:
+    * randomly choose (or shuffle array first) a pivot
+    * move everything smaller to left with partition method
+    * judge this pivot index, see if it's kth largest
+      * same => return this
+      * larger than k's index, quickSelect on left side
+      * smaller than k's index, quickSelct on right side
+  * QuickSelect is avg O(n) and in place O(1) method. random to prevent worst case
