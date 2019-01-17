@@ -200,3 +200,13 @@ Following this guide from now on!
       * larger than k's index, quickSelect on left side
       * smaller than k's index, quickSelct on right side
   * QuickSelect is avg O(n) and in place O(1) method. random to prevent worst case
+
+## 2019/1/17 (Got Other Things To Do)
+
+* **347 - Top K Frequent Elements - Medium**
+  * First try with minHeap in O(n log k)
+    * `PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> Integer.compare(a.getValue(), b.getValue()));`
+  * Second try with bucket sort, O(n)
+  * `List<Integer>[] bucket = new ArrayList[N + 1];`
+  * key is to use array of list as bucket to store frequency
+    * return last k valid array value

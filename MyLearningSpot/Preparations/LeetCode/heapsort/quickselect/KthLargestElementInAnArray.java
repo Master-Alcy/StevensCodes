@@ -1,7 +1,5 @@
 package heapsort.quickselect;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Random;
@@ -48,7 +46,6 @@ public class KthLargestElementInAnArray {
         int index = left;
         // 1. move pivot to end
         swap(nums, pivot_index, right);
-
         // 2. move all smaller elements to the left
         for (int i = left; i <= right; i++) {
             if (nums[i] < pivot) {
@@ -57,7 +54,6 @@ public class KthLargestElementInAnArray {
                 index++;
             }
         }
-
         // 3. move pivot to its final place
         swap(nums, index, right);
         return index;
