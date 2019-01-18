@@ -74,7 +74,7 @@
 
 * **215 - Kth Largest Element in an Array**
 
-### HeapSort
+### Heap Sort
 
 用于求解 TopK Elements 问题，通过维护一个大小为 K 的堆，堆中的元素就是 TopK Elements。
 
@@ -85,3 +85,26 @@
 可以看到，快速选择和堆排序都可以求解 Kth Element 和 TopK Elements 问题
 
 * **215 - Kth Largest Element in an Array**
+
+### Bucket Sort
+
+设置若干个桶，每个桶存储出现频率相同的数，并且桶的下标代表桶中数出现的频率，即第 i 个桶中存储的数出现的频率为 i。
+
+把数都放到桶之后，从后向前遍历桶，最先得到的 k 个数就是出现频率最多的的 k 个数。
+
+* **347 - Top K Frequent Elements - Medium**
+* **451 - Sort Characters By Frequency - Medium**
+
+### Dutch Flag
+
+荷兰国旗包含三种颜色：红、白、蓝。
+
+有三种颜色的球，算法的目标是将这三种球按颜色顺序正确地排列。
+
+它其实是三向切分快速排序的一种变种，在三向切分快速排序中，每次切分都将数组分成三个区间：小于切分元素、等于切分元素、大于切分元素，而该算法是将数组分成三个区间：等于红色、等于白色、等于蓝色。
+
+* **75 - Sort Colors - Medium**
+
+## Greedy
+
+保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。

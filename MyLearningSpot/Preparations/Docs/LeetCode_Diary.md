@@ -173,9 +173,7 @@ Following this guide from now on!
   * `(String).compareTo((String))` compare in lexicographically order
   * count number of same char to see if longer string contains shorter one
 
-### Sorting (1)
-
-#### Quick Select, HeapSort
+### Sorting (1): HeapSort
 
 * **215 - Kth Largest Element in an Array - Medium**
   * Arrays.sort is the Optimal solution with Time: O(n log n) and Space: O(1)
@@ -187,9 +185,7 @@ Following this guide from now on!
 
 ## 2019/1/16 (Low Efficiency: News and Phone)
 
-### Sorting (2)
-
-#### Quick Select
+### Sorting (2): QuickSelect
 
 * **215 - Kth Largest Element in an Array - Medium**
   * QuickSelect:
@@ -203,6 +199,8 @@ Following this guide from now on!
 
 ## 2019/1/17 (Got Other Things To Do)
 
+### Sorting (3): BucketSort (1)
+
 * **347 - Top K Frequent Elements - Medium**
   * First try with minHeap in O(n log k)
     * `PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> Integer.compare(a.getValue(), b.getValue()));`
@@ -210,3 +208,25 @@ Following this guide from now on!
   * `List<Integer>[] bucket = new ArrayList[N + 1];`
   * key is to use array of list as bucket to store frequency
     * return last k valid array value
+  * (need to redo this later)
+
+## 2019/1/18
+
+### Sorting (4): BucketSort (2)
+
+* **451 - Sort Characters By Frequency - Medium**
+  * Standard bucket for this question is HashMap + ArrayList
+  * Note that continue is faster in some case
+  * heap is with priority queue
+
+### Sorting (4): Dutch Flag
+
+* **75 - Sort Colors - Medium**
+  * Two Pointer Solution
+
+## Later
+
+### Greedy (1)
+
+* **455 - Assign Cookies - Easy**
+  * Sort first then greedy with two pointers
