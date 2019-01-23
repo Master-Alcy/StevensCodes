@@ -45,12 +45,21 @@ public class NonOverlappingIntervals {
         return count;
     }
 
+    /**
+     * 9ms 54.12% Time: O(nlogn)
+     */
     private int eraseOverlapIntervals(Interval[] intervals) {
         if (intervals.length < 2)
             return 0;
-        Arrays.sort(intervals,
-                (a, b) -> (a.end != b.end) ? a.end - b.end : b.start - a.start
-        );
+//        Arrays.sort(intervals,
+//                (a, b) -> (a.end != b.end) ? a.end - b.end : b.start - a.start
+//        );
+        Arrays.sort(intervals, new Comparator<Interval>() {
+            @Override
+            public int compare(Interval o1, Interval o2) {
+                return o1.end != o2.end ? o1.end - o2.end : o2.start - o1.start;
+            }
+        });
         int end = Integer.MIN_VALUE;
         int count = 0;
 
