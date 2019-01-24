@@ -1,4 +1,0 @@
-http://composingprograms.com/pages/11-getting-started.html
-http://composingprograms.com/pages/12-elements-of-programming.html
-http://composingprograms.com/pages/13-defining-new-functions.html
-http://composingprograms.com/pages/14-designing-functions.html
