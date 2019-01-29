@@ -7,8 +7,8 @@ function mid1(request, response, next) {
     const currentHTTP = request.method;
 
     console.log(`===================per Request====================
-    HTTP header: ${currentHTTP}, for URL: ${currentPath},
-    with body: ${currentBody}`);
+HTTP header: ${currentHTTP}, for URL: ${currentPath},
+with body: ${currentBody}`);
 
     next();
 }
@@ -28,8 +28,8 @@ function mid2(request, response, next) {
     currentNumberOfRequests++;
 
     console.log(`
-    There have now been ${currentNumberOfRequests} requests made to the website.
-    Where ${pathsAccessed[currentPath]} requests were made to ${currentPath}`);
+There have now been ${currentNumberOfRequests} requests made to the website.
+Where ${pathsAccessed[currentPath]} requests were made to ${currentPath}`);
     console.log(`------------------list of paths-------------------`);
     for (let aPath in pathsAccessed) {
         console.log(`Accessed ${aPath} for ${pathsAccessed[aPath]} times.`);

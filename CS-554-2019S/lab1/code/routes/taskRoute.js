@@ -31,9 +31,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const reqBody = req.body;
     try {
-        const {title, description, hoursEstimated, completed} = reqBody;
+        const {title, description, hoursEstimated, completed} =  req.body;
         const newTask = await taskData.addTask(title, description, hoursEstimated, completed);
 
         if (newTask.success)
@@ -46,9 +45,8 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-    const reqBody = req.body;
     try {
-        const {title, description, hoursEstimated, completed} = reqBody;
+        const {title, description, hoursEstimated, completed} = req.body;
         const updatedTask = await taskData.updateWholeTaskById(req.params.id, title, description, hoursEstimated, completed);
 
         if (updatedTask.success)
@@ -71,6 +69,24 @@ router.patch("/:id", async (req, res) => {
     } catch (e) {
         res.status(500).json({error: "At patch: " + e});
     }
+});
+
+router.post("/:id/comments", async (req, res) => {
+    try {
+        const {name, comment} = req.body;
+        const newTask = await taskData.addComment(req.params.id, name, comment);
+
+        if (newTask.success)
+            res.status(200).json({data: newTask.data});
+        else
+            res.status(500).json({error: newTask.desc});
+    } catch (e) {
+        res.status(500).json({error: "At postTask: " + e});
+    }
+});
+
+router.delete("/:id/:commentId", async (req, res) => {
+    
 });
 
 module.exports = router;

@@ -92,36 +92,61 @@ async function updateWholeTaskById(taskId, title, description, hoursEstimated, c
 
 async function updatePartialTaskById(taskId, tobeUpdated) {
     // get data to be updated
+    if (typeof taskId !== 'string')
+        return {success: false, desc: `taskId not valid.`};
+    if (!tobeUpdated)
+        return {success: false, desc: `no input provided.`};
+    // populate dataTobeUpdated
     const dataTobeUpdated = {};
-    if (tobeUpdated.title)
-        if (typeof title !== 'string')
-        updatedPostData.title = tobeUpdated.title;
-    if (tobeUpdated.description)
-        updatedPostData.description = tobeUpdated.description;
-    if (tobeUpdated.hoursEstimated)
-        updatedPostData.hoursEstimated = tobeUpdated.hoursEstimated;
-    if (tobeUpdated.completed)
-        updatedPostData.completed = tobeUpdated.completed;
-
-
-
-
-    // Validate input
-    if (typeof taskId !== 'string' || typeof title !== 'string' || typeof description !== 'string' 
-        || !isNumeric(hoursEstimated) || typeof completed !== 'boolean')
-        return {success: false, desc: `Invalid params.`};
+    if (tobeUpdated.title) {
+        if (typeof tobeUpdated.title !== 'string')
+            return {success: false, desc: `title not valid.`};
+        dataTobeUpdated.title = tobeUpdated.title;
+    }
+    if (tobeUpdated.description) {
+        if (typeof tobeUpdated.description !== 'string')
+            return {success: false, desc: `description not valid.`};
+        dataTobeUpdated.description = tobeUpdated.description;
+    }
+    if (tobeUpdated.hoursEstimated) {
+        if (!isNumeric(tobeUpdated.hoursEstimated))
+            return {success: false, desc: `hoursEstimated not a valid number.`};
+        dataTobeUpdated.hoursEstimated = tobeUpdated.hoursEstimated;
+    }
+    if (tobeUpdated.completed) {
+        if (typeof tobeUpdated.completed !== 'boolean')
+            return {success: false, desc: `completed not valid.`};
+        dataTobeUpdated.completed = tobeUpdated.completed;
+    }
     // put data
-
     const result = await taskModel.findOneAndUpdate(
         {id: taskId},
-        {$set: {
-            title: title,
-            description: description,
-            hoursEstimated: hoursEstimated,
-            completed: completed
+        {$set: dataTobeUpdated},
+        {new: true} // return updated object
+    );
+    // validate data
+    if (result)
+        return {success: true, data: result};
+    else
+        return {success: false, desc: `can't find ${taskId} in database.`};
+}
+
+async function addComment(taskId, name, comment) {
+    // Validate input
+    if (typeof name !== 'string' || typeof comment !== 'string')
+        return {success: false, desc: `Invalid params.`};
+    // put data
+    const result = await taskModel.findOneAndUpdate(
+        {id: taskId},
+        {$push: {
+            comments: {
+                id: uuidv4(),
+                name: name,
+                comment: comment
+            }
         }},
         {new: true} // return updated object
-    ); // Note, updateOne is fine. But returned with {n, nModified, ...}
+    );
     // validate data
     if (result)
         return {success: true, data: result};
@@ -134,5 +159,6 @@ module.exports = {
     getTaskById,
     addTask,
     updateWholeTaskById,
-    updatePartialTaskById
+    updatePartialTaskById,
+    addComment
 }
