@@ -15,7 +15,9 @@
     "mockjs": "^1.0.1-beta3",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.7",
-    "nodemon": "^1.18.9",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }

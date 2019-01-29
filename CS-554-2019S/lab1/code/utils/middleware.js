@@ -5,10 +5,10 @@
 
 function mid1(request, response, next) {
     const currentBody = JSON.stringify(request.body);
-    const currentPath = request.path;
+    const currentPath = request.path ;
     const currentHTTP = request.method;
 
-    console.log(`--------------------START--------------------
+    console.log(`---------------------------------------------
     HTTP header: ${currentHTTP}, for URL: ${currentPath},
     with body: ${currentBody}`);
 
@@ -21,7 +21,7 @@ let currentNumberOfRequests = 0,
     pathsAccessed = {};
 
 function mid2(request, response, next) {
-    const currentPath = request.path;
+    const currentPath = request.path ;
 
     if (!pathsAccessed[currentPath]) {
         pathsAccessed[currentPath] = 0
@@ -30,9 +30,9 @@ function mid2(request, response, next) {
     pathsAccessed[currentPath]++;
     currentNumberOfRequests++;
 
-    console.log(`There have now been ${currentNumberOfRequests} requests made to the website.
-    Where ${pathsAccessed[currentPath]} requests were made to ${currentPath}
-    ---------------------END---------------------`);
+    console.log(`
+    There have now been ${currentNumberOfRequests} requests made to the website.
+    Where ${pathsAccessed[currentPath]} requests were made to ${currentPath}`);
 
     next();
 }

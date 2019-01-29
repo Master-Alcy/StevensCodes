@@ -1,5 +1,6 @@
 "use strict";
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const uuidv4 = require('uuid/v4');
 
 const config = require('./config');
@@ -15,7 +16,7 @@ mongoose.connect(DB_URL, {
     }
 });
 
-const taskSchema = mongoose.Schema({
+const taskSchema = new Schema({
     id: {
         type: String,
         required: true,

@@ -1,3 +1,4 @@
+"use strict";
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.tasks;
 const uuidv1 = require('uuid/v1');
