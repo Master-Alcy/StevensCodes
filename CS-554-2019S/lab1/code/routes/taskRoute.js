@@ -7,15 +7,14 @@ router.get("/", async (req, res) => {
     try {
         const resData = await taskData.getAllTasks(req.query.skip, req.query.take);
 
-        if (resData.success) {
+        if (resData.success)
             res.status(200).json({
                 data: resData.data
             });
-        } else {
+        else
             res.status(500).json({
                 error: resData.desc
             });
-        }
     } catch (e) {
         res.status(500).json({
             error: "At getAll. " + e

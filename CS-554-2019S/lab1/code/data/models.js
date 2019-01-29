@@ -9,11 +9,10 @@ const DB_URL = config.serverUrl + config.database;
 mongoose.connect(DB_URL, {
     useNewUrlParser: true
 }, (err) => {
-    if (err) {
+    if (err)
         console.warn('cannot connected to database! ' + err)
-    } else {
+    else
         console.log('connected to datbase: ' + DB_URL)
-    }
 });
 
 const taskSchema = new Schema({
