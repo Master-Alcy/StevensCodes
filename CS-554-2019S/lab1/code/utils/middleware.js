@@ -1,14 +1,12 @@
 "use strict";
-
 // The first will log all request bodies, as well as the url path 
 // they are requesting, and the HTTP verb they are using to make the request
-
 function mid1(request, response, next) {
     const currentBody = JSON.stringify(request.body);
-    const currentPath = request.path ;
+    const currentPath = request.path;
     const currentHTTP = request.method;
 
-    console.log(`---------------------------------------------
+    console.log(`===================per Request====================
     HTTP header: ${currentHTTP}, for URL: ${currentPath},
     with body: ${currentBody}`);
 
@@ -21,11 +19,10 @@ let currentNumberOfRequests = 0,
     pathsAccessed = {};
 
 function mid2(request, response, next) {
-    const currentPath = request.path ;
+    const currentPath = request.path;
 
-    if (!pathsAccessed[currentPath]) {
+    if (!pathsAccessed[currentPath])
         pathsAccessed[currentPath] = 0
-    }
 
     pathsAccessed[currentPath]++;
     currentNumberOfRequests++;
@@ -33,6 +30,10 @@ function mid2(request, response, next) {
     console.log(`
     There have now been ${currentNumberOfRequests} requests made to the website.
     Where ${pathsAccessed[currentPath]} requests were made to ${currentPath}`);
+    console.log(`------------------list of paths-------------------`);
+    for (let aPath in pathsAccessed) {
+        console.log(`Accessed ${aPath} for ${pathsAccessed[aPath]} times.`);
+    }
 
     next();
 }

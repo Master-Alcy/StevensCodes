@@ -24,3 +24,5 @@ if (!y) {
 }
 console.log(y + " --- " + isNumeric(y));
 console.log(z + " --- " + isNumeric(z));
+
+console.log(typeof undefined === 'string');

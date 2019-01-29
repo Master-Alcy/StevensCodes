@@ -42,7 +42,7 @@ async function createComments(tasksIds) {
     for (let i = 0; i < tasksIds.length; i++) {
         let taskId = tasksIds[i];
         let commentId = uuidv4();
-        let numberOfComments = Random.integer(0, 50);
+        let numberOfComments = Random.integer(0, 6);
 
         for (let j = 0; j < numberOfComments; j++) {
             await Task.updateOne({
@@ -64,7 +64,7 @@ async function createMockData(num) {
     let tasks = await createTask(num);
     await createComments(tasks);
     console.log("Finished Seed");
-    return;
+    process.exit(0);
 }
 
-createMockData(50);
+createMockData(140);

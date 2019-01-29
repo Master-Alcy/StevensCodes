@@ -1,9 +1,6 @@
-const postData = require("./postData");
+//This is operations with database
 const taskData = require("./taskData");
 
 module.exports = {
-    // posts: postData
     tasks: taskData
 };
-
-//This is operations with database

@@ -1,3 +1,5 @@
+// Legacy
+
 "use strict";
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.tasks;
