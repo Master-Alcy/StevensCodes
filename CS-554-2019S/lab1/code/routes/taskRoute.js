@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         const resData = await taskData.getAllTasks(req.query.skip, req.query.take);
 
         if (resData.success)
-            res.status(200).json({data: resData.data});
+            res.status(200).json(resData.data);
         else
             res.status(500).json({error: resData.desc});
     } catch (e) {
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
         const resData = await taskData.getTaskById(req.params.id);
 
         if (resData.success)
-            res.status(200).json({data: resData.data});
+            res.status(200).json(resData.data);
         else
             res.status(500).json({error: resData.desc});
     } catch (e) {
@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
         const newTask = await taskData.addTask(title, description, hoursEstimated, completed);
 
         if (newTask.success)
-            res.status(200).json({data: newTask.data});
+            res.status(200).json(newTask.data);
         else
             res.status(500).json({error: newTask.desc});
     } catch (e) {
@@ -50,7 +50,7 @@ router.put("/:id", async (req, res) => {
         const updatedTask = await taskData.updateWholeTaskById(req.params.id, title, description, hoursEstimated, completed);
 
         if (updatedTask.success)
-            res.status(200).json({data: updatedTask.data});
+            res.status(200).json(updatedTask.data);
         else
             res.status(500).json({error: updatedTask.desc});
     } catch (e) {
@@ -63,7 +63,7 @@ router.patch("/:id", async (req, res) => {
         const updatedTask = await taskData.updatePartialTaskById(req.params.id, req.body);
 
         if (updatedTask.success)
-            res.status(200).json({data: updatedTask.data});
+            res.status(200).json(updatedTask.data);
         else
             res.status(500).json({error: updatedTask.desc});
     } catch (e) {
@@ -77,7 +77,7 @@ router.post("/:id/comments", async (req, res) => {
         const newTask = await taskData.addComment(req.params.id, name, comment);
 
         if (newTask.success)
-            res.status(200).json({data: newTask.data});
+            res.status(200).json(newTask.data);
         else
             res.status(500).json({error: newTask.desc});
     } catch (e) {
@@ -90,7 +90,7 @@ router.delete("/:taskId/:commentId", async (req, res) => {
         const newTask = await taskData.deleteComment(req.params.taskId, req.params.commentId);
 
         if (newTask.success)
-            res.status(200).json({data: newTask.data});
+            res.status(200).json(newTask.data);
         else
             res.status(500).json({error: newTask.desc});
     } catch (e) {

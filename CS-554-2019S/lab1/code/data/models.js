@@ -18,8 +18,7 @@ mongoose.connect(DB_URL, {
 const taskSchema = new Schema({
     id: {
         type: String,
-        required: true,
-        default: uuidv4 // Note this might got problems
+        required: true
     },
     title: {
         type: String,
@@ -31,8 +30,7 @@ const taskSchema = new Schema({
     comments: [{
         id: {
             type: String,
-            required: true,
-            default: uuidv4 // Note this might got problems
+            required: true
         },
         name: String,
         comment: String
