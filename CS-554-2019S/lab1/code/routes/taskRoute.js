@@ -81,12 +81,21 @@ router.post("/:id/comments", async (req, res) => {
         else
             res.status(500).json({error: newTask.desc});
     } catch (e) {
-        res.status(500).json({error: "At postTask: " + e});
+        res.status(500).json({error: "At postComment: " + e});
     }
 });
 
-router.delete("/:id/:commentId", async (req, res) => {
-    
+router.delete("/:taskId/:commentId", async (req, res) => {
+    try {
+        const newTask = await taskData.deleteComment(req.params.taskId, req.params.commentId);
+
+        if (newTask.success)
+            res.status(200).json({data: newTask.data});
+        else
+            res.status(500).json({error: newTask.desc});
+    } catch (e) {
+        res.status(500).json({error: "At deleteComment: " + e});
+    }
 });
 
 module.exports = router;

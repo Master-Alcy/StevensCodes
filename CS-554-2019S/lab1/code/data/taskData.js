@@ -133,7 +133,7 @@ async function updatePartialTaskById(taskId, tobeUpdated) {
 
 async function addComment(taskId, name, comment) {
     // Validate input
-    if (typeof name !== 'string' || typeof comment !== 'string')
+    if (typeof taskId !== 'string' || typeof name !== 'string' || typeof comment !== 'string')
         return {success: false, desc: `Invalid params.`};
     // put data
     const result = await taskModel.findOneAndUpdate(
@@ -154,11 +154,29 @@ async function addComment(taskId, name, comment) {
         return {success: false, desc: `can't find ${taskId} in database.`};
 }
 
+async function deleteComment(taskId, commentId) {
+    // Validate input
+    if (typeof taskId !== 'string' || typeof commentId !== 'string')
+        return {success: false, desc: `Invalid params.`};
+    // put data
+    const result = await taskModel.findOneAndUpdate(
+            {id: taskId},
+            {$pull: {comments: {id: commentId}}},
+            {new: true}
+    );
+    // validate data
+    if (result)
+        return {success: true, data: result};
+    else
+        return {success: false, desc: `can't find ${taskId} with ${commentId} in database.`};
+}
+
 module.exports = {
     getAllTasks,
     getTaskById,
     addTask,
     updateWholeTaskById,
     updatePartialTaskById,
-    addComment
+    addComment,
+    deleteComment
 }
