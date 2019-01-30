@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "seed": "node ./utils/seed.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "test": "node ./utils/test.js"
   },
   "author": "Jingxuan Ai, 10431517",
   "license": "MIT",
