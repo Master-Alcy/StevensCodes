@@ -9,21 +9,17 @@ function isNumeric(n) {
 
 async function getAllTasks(skip, take) {
     // set default value if no params
-    if (!skip) skip = 0;
-    if (!take) take = 20;
+    if (typeof skip === 'undefined') skip = 0;
+    if (typeof take === 'undefined') take = 20;
     // parse string to integer
     skip = parseInt(skip);
     take = parseInt(take);
     // validate inputs
-    if (!isNumeric(skip) || !isNumeric(take))
-        return {success: false, desc: `Input not numbers`};
-    // validate range
-
-    if (skip < 0 || take < 0 || take > 100)
-        return {success: false, desc: `Input out of range`};
+    if (!isNumeric(skip) || !isNumeric(take) || skip < 0 || take <= 0 || take > 100)
+        return {success: false, desc: `Input not valid numbers`};
     // console.log(`skip is: ${skip}, take is: ${take}`);
-    // get data
-    const result = await taskModel.find({}).skip(skip).limit(take);
+    // get data, get rid of _id and __v
+    const result = await taskModel.find({}, '-_id -__v').skip(skip).limit(take);
     // validate data
     if (result && result.length > 0)
         return {success: true, data: result};
@@ -35,13 +31,18 @@ async function getTaskById(taskId) {
     // Validate input
     if (typeof taskId !== 'string')
         return {success: false, desc: `Invalid taskId.`};
-    // get data
-    const result = await taskModel.findOne({id: taskId});
+    // get data, get rid of _id and __v
+    const result = await taskModel.findOne({id: taskId}, '-_id -__v');
     // validate data
     if (result)
         return {success: true, data: result};
     else
         return {success: false, desc: `can't find ${taskId} in database.`};
+}
+
+function transObject(obj) { // anyway to improve?
+    const {id, title, description, hoursEstimated, completed, comments} = obj;
+    return {id, title, description, hoursEstimated, completed, comments};
 }
 
 async function addTask(title, description, hoursEstimated, completed) {
@@ -58,10 +59,11 @@ async function addTask(title, description, hoursEstimated, completed) {
         completed: completed,
         comments: []
     });
-
+    // save newTask
     try {
         await newTask.save();
-        return {success: true, data: newTask};
+        // a stupid way of avoid _id and __v
+        return {success: true, data: transObject(newTask)};
     } catch (e) {
         return {success: false, desc: e};
     }
@@ -70,7 +72,7 @@ async function addTask(title, description, hoursEstimated, completed) {
 async function updateWholeTaskById(taskId, title, description, hoursEstimated, completed) {
     // Validate input
     if (typeof taskId !== 'string' || typeof title !== 'string' || typeof description !== 'string' 
-        || !isNumeric(hoursEstimated) || typeof completed !== 'boolean')
+        || !isNumeric(hoursEstimated) || hoursEstimated < 0 || typeof completed !== 'boolean')
         return {success: false, desc: `Invalid params.`};
     // put data
     const result = await taskModel.findOneAndUpdate(
@@ -81,7 +83,8 @@ async function updateWholeTaskById(taskId, title, description, hoursEstimated, c
             hoursEstimated: hoursEstimated,
             completed: completed
         }},
-        {new: true} // return updated object
+        {new: true, projection: {_id: 0, __v: 0}} // return updated object, and not returning _id and __v
+
     ); // Note, updateOne is fine. But returned with {n, nModified, ...}
     // validate data
     if (result)
@@ -92,37 +95,44 @@ async function updateWholeTaskById(taskId, title, description, hoursEstimated, c
 
 async function updatePartialTaskById(taskId, tobeUpdated) {
     // get data to be updated
+    let errorlist = [];
     if (typeof taskId !== 'string')
-        return {success: false, desc: `taskId not valid.`};
-    if (!tobeUpdated)
-        return {success: false, desc: `no input provided.`};
-    // populate dataTobeUpdated
+        errorlist.push(`taskId not valid.`);
+    // check if tobeUpdated is empty, this is for ECMA 5+
+    if (Object.keys(tobeUpdated).length === 0 && tobeUpdated.constructor === Object)
+        errorlist.push(`no input provided.`);
+    // populate dataTobeUpdated, seems stupid, imporve?
     const dataTobeUpdated = {};
-    if (tobeUpdated.title) {
+    if (typeof tobeUpdated.title !== 'undefined') {
         if (typeof tobeUpdated.title !== 'string')
-            return {success: false, desc: `title not valid.`};
+            errorlist.push(`title not valid.`);
         dataTobeUpdated.title = tobeUpdated.title;
     }
-    if (tobeUpdated.description) {
+    if (typeof tobeUpdated.description !== 'undefined') {
         if (typeof tobeUpdated.description !== 'string')
-            return {success: false, desc: `description not valid.`};
+            errorlist.push(`description not valid.`);
         dataTobeUpdated.description = tobeUpdated.description;
     }
-    if (tobeUpdated.hoursEstimated) {
-        if (!isNumeric(tobeUpdated.hoursEstimated))
-            return {success: false, desc: `hoursEstimated not a valid number.`};
+    if (typeof tobeUpdated.hoursEstimated !== 'undefined') {
+        if (!isNumeric(tobeUpdated.hoursEstimated) || tobeUpdated.hoursEstimated < 0)
+            errorlist.push(`hoursEstimated not a valid number.`);
         dataTobeUpdated.hoursEstimated = tobeUpdated.hoursEstimated;
     }
-    if (tobeUpdated.completed) {
+    if (typeof tobeUpdated.completed !== 'undefined') {
         if (typeof tobeUpdated.completed !== 'boolean')
-            return {success: false, desc: `completed not valid.`};
+            errorlist.push(`completed not valid.`);
         dataTobeUpdated.completed = tobeUpdated.completed;
     }
+    // check if dataTobeUpdated is empty, this is for ECMA 5+
+    if (Object.keys(dataTobeUpdated).length === 0 && dataTobeUpdated.constructor === Object)
+        errorlist.push(`nothing valid provided.`);
+    if (errorlist.length !== 0)
+        return {success: false, desc: errorlist};
     // put data
     const result = await taskModel.findOneAndUpdate(
         {id: taskId},
         {$set: dataTobeUpdated},
-        {new: true} // return updated object
+        {new: true, projection: {_id: 0, __v: 0}} // return updated object, and not returning _id and __v
     );
     // validate data
     if (result)
@@ -145,7 +155,7 @@ async function addComment(taskId, name, comment) {
                 comment: comment
             }
         }},
-        {new: true} // return updated object
+        {new: true, projection: {_id: 0, __v: 0}} // return updated object, and not returning _id and __v
     );
     // validate data
     if (result)
@@ -162,7 +172,7 @@ async function deleteComment(taskId, commentId) {
     const result = await taskModel.findOneAndUpdate(
             {id: taskId},
             {$pull: {comments: {id: commentId}}},
-            {new: true}
+            {new: true, projection: {_id: 0, __v: 0}} // return updated object, and not returning _id and __v
     );
     // validate data
     if (result)

@@ -28,6 +28,7 @@ const taskSchema = new Schema({
     hoursEstimated: Number,
     completed: Boolean,
     comments: [{
+        _id: false,
         id: {
             type: String,
             required: true
