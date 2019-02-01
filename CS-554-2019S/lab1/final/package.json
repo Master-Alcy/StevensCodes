@@ -1,0 +1,19 @@
+{
+  "name": "554-lab-1",
+  "version": "1.0.0",
+  "description": "queryString",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "seed": "node ./utils/seed.js"
+  },
+  "author": "Jingxuan Ai, 10431517",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mockjs": "^1.0.1-beta3",
+    "mongoose": "^5.4.7",
+    "uuid": "^3.3.2"
+  }
+}
