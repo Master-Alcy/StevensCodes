@@ -6,6 +6,7 @@ const concat = require("gulp-concat");
 const cleanCSS = require("gulp-clean-css");
 const autoPrefix = require("gulp-autoprefixer");
 const rename = require("gulp-rename");
+
 /*
     -- Top Level Functions --
     gulp.task - Define tasks
@@ -13,6 +14,18 @@ const rename = require("gulp-rename");
     gulp.dest - Point tp folder to output
     gulp.watch - Watch files and folders for changes
 */
+
+// development mode?
+const devBuild = (process.env.NODE_ENV !== 'production');
+console.log(`Are we in development: ${devBuild}`);
+const folder = {
+    src: 'src/',
+    build: 'dist/'
+}
+
+const sassFiles = [
+    "./src/styles/something"
+];
 
 // Logs Message
 gulp.task('message', async () => {

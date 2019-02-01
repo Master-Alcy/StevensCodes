@@ -43,7 +43,7 @@ gulp.task('js:vendor', function(done) {
     done();
 });
 
-gulp.task("build", gulp.parallel(["sass","js:vendor"]));
+gulp.task("build", gulp.parallel("sass","js:vendor"));
 
 gulp.task('watch', function(done) {
     gulp.watch(sassFiles, gulp.series('sass'));

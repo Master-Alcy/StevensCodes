@@ -45,11 +45,17 @@ function transObject(obj) { // anyway to improve?
     return {id, title, description, hoursEstimated, completed, comments};
 }
 
-async function addTask(title, description, hoursEstimated, completed) {
+async function addTask(title, description, hoursEstimated, completed, comments) {
     // Validate input
     if (typeof title !== 'string' || typeof description !== 'string' 
-        || !isNumeric(hoursEstimated) || typeof completed !== 'boolean')
+        || !isNumeric(hoursEstimated) || typeof completed !== 'boolean'|| !Array.isArray(comments))
         return {success: false, desc: `Invalid params.`};
+    // validate comments array
+    for (let i = 0; i < comments.length; i++) {
+        if (typeof comments[i].name !== 'string' || typeof comments[i].comment !== 'string')
+            return {success: false, desc: `comments has invalid entry`};
+        comments[i].id = uuidv4();
+    }
     // post data
     const newTask = await new taskModel({
         id: uuidv4(),
@@ -57,7 +63,7 @@ async function addTask(title, description, hoursEstimated, completed) {
         description: description,
         hoursEstimated: hoursEstimated,
         completed: completed,
-        comments: []
+        comments: comments
     });
     // save newTask
     try {

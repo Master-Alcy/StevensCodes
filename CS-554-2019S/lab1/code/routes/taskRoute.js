@@ -32,8 +32,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
-        const {title, description, hoursEstimated, completed} =  req.body;
-        const newTask = await taskData.addTask(title, description, hoursEstimated, completed);
+        const {title, description, hoursEstimated, completed, comments} =  req.body;
+        const newTask = await taskData.addTask(title, description, hoursEstimated, completed, comments);
 
         if (newTask.success)
             res.status(200).json(newTask.data);
