@@ -90,7 +90,6 @@ async function updateWholeTaskById(taskId, title, description, hoursEstimated, c
             completed: completed
         }},
         {new: true, projection: {_id: 0, __v: 0}} // return updated object, and not returning _id and __v
-
     ); // Note, updateOne is fine. But returned with {n, nModified, ...}
     // validate data
     if (result)
