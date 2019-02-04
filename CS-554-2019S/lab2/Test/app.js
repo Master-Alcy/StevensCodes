@@ -1,6 +1,4 @@
 const express = require("express");
-const router = express.Router();
-const path = require("path");
 const app = express();
 
 const static = express.static(__dirname + "/public");
