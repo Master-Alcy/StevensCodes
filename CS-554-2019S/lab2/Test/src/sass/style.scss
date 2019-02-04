@@ -1,5 +1,24 @@
-$bgColor: rgb(0, 128, 43);
+$bgColor: rgb(111, 111, 111);
+$ulColor: rgb(0,255,0);
+$olColor: rgb(0,0,255);
+$spColor: rgb(255,0,0);
+$clColor: rgb(111,0,0);
 
-body{
+body {
     background: $bgColor;
+}
+
+nav {
+    ul {
+        color: $ulColor;
+    }
+    ol {
+        color: $olColor;
+        #sp1 {
+            color: $spColor;
+        }
+        .cl1 {
+            color: $clColor;
+        }
+    }
 }

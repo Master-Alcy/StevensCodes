@@ -1,2 +1,12 @@
 body {
-  background: #00802b; }
+  background: #6f6f6f; }
+
+nav ul {
+  color: lime; }
+
+nav ol {
+  color: blue; }
+  nav ol #sp1 {
+    color: red; }
+  nav ol .cl1 {
+    color: #6f0000; }
