@@ -11,4 +11,4 @@ app.get("/*", (req, res) => {
 
 app.listen(3000, () => {
     console.log("Single page route at http://localhost:3000/");
-});
+})
