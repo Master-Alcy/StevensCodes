@@ -36,7 +36,7 @@ gulp.task('imageMin', async () => {
 
 // Compile Sass
 gulp.task('procSASS', async () => {
-    gulp.src('src/sass/*.scss')
+    gulp.src('src/sass/*.sass')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat("styles.css"))
         .pipe(gulp.dest('public/css'))
@@ -69,9 +69,9 @@ gulp.task('build', gulp.series(
 gulp.task('watch', async() => {
     gulp.watch('src/images/*', gulp.series('imageMin'));
     gulp.watch('src/js/*.js', gulp.series('procJS'));
-    gulp.watch('src/sass/*.scss', gulp.series('procSASS'));
+    gulp.watch('src/sass/*.sass', gulp.series('procSASS'));
     gulp.watch('src/*.html', gulp.series('copyHTML'));
-    console.log("Everything done ...");
+    console.log("Start watching ...");
 });
 
 // Default task
