@@ -7,6 +7,7 @@ const concat = require("gulp-concat");
 const cleanCSS = require("gulp-clean-css");
 const autoPrefix = require("gulp-autoprefixer");
 const rename = require("gulp-rename");
+const miniHtml = require("gulp-htmlmin");
 
 /*
     -- Top Level Functions --
@@ -24,6 +25,7 @@ gulp.task('message', async () => {
 // Copy All HTML files
 gulp.task('copyHTML', async () => {
     gulp.src('src/*.html') // source files
+        .pipe(miniHtml({ collapseWhitespace: true }))
         .pipe(gulp.dest('public')); // destination
 });
 
