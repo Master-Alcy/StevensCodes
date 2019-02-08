@@ -1,0 +1,94 @@
+// @import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+// Variables
+$black: #333;
+$pale: #d2e1dd;
+$pink: #c69;
+$blue: #036;
+
+$bgColor: rgb(111,111,0);
+$ulColor: rgb(0, 255, 0);
+$olColor: rgb(0, 0, 255);
+$spColor: rgb(255, 0, 0);
+$clColor: rgb(111, 0, 0);
+
+$font-stack: 'Andale Mono', monospace;
+$font-size: 14px;
+
+// Mixins for scss
+@mixin adopt-radius($radius) {
+    color: orange;
+    text-align: center;
+    border-radius: $radius;
+}
+
+@mixin circleThing($rad, $height, $width, $bg, $color) {
+    -webkit-border-radius: $rad;
+    -moz-border-radius: $rad;
+    -ms-border-radius: $rad;
+    border-radius: $rad;
+
+    height: $height;
+    width: $width;
+
+    line-height: $height;
+    text-align: center;
+
+    background: $bg;
+    color: $color;
+
+    margin: 0 auto;
+}
+
+// Styles
+body {
+    background: $pale;
+    color: $black;
+    font-family: $font-stack;
+    font-size: $font-size;
+}
+
+nav {
+    ul {
+        color: $ulColor;
+    }
+    ol {
+        color: $olColor;
+        li#sp1 {
+            color: $spColor; }
+        li.cl1 {
+            color: $clColor; }
+    }
+}
+
+p {
+    @include adopt-radius(10px);
+}
+
+article {
+    @extend p;
+    background: white;
+    height: 200px;
+    width: 200px;
+    margin: -60px auto;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px #333333;
+    position: relative;
+    z-index: -2;
+}
+
+header {
+    @include circleThing(100%, 200px, 200px, $pink, white);
+
+    h1 {
+        font-size: $font-size + 2; }
+}
+
+footer {
+    @include circleThing(100%, 150px, 150px, $black, $pale);
+    font-size: $font-size - 3;
+    position: relative;
+    z-index: - 4;
+    margin-top: -60px;
+}
