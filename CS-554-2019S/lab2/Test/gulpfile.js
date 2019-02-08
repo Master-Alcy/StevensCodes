@@ -63,9 +63,8 @@ gulp.task('procJS', async () => {
 gulp.task('build', gulp.series(
     'message', 
     gulp.parallel('imageMin', 'procSASS', 'copyHTML', 'procJS')
-    ), (done) => { 
-    done();
-});
+    ), (done) => { done(); }
+);
 
 // Watch
 gulp.task('watch', async() => {
