@@ -64,7 +64,7 @@ gulp.task('procSASS', async () => {
     gulp.src('src/sass/*.sass')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat("styles.css"))
-        .pipe(gulp.dest('public/css'))
+        .pipe(gulp.dest('src/css'))
         .pipe(autoPrefix({
             browsers: ["last 2 versions"],
             cascade: false
