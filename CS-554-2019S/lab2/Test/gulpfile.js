@@ -36,7 +36,26 @@ gulp.task('copyHTML', async () => {
 // Optimize Images
 gulp.task('imageMin', async () => {
     gulp.src('src/images/*')
-        .pipe(imagemin())
+        .pipe(imagemin([
+            imagemin.gifsicle({
+                interlaced: true
+            }),
+            imagemin.jpegtran({
+                progressive: true
+            }),
+            imagemin.optipng({
+                optimizationLevel: 5
+            }),
+            imagemin.svgo({
+                plugins: [{
+                        removeViewBox: true
+                    },
+                    {
+                        cleanupIDs: false
+                    }
+                ]
+            })
+        ]))
         .pipe(gulp.dest('public/images'))
 });
 
