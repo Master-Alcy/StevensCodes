@@ -13,6 +13,7 @@ class Show extends Component {
    componentWillMount() {
       this.getShow();
    }
+
    async getShow() {
       this.setState({
          loading: true
@@ -30,6 +31,7 @@ class Show extends Component {
          console.log(`error ${e}`);
       }
    }
+   
    render() {
       let body = null;
       const regex = /(<([^>]+)>)/gi;

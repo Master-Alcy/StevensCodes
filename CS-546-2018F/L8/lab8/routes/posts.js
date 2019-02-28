@@ -24,7 +24,7 @@ router.post("/result", async (req, res) => {
         const palindrome = blogPostData["text-to-test"];   
         
         //isRev() would throw if no argument provided
-        if (isRev(palindrome)) { 
+        if (isRev(palindrome)) {
             res.render("posts/result", { layout: 'mainRes.handlebars', 
             isRev: true, theBody: palindrome });
         } else {

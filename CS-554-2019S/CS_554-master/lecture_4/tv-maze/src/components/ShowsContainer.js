@@ -6,12 +6,10 @@ import Show from './Show';
 class ShowsContainer extends Component {
    render() {
       return (
-         <div>
-            <Switch>
-               <Route path="/shows" exact component={ShowList} />
-               <Route path="/shows/:id" exact component={Show} />
-            </Switch>
-         </div>
+         <Switch>
+            <Route path="/shows" exact component={ShowList} />
+            <Route path="/shows/:id" exact component={Show} />
+         </Switch>
       );
    }
 }

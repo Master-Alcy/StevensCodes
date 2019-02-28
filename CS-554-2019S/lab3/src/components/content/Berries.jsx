@@ -12,36 +12,36 @@ class ShowList extends Component {
          searchData: undefined
       };
    }
-      async getShows() {
-            try {
-                  const response = await axios.get('http://api.tvmaze.com/shows');
-                  this.setState({ data: response.data});
-            } catch (e) {
-                  console.log(e);
-            }
+   async getShows() {
+      try {
+         const response = await axios.get('http://api.tvmaze.com/shows');
+         this.setState({ data: response.data });
+      } catch (e) {
+         console.log(e);
       }
-      componentDidMount() {
-            this.getShows();
-      }
+   }
+   componentDidMount() {
+      this.getShows();
+   }
 
-      handleChange = (e) => {
-            let value = e.target.value;
-            this.setState({ searchTerm: value }, () => {
-            this.searchShows();
-            });
-      }
-      
-      onSubmit(e) {
-            e.preventDefault();
-      }
-   async searchShows(){
+   handleChange = (e) => {
+      let value = e.target.value;
+      this.setState({ searchTerm: value }, () => {
+         this.searchShows();
+      });
+   }
+
+   onSubmit(e) {
+      e.preventDefault();
+   }
+   async searchShows() {
       if (this.state.searchTerm) {
-            try {
-               const response = await axios.get('http://api.tvmaze.com/search/shows?q=' + this.state.searchTerm);
-               this.setState({searchData: response.data});
-            } catch (e) {
-               console.log(e);
-            }
+         try {
+            const response = await axios.get('http://api.tvmaze.com/search/shows?q=' + this.state.searchTerm);
+            this.setState({ searchData: response.data });
+         } catch (e) {
+            console.log(e);
+         }
       }
    }
    render() {

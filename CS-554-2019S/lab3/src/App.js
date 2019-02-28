@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
-import logo from './img/logo.svg';
+import logo from './logo.svg';
 import './App.css';
-import ShowsContainer from './components/ShowsContainer';
-
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {
-   render() {
-      return (
-         <Router>
-            <div className="App">
-               <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <h1 className="App-title">Welcome to the TV Maze API</h1>
-                  <Link className="showlink" to="/shows">
-                     Shows
-                  </Link>
-               </header>
-               <br />
-               <br />
-               <div className="App-body">
-                  <p>Welcome to the TV Maze API example</p>
-                  <Route path="/shows/" component={ShowsContainer} />
-               </div>
-            </div>
-         </Router>
-      );
-   }
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1>Learning React. This is lab3.</h1>
+        </header>
+
+        <body className="App-body">
+          <h1>Api Test</h1>
+
+        </body>
+
+        <footer className="App-footer">
+          <p>Jingxuan AI</p>
+        </footer>
+      </div>
+    );
+  }
 }
 
 export default App;
