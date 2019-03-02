@@ -1,97 +1,124 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Pokedex extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         data: undefined,
-         loading: true
-      };
-   }
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: undefined,
+            loading: true
+        };
+    }
 
-   componentWillMount() {
-      this.getShow();
-   }
+    componentDidMount() {
+        this.getData();
+    }
 
-   async getShow() {
-      try {
-         const response = await axios.get(
-            `http://api.tvmaze.com/shows/${this.props.match.params.id}`
-         );
-         console.log(response);
-         this.setState({
-            data: response.data,
-            loading: false
-         });
-      } catch (e) {
-         console.log(`error ${e}`);
-      }
-   }
+    async getData() {
+        try {
+            let idNum = this.props.match.params.id;
+            const response = await axios.get(
+                `https://pokeapi.co/api/v2/pokemon/${idNum}`
+            );
 
-   render() {
-      return (
-         <p>Wait</p>
-      );
-   }
-   
-   // render() {
-   //    let body = null;
-   //    const regex = /(<([^>]+)>)/gi;
-   //    let summary =
-   //       this.state.data && this.state.data.summary.replace(regex, '');
-   //    if (this.state.loading) {
-   //       body = (
-   //          <div>
-   //             <h1>Shows</h1>
-   //             <br />
-   //             Loading...
-   //          </div>
-   //       );
-   //    } else if (this.state.error) {
-   //       body = (
-   //          <div>
-   //             <h1>{this.state.error}</h1>
-   //          </div>
-   //       );
-   //    } else {
-   //       let img = null;
-   //       if (this.state.data.image) {
-   //          img = <img alt="Show" src={this.state.data.image.medium} />;
-   //       } else {
-   //          // img = <img alt="Show" src={noImage} />;
-   //       }
-   //       body = (
-   //          <div>
-   //             <h3 className="cap-first-letter">
-   //                {this.state.data && this.state.data.name}
-   //             </h3>
-   //             {img}
-   //             <br />
-   //             <br />
-   //             <p>
-   //                Average Rating: {this.state.data.rating.average}
-   //                <br />
-   //                Network: {this.state.data.network && this.state.data.network.name} <br />
-   //                Language: {this.state.data.language}
-   //                <br />
-   //                Runtime: {this.state.data.runtime}
-   //                <br />
-   //                Premiered: {this.state.data.premiered}
-   //                <br />
-   //             </p>
-   //             <b>Genres</b>:
-   //             <ul className="list-unstyled">
-   //                {this.state.data.genres.map(genre => {
-   //                   return <li key={genre}>{genre}</li>;
-   //                })}
-   //             </ul>
-   //             <p>Summary: {summary}</p>
-   //          </div>
-   //       );
-   //    }
-   //    return body;
-   // }
+            this.setState({
+                data: response.data,
+                loading: false
+            });
+        } catch (e) {
+            console.log(`In getData(): ${e}`);
+            window.location.replace("http://localhost:3000/NotFound");
+        }
+    }
+
+    formateData(data) {
+        if (!data) {
+            return "No Data";
+        }
+        // console.log(data);
+
+        const abilitiesArray = data.abilities.map((element, i) => {
+            return <li key={i}>{element.ability.name}</li>
+        });
+        const formArray = data.forms.map((element, i) => {
+            return <li key={i}>{element.name}</li>
+        });
+        const typeArray = data.types.map((element, i) => {
+            return <li key={i}>{element.type.name}</li>
+        });
+        const statArray = data.stats.map((element, i) => {
+            return <li key={i}>{element.stat.name}: {element.base_stat}</li>
+        });
+
+        let img = undefined;
+        if (this.state.data.sprites.front_default) {
+            img = <img alt="Pokemon" src={this.state.data.sprites.front_default} />;
+         } else {
+            img = <p>No Image</p>
+         }
+
+        return (
+            <article>
+            <h1>-----( {data.name} )-----</h1>
+                {img}
+                <ol>
+                    <li>
+                        <h3>Abilities:</h3>
+                        <ul>{abilitiesArray}</ul>
+                    </li>
+                    <li><h3>Base experience: {data.base_experience}</h3></li>
+                    <li>
+                        <h3>Forms:</h3>
+                        <ul>{formArray}</ul>
+                    </li>
+                    <li><h3>Height: {data.height}</h3></li>
+                    <li><h3>Species: {data.species.name}</h3></li>
+                    <li>
+                        <h3>Base stat:</h3>
+                        <ul>{statArray}</ul>
+                    </li>
+                    <li>
+                        <h3>Type:</h3>
+                        <ul>{typeArray}</ul>
+                    </li>
+                    <li><h3>Weight: {data.weight}</h3></li>
+                </ol>
+            </article>
+        );
+    }
+
+    render() {
+        let dynamicContent = null;
+        let content = (
+            <article>
+                <h2>Api Test</h2>
+                <ul>
+                    <li><Link to="/pokemon/page/0">Pokemon</Link></li>
+                    <li><Link to="/berries/page/0">Berry</Link></li>
+                    <li><Link to="/machines/page/0">Machine</Link></li>
+                </ul>
+            </article>
+        );
+
+        if (this.state.loading) {
+            dynamicContent = (
+                <div className="App-body">
+                    {content}
+                    <h1>Loading</h1>
+                </div>
+            );
+        } else {
+            dynamicContent = (
+                <div className="App-body">
+                    {content}
+                    {this.formateData(this.state.data)}
+                </div>
+            );
+        }
+
+        return dynamicContent;
+    }
 }
 
 export default Pokedex;

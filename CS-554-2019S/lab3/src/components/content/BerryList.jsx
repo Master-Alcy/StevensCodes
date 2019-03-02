@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class PokedexList extends Component {
+class BerryList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,7 +41,7 @@ class PokedexList extends Component {
             pageNum *= 20;
 
             const response = await axios.get(
-                `https://pokeapi.co/api/v2/pokemon/?offset=${pageNum}`
+                `https://pokeapi.co/api/v2/berry/?offset=${pageNum}`
             );
 
             const maxNum = response.data.count;
@@ -72,20 +72,20 @@ class PokedexList extends Component {
             // console.log("at next !== null && prev === null, next=" + nextNumber);
             return (
                 <ul>
-                    <li><Link to={"/pokemon/page/" + nextNumber}>next</Link></li>
+                    <li><Link to={"/berries/page/" + nextNumber}>next</Link></li>
                 </ul>
             );
         } else if (this.state.data.next === null && this.state.data.previous !== null) {
             return (
                 <ul>
-                    <li><Link to={"/pokemon/page/" + prevNumber}>prev</Link></li>
+                    <li><Link to={"/berries/page/" + prevNumber}>prev</Link></li>
                 </ul>
             );
         } else if (this.state.data.next !== null && this.state.data.previous !== null) {
             return (
                 <ul>
-                    <li><Link to={"/pokemon/page/" + nextNumber}>next</Link></li>
-                    <li><Link to={"/pokemon/page/" + prevNumber}>prev</Link></li>
+                    <li><Link to={"/berries/page/" + nextNumber}>next</Link></li>
+                    <li><Link to={"/berries/page/" + prevNumber}>prev</Link></li>
                 </ul>
             );
         }
@@ -97,12 +97,12 @@ class PokedexList extends Component {
             return "No Data";
         }
 
-        const pokeList = data.results.map((element, i) => {
+        const aList = data.results.map((element, i) => {
             // console.log(element.url.split("/")[6]);
-            return <li key={i}><Link to={"/pokemon/" + element.url.split("/")[6]}>{element.name}</Link></li>
+            return <li key={i}><Link to={"/berries/" + element.url.split("/")[6]}>{element.name}</Link></li>
         });
 
-        return (<ol>{pokeList}</ol>);
+        return (<ol>{aList}</ol>);
     }
 
     render() {
@@ -139,4 +139,4 @@ class PokedexList extends Component {
     }
 }
 
-export default PokedexList;
+export default BerryList;

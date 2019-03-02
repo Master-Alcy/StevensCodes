@@ -1,92 +1,100 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-class ShowList extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         data: undefined,
-         loading: false,
-         searchTerm: undefined,
-         searchData: undefined
-      };
-   }
-   async getShows() {
-      try {
-         const response = await axios.get('http://api.tvmaze.com/shows');
-         this.setState({ data: response.data });
-      } catch (e) {
-         console.log(e);
-      }
-   }
-   componentDidMount() {
-      this.getShows();
-   }
+class Berry extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: undefined,
+            loading: true
+        };
+    }
 
-   handleChange = (e) => {
-      let value = e.target.value;
-      this.setState({ searchTerm: value }, () => {
-         this.searchShows();
-      });
-   }
+    componentDidMount() {
+        this.getData();
+    }
 
-   onSubmit(e) {
-      e.preventDefault();
-   }
-   async searchShows() {
-      if (this.state.searchTerm) {
-         try {
-            const response = await axios.get('http://api.tvmaze.com/search/shows?q=' + this.state.searchTerm);
-            this.setState({ searchData: response.data });
-         } catch (e) {
-            console.log(e);
-         }
-      }
-   }
-   render() {
-      let body = null;
-      let li = null;
-      if (this.state.searchTerm) {
-         li =
-            this.state.searchData &&
-            this.state.searchData.map(shows => {
-               let show = shows.show;
+    async getData() {
+        try {
+            let idNum = this.props.match.params.id;
+            const response = await axios.get(
+                `https://pokeapi.co/api/v2/berry/${idNum}`
+            );
 
-               return (
-                  <li key={show.id}>
-                     <Link to={`/shows/${show.id}`}>{show.name}</Link>
-                  </li>
-               );
+            this.setState({
+                data: response.data,
+                loading: false
             });
-      } else {
-         li =
-            this.state.data &&
-            this.state.data.map(show => (
-               <li key={show.id}>
-                  <Link to={`/shows/${show.id}`}>{show.name}</Link>
-               </li>
-            ));
-      }
-      body = (
-         <div>
-            <form method="POST " name="formName" onSubmit={this.onSubmit}>
-               <label>
-                  {' '}
-                  Search Term:
-                  <input
-                     type="text"
-                     name="searchTerm"
-                     onChange={this.handleChange}
-                  />
-               </label>
-            </form>
-            <ul className="list-unstyled">{li}</ul>
-         </div>
-      );
+        } catch (e) {
+            console.log(`In getData(): ${e}`);
+            window.location.replace("http://localhost:3000/NotFound");
+        }
+    }
 
-      return body;
-   }
+    formateData(data) {
+        if (!data) {
+            return "No Data";
+        }
+      //   console.log(data);
+
+        const flaArray = data.flavors.map((element, i) => {
+            return <li key={i}>Flavor: {element.flavor.name}. Potency: {element.potency}</li>
+        });
+
+        return (
+            <article>
+            <h1>-----( {data.name} )-----</h1>
+                <ol>
+                    <li><h3>Firmness: {data.firmness.name}</h3></li>
+                    <li>
+                       <h3>Flavors:</h3>
+                       <ul>{flaArray}</ul>
+                    </li>
+                    <li><h3>Growth Time: {data.growth_time}</h3></li>
+                    <li><h3>Item: {data.item.name}</h3></li>
+                    <li><h3>Max Harvest: {data.max_harvest}</h3></li>
+                    <li><h3>Natural Gift Power: {data.natural_gift_power}</h3></li>
+                    <li><h3>Natural Gift Type: {data.natural_gift_type.name}</h3></li>
+                    <li><h3>Size: {data.size}</h3></li>
+                    <li><h3>Smoothness: {data.smoothness}</h3></li>
+                    <li><h3>Soil Dryness: {data.soil_dryness}</h3></li>
+                </ol>
+            </article>
+        );
+    }
+
+    render() {
+        let dynamicContent = null;
+        let content = (
+            <article>
+                <h2>Api Test</h2>
+                <ul>
+                    <li><Link to="/pokemon/page/0">Pokemon</Link></li>
+                    <li><Link to="/berries/page/0">Berry</Link></li>
+                    <li><Link to="/machines/page/0">Machine</Link></li>
+                </ul>
+            </article>
+        );
+
+        if (this.state.loading) {
+            dynamicContent = (
+                <div className="App-body">
+                    {content}
+                    <h1>Loading</h1>
+                </div>
+            );
+        } else {
+            dynamicContent = (
+                <div className="App-body">
+                    {content}
+                    {this.formateData(this.state.data)}
+                </div>
+            );
+        }
+
+        return dynamicContent;
+    }
 }
 
-export default ShowList;
+export default Berry;

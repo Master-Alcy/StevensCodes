@@ -10,9 +10,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Clock date={new Date()} timeDiff="0" place="Australia/Brisbane"/>
-        <Clock date={new Date()} timeDiff="0" place="Asia/Shanghai"/>
-        <Clock date={new Date()} timeDiff="0" place="America/New_York"/>
+        <Clock date={new Date()} place="Australia/Brisbane"/>
+        <Clock date={new Date()} place="Asia/Shanghai"/>
+        <Clock date={new Date()} place="America/New_York"/>
       </div>
     );
   }
