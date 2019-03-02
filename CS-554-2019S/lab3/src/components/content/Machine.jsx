@@ -40,7 +40,7 @@ class Machine extends Component {
 
         return (
             <article>
-            <h1>-----( Machine Id: {this.props.match.params.id} )-----</h1>
+            <h2>-----( Machine Id: {this.props.match.params.id} )-----</h2>
                 <ol>
                     <li><h3>Item: {data.item.name}</h3></li>
                     <li><h3>Move: {data.move.name}</h3></li>

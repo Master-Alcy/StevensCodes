@@ -44,7 +44,7 @@ class Berry extends Component {
 
         return (
             <article>
-            <h1>-----( {data.name} )-----</h1>
+            <h2>-----( {data.name} )-----</h2>
                 <ol>
                     <li><h3>Firmness: {data.firmness.name}</h3></li>
                     <li>
