@@ -54,13 +54,13 @@ class Pokedex extends Component {
         let img = undefined;
         if (this.state.data.sprites.front_default) {
             img = <img alt="Pokemon" src={this.state.data.sprites.front_default} />;
-         } else {
+        } else {
             img = <p>No Image</p>
-         }
+        }
 
         return (
             <article>
-            <h2>-----( {data.name} )-----</h2>
+                <h2>-----( {data.name} )-----</h2>
                 {img}
                 <ol>
                     <li>
