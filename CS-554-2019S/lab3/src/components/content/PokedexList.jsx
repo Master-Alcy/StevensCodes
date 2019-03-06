@@ -109,7 +109,7 @@ class PokedexList extends Component {
         let dynamicContent = null;
         let content = (
             <article>
-                <h2>Api Test</h2>
+                <h2>Pokemon List</h2>
                 <ul>
                     <li><Link to="/pokemon/page/0">Pokemon</Link></li>
                     <li><Link to="/berries/page/0">Berry</Link></li>

@@ -5,7 +5,7 @@ class InputArea extends Component {
     render() {
         return (
             <div className="App-body">
-                <h1>Api Test</h1>
+                <h1>Pokedex Api</h1>
                 <Link to="/pokemon/page/0">Pokemon</Link>
                 <Link to="/berries/page/0">Berry</Link>
                 <Link to="/machines/page/0">Machine</Link>
