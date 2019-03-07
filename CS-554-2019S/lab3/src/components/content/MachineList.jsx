@@ -13,6 +13,10 @@ class MachineList extends Component {
         };
     }
 
+    isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
     componentDidMount() {
         this.getData();
     }
@@ -23,6 +27,9 @@ class MachineList extends Component {
         let oldNum = this.state.oldNum;
         oldNum = parseInt(oldNum);
 
+        if (!this.isNumeric(currNum)){
+            window.location.replace("http://localhost:3000/NotFound");
+        }
         // console.log("DidUpdate, currNum = " + currNum);
         // console.log("DidUpdate, oldNum = " + this.state.oldNum);
 

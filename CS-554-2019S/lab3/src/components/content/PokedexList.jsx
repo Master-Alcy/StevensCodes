@@ -12,6 +12,10 @@ class PokedexList extends Component {
         };
     }
 
+    isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
     componentDidMount() {
         this.getData();
     }
@@ -22,8 +26,9 @@ class PokedexList extends Component {
         let oldNum = this.state.oldNum;
         oldNum = parseInt(oldNum);
 
-        // console.log("DidUpdate, currNum = " + currNum);
-        // console.log("DidUpdate, oldNum = " + this.state.oldNum);
+        if (!this.isNumeric(currNum)){
+            window.location.replace("http://localhost:3000/NotFound");
+        }
 
         if (currNum === oldNum) {
             return;

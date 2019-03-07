@@ -27,7 +27,7 @@ class Pokedex extends Component {
                 loading: false
             });
         } catch (e) {
-            console.log(`In getData(): ${e}`);
+            // console.log(`In getData(): ${e}`);
             window.location.replace("http://localhost:3000/NotFound");
         }
     }
