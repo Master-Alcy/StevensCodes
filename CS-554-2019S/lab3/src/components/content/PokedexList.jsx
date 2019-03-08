@@ -20,6 +20,18 @@ class PokedexList extends Component {
         this.getData();
     }
 
+    // componentWillReceiveProps(nextprops) {
+    //     console.log(`next: ${nextprops.match.params.page}, curr: ${this.props.match.params.page}`);
+
+    //     if (nextprops.match.params.page !== this.props.match.params.page) {
+    //         console.log("yea?");
+    //         this.setState({
+    //             loading: true
+    //         });
+    //         this.getData(); // this is based on current page number
+    //     }
+    // }
+
     componentDidUpdate() { // It took me 4 hours to find out this solution
         let currNum = this.props.match.params.page;
         currNum = parseInt(currNum);
@@ -59,6 +71,7 @@ class PokedexList extends Component {
                 oldNum: pageNum / 20,
                 loading: false
             });
+            console.log("Load the fvck up");
         } catch (e) {
             console.log(`In getData(): ${e}`);
             window.location.replace("http://localhost:3000/NotFound");
