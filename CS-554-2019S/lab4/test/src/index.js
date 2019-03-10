@@ -5,7 +5,6 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const redis = require('redis');
-
 // Set Port
 const port = 3000;
 // init app
