@@ -6,10 +6,13 @@
   "scripts": {
     "start": "node ./src/index"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Jingxuan Ai",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.3",
+    "express": "^4.16.4",
+    "flat": "^4.1.0",
+    "node-redis": "^0.1.7",
     "redis": "^2.8.0"
   }
 }
