@@ -49,8 +49,6 @@ router.get("/:id", async (request, response) => {
             const redisData = await client.getAsync(id); // get from cache
             // console.log(redisData);
             return response.status(200).json(JSON.parse(redisData));
-        } else if (redisExist > 1) { // multiple ids, error
-            return response.status(400).json({ error: "multiple ids should not exist" });   
         } else { // id don't exist
             // console.log("In disk");
             const resultDisk = await data.getById(id); // error goes to catch, slow read disk
