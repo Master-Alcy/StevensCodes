@@ -13,7 +13,7 @@ async function getById(id) {
             } else {
                 reject(new Error("Data not found"));
             }
-        }, 5000); // 5s
+        }, 3000); // 5s
     });
 }
 
