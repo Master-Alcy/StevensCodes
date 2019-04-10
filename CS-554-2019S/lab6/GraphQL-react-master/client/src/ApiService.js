@@ -1,5 +1,4 @@
 /**
- * 
  * Small service for calling GraphQL API server
  */
 class ApiService {
@@ -39,7 +38,6 @@ class ApiService {
     }
 
     /**
-     * 
      * @param {object} params
      * @returns {array} users list or empty list
      */
@@ -50,7 +48,6 @@ class ApiService {
     }
 
     /**
-     * 
      * @param {object} params
      * @returns {array} users list or empty list
      */
@@ -61,7 +58,6 @@ class ApiService {
     }
 
     /**
-     * 
      * @param {object} params
      * @returns {String} params converted to string for usage in graphQL
      */
@@ -84,7 +80,6 @@ class ApiService {
         }
         return paramString;
     }
-
 }
 
 export default new ApiService();
