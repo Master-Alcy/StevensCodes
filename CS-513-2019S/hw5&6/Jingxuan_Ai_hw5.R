@@ -25,6 +25,6 @@ fancyRpartPlot(curr)
 future<-predict( curr ,test , type="class" )
 table(actual=test[,11],future)
 
-error_rate<- (test[,11]!=future)
-err<-sum(error_rate)/length(error_rate)
-err
+error<- (test[,11]!=future)
+error_rate<-sum(error)/length(error)
+error_rate
