@@ -6,12 +6,12 @@ import gql from 'graphql-tag';
 //The actual query
 const GET_EMPLOYEES = gql`
 	query {
-		employees {
+		users {
 			id
-			firstName
-			lastName
-			employer {
-				name
+			name
+			blogs {
+				id
+				content
 			}
 		}
 	}
@@ -24,8 +24,8 @@ It uses React’s render props pattern, using a child as a function implementati
 const Employees = () => (
 	<Query query={GET_EMPLOYEES}>
 		{({ data }) => {
-			const { employees } = data;
-			if (!employees) {
+			const { users } = data;
+			if (!users) {
 				return null;
 			}
 			console.log(data);
@@ -33,16 +33,11 @@ const Employees = () => (
 			return (
 				<div>
 					<ul>
-						{data.employees.map((employee) => {
-							return (
-								<li key={employee.id}>
-									{employee.firstName} {employee.lastName}{' '}
-									<ul>
-										<li>{employee.employer.name}</li>
-									</ul>
-								</li>
-							);
-						})}
+						<li>{JSON.stringify(users[0])}</li>
+						<li>{JSON.stringify(users[1])}</li>
+						<li>{JSON.stringify(users[2])}</li>
+						<li>{JSON.stringify(users[3])}</li>
+						<li>{JSON.stringify(users[4])}</li>
 					</ul>
 				</div>
 			);
