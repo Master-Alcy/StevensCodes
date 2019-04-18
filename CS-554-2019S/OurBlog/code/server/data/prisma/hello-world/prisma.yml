@@ -1,7 +1,6 @@
 # config Prisma
-
 # The HTTP endpoint for your Prisma API
-endpoint: ""
+endpoint: http://192.168.99.100:4466
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma
@@ -10,14 +9,12 @@ datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
     output: ./generated/prisma-client
-  - generator: graphql-schema
-    output: ./generated/
 
 # A "post-deployment" hook that regenerates the Prisma client.
-hooks:
-  post-deploy:
-    - prisma generate
+# hooks:
+#  post-deploy:
+#    - prisma generate
 
 # Executes a Node.js script to seed the database with initial data.
-seed:
-  run: node data/seed.js
+# seed:
+#   run: node ../seed.js
