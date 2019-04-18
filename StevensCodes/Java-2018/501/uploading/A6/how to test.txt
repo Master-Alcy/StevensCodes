@@ -1,0 +1,21 @@
+In Node.js command prompt enter:
+
+npm run build
+(javac all files)
+
+npm run start1
+(To test rectangle)
+
+npm run start2
+(To test triangle)
+
+Or in cmd command line enter:
+
+javac C10E13MyRectangle2D.java && javac C10E13TestMyRect2D.java && javac C11E1C12E5TestTriangle.java && javac C11E1GeometricObject.java && javac C11E1Triangle_C12E5IllegalTriangleException.java
+(This to build all files)
+
+java C10E13TestMyRect2D
+(To test rectangle)
+
+java C11E1C12E5TestTriangle
+(To test triangle)

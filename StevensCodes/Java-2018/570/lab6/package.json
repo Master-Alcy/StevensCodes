@@ -1,0 +1,12 @@
+{
+  "name": "lab6",
+  "version": "1.0.0",
+  "main": "LinkListCQ.java",
+  "scripts": {
+  	"build": "javac LinkListCQ.java && java LinkListCQ",
+    "start": "javac LinkListCQ.java && java LinkListCQ"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,12 @@
+{
+  "name": "hw2",
+  "version": "1.0.0",
+  "main": "hw2t.java",
+  "scripts": {
+  	"build": "javac hw2t.java && java hw2t",
+    "start": "javac hw2t.java && java hw2t"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

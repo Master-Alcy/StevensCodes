@@ -1,0 +1,12 @@
+{
+  "name": "lab4",
+  "version": "1.0.0",
+  "main": "lab4t2arr.java",
+  "scripts": {
+  	"build": "javac lab4t2arr.java && java lab4t2arr",
+    "start": "javac lab4t2arr.java && java lab4t2arr"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

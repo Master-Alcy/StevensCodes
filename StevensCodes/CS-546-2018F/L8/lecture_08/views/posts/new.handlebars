@@ -1,0 +1,120 @@
+<article class="new-post">
+  <h1>Make a Post</h1>
+  <!-- action signifies where the form will be submitted to -->
+  <!-- method signifies how the form will be submitted -->
+  <!-- form can have a name through DOM API (document api) -->
+  <form action="/posts/new" method="POST" class="new-post-form">
+    <label> 
+      Post Title
+    <!-- input can include: name, id, value, placeholders, type -->
+    <!-- name unique on form-level, id unique on ducument level -->
+      <input type="text" name="title" placeholder="Post Title" value="{{post.title}}" class="full-width-input"/>
+    </label>
+    <!-- Define which input is being labeled: wrap input inside or
+    use for which equals to the id of input 
+    Must use labels for inputs for accessibility reasons-->
+    <label>
+      What number professor am I?
+      <input type="number" name="professor_ranking" placeholder="#1 professor in North America" class="full-width-input"/>
+    </label>
+
+    <label for="post-body">
+      Post Body
+    </label>
+
+    <textarea id="post-body" name="body" rows="4" placeholder="Post Content" class="full-width-input">{{post.body}}</textarea>
+
+    <label for="poster">
+      Poster
+    </label>
+
+    <!-- send information with query as key and whichever selected is value -->
+    <!--
+    <select name = "query" multiple>
+      <option value = "Aus">Aus</option>
+      <option value = "hel">Font</option>
+    </select>
+    -->
+    <select class="full-width-input" name="posterId">
+      <option value="">Select User...</option>
+      <!-- This id is what query will get, Phil is key shown in query -->
+      <option value="69729aec-1b41-4650-8dc8-b9285c6c3e53">Phil</option>
+    </select>
+
+    <label>
+      <!-- checked to be a new value -->
+      <input type="radio" name="user-test" value="1" /> One
+    </label>
+
+    <label>
+      <input type="radio" name="user-test" value="2" /> Two
+    </label>
+
+    <!-- checkboxes would be parsed as arrays in strings -->
+    <div>
+      <label>
+      <input type="checkbox" name="checkbox-test" value="first" /> First
+  </label></div>
+
+    <div>
+      <label>
+      <input type="checkbox" name="checkbox-test" value="second" /> Second
+  </label></div>
+
+  <!-- type hidden for setting data for a request that don't want
+  user to update. Fake being able to PUT and DELETE via browser
+  without AJAX. Express would serialize this into request body.
+  <input type="hidden" name="method" value="PUT" /> 
+  -->
+
+  <!-- submit using button or input with type submit 
+  can submit to same position. For multiple forms, the 
+  one triggered the submission will be sent.
+  Javascript can intercept the submission of a form.-->
+    <button type="submit">Create New Post</button>
+    <button type="reset">Clear Form</button>
+    <button type="button">Click me!</button>
+  </form>
+
+  {{#if hasErrors}}
+  <ul class="error-list">
+    {{#each errors}}
+    <li>
+      {{this}}
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</article>
+
+<!-- 
+When submitting via a normal-browser form, most browsers will 
+only send via GET or POST. We can get around this with 
+1. >>>> hidden inputs and middleware <<<< 
+to change how to interpret the request
+2. Using AJAX requests we can often set the proper http verb
+
+Normal forms do not carry the type of input with them
+◦ Form variables are sent as text via:
+◦ application/x-www-form-urlencoded
+◦ multipart/form-data
+◦ text/plain
+Your server will therefore get every data type as a string, 
+even if it’s a number or boolean. We can get around this by 
+>> submitting JSON encoded data, <<
+which will allow us to get JS primitives of the proper type
+ 
+By default, form data is sent either via a Querystring (GET) 
+or the request body (POST)
+PUT and DELETE data have to be faked when the browser is 
+natively making that request.
+ 
+a simple middleware that will look for hidden inputs and allow 
+normal HTML forms to be routed into PUT and DELETE routes
+
+Common errors:
+◦ Assuming input will be a type (ie: number) when it is a string
+◦                     Try to parse it into the proper type first!
+◦ Assuming input exists at all!
+◦ Assuming input is “within bounds” (ie: expected a number between 1-10)
+-->

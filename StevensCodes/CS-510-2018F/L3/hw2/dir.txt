@@ -1,0 +1,10 @@
+cd C:/Users/aijin/Desktop/Course/"CS 510"/L3/hw2
+open ast;;
+open ds;;
+open interp;;
+# use "hw1.ml";;
+
+cd mnt/c/Users/aijin/Desktop/Course/'CS 510'/L3/hw2
+sudo apt install ocaml
+opam init
+eval `opam config env`

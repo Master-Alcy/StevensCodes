@@ -1,0 +1,12 @@
+{
+  "name": "TopologicalSort",
+  "version": "1.0.0",
+  "main": "TopologicalSort.java",
+  "scripts": {
+  	"build": "javac TopologicalSort.java && java TopologicalSort",
+    "start": "javac TopologicalSort.java && java TopologicalSort"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

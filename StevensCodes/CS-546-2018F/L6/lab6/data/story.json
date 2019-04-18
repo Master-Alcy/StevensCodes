@@ -1,0 +1,4 @@
+{
+    "storyTitle": "Op-Amp’s open-loop transfer characteristic",
+    "story": "Try to observe random oscilloscope switching between ± 14 V occurring when potentiometer output voltage is close to zero, VD ≈ 0, and try to explain the cause of these oscillations in the Report.\nThe output oscillating between +14V and -14V when the input D has the boundary voltages in Table 1.\nThe random oscillations when potentiometer voltage is close to zero is most likely caused by the very small oscillating of the DC power source’s output voltages.\nThe oscillating is so small that normally we cannot detect it, but when VD≈0, the slope between -14V and +14V is so large that it makes the very small oscillation visible."
+}

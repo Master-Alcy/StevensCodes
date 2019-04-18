@@ -1,0 +1,13 @@
+{
+  "name": "Assignment6",
+  "version": "1.0.0",
+  "main": "C10E13TestMyRect2D.java",
+  "scripts": {
+  	"build": "javac C10E13MyRectangle2D.java && javac C10E13TestMyRect2D.java && javac C11E1C12E5TestTriangle.java && javac C11E1GeometricObject.java && javac C11E1Triangle_C12E5IllegalTriangleException.java",
+    "start1": "java C10E13TestMyRect2D",
+    "start2": "java C11E1C12E5TestTriangle"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

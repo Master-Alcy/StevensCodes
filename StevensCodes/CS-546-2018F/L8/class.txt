@@ -1,0 +1,26 @@
+>>>>>>>>>>>>>>>>new
+article: new-post   <<<
+form: new-post-form <<<
+label: post-line
+input: full-width-input <<<
+error: error-list <<<
+
+TAGS:
+article,
+h1,h2
+p
+form
+label
+input
+button
+
+>>>>>>>>>>>>>>>>>result
+article: post	<<<
+p: sucess
+p: failure
+error: error-list <<<
+
+TAGS:
+article,
+h1
+p

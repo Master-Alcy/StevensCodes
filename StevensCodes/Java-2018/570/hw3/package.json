@@ -1,0 +1,12 @@
+{
+  "name": "hmCode",
+  "version": "1.0.0",
+  "main": "hmCode.java",
+  "scripts": {
+  	"build": "javac hmCode.java && java hmCode",
+    "start": "javac hmCode.java && java hmCode"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

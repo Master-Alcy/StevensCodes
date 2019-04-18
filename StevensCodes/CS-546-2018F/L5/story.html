@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lab Report</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" title="About Alcy's personal stuffs">index</a></li>
+                <li><a href="education.html" title="About Alcy's school days">education</a></li>
+                <li><a href="story.html" title="About a lab report to share">story</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>My physics lab report</h1>
+
+    <main>
+        <article>
+            <h3>Op-Amp’s open-loop transfer characteristic</h3>
+            <p>
+                Build a voltage divider with potentiometer and side resistors to obtain variable input voltage in the
+                range of approximately +-11 V. Explore an open-loop Op-Amp without a negative feedback: connect divider
+                output to the <em>non-inverting</em> (+) input of the Op-Amp, and connect the inverting (–) input to the ground;
+                later reverse these connections. By slowly adjusting divider voltage near its zero value, find the
+                voltages at which the output switches between +-11 V <em>(the actual corner voltages are too small to be
+                detect; you will obtain upper bounds will be much larger than those expected corner voltages)</em>.
+            </p>
+            <p>
+                Try to observe random oscilloscope switching between ± 14 V occurring when potentiometer output voltage
+                is close to zero, VD ≈ 0, and try to explain the cause of these oscillations in the Report. The output
+                oscillating between +14V and -14V when the input D has the boundary voltages in Table 1.
+            </p>
+            <p>
+                The random oscillations when potentiometer voltage is close to zero is most likely caused by the very
+                small oscillating of the DC power source’s output voltages. The oscillating is so small that normally
+                we cannot detect it, but when VD≈0, the slope between -14V and +14V is so large that it makes the very
+                small oscillation visible. The slope is shown in fig. 5. The slope also shows that the gain of the
+                Op-Amp in open loop is <strong>extremely</strong> high.
+            </p>
+            <h3>Using open loop Op-Amp to produce adjustable-amplitude square wave</h3>
+            <p>
+                Connect Op-Amp as shown in the Figure below, with SG supplying an AC signal (which can be sinusoidal or
+                triangular) to the non-inverting (+) input, while the inverting input is grounded. At the output there
+                is a potentiometer (adjustable voltage divider) which allows to adjust the resulting square wave
+                amplitude: <strong><em>etc...</em></strong>
+            </p>
+        </article>
+    </main>
+</body>
+
+</html>

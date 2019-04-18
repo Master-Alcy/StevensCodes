@@ -1,0 +1,20 @@
+[
+    {
+        "schoolName": "High school A",
+        "degree": "copper",
+        "favoriteClass": "Math",
+        "favoriteMemory": "Drinked some tea"
+    },
+    {
+        "schoolName": "University B",
+        "degree": "silver",
+        "favoriteClass": "Physics",
+        "favoriteMemory": "Ate some apples"
+    },
+    {
+        "schoolName": "Stevens C",
+        "degree": "gold",
+        "favoriteClass": "Computer Science",
+        "favoriteMemory": "Write some codes"
+    }
+]

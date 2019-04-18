@@ -1,0 +1,22 @@
+Good Examples:
+1. Recipe Website with searching 
+2. file parser to analyze statistics
+3. Use other Api to make data into a common Formate
+
+Core Techs:
+1. A user login system (Lab 10)
+
+2. AJAX form submissions (at least one) and error checking (Lecture 12)
+
+3. Data-related code organized in modules. (Normal data folder)
+
+4. A single configuration file that will store configuration settings 
+(URL and databse name)
+
+The proposal will include:
+1. your project idea, 
+2. all features it will include.
+
+Submit two feature sections: 
+1. core (you must implement)
+2. extra (implement if you have time)

@@ -1,0 +1,4 @@
+cd C:/Users/aijin/Desktop/Course/"CS 510"/L1
+cd C:/Users/aijin/Desktop/Course/"CS 510"/L2
+# use "hw1.ml";;
+# use "mod1.ml";;

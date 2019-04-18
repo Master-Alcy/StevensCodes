@@ -1,0 +1,12 @@
+{
+  "name": "lab7",
+  "version": "1.0.0",
+  "main": "lab7.java",
+  "scripts": {
+  	"build": "javac lab7.java && java lab7",
+    "start": "javac lab7.java && java lab7"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}

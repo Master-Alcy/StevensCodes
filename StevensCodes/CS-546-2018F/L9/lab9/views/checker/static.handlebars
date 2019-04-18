@@ -1,0 +1,22 @@
+<form id="static-form" method="post">
+
+  <div class="form-group">
+    <label for="textA">Enter your text</label>
+    <textarea id="textA" name="phrase" rows="4" placeholder="Text goes here" class="form-text-area">{{textIsHere}}</textarea>
+  </div>
+
+  <div class="form-group hidden" id="error-container">
+    <div class="alert alert-danger text-goes-here">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+
+  <div class="form-group hidden" id="result-container">
+    <ol id="attemps" class="alert alert-success text-goes-here">
+    </ol>
+  </div>
+
+</form>

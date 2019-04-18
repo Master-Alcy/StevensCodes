@@ -1,0 +1,19 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+  info: String!
+  feed: [Link!]!
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+}
+
+type Mutation {
+  post(url: String!, description: String!): Link!
+}

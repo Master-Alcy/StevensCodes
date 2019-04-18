@@ -1,0 +1,12 @@
+{
+  "name": "hw4",
+  "version": "1.0.0",
+  "main": "hw4.java",
+  "scripts": {
+  	"build": "javac hw4.java && java hw4",
+    "start": "javac hw4.java && java hw4"
+  },
+  "author": "Jingxuan Ai",
+  "license": "ISC",
+  "description": ""
+}
