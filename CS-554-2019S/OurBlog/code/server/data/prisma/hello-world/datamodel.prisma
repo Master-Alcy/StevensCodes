@@ -2,7 +2,7 @@
 type Link {
   id: ID! @id # Prisma will auto-generate and store globally unique IDs
   createdAt: DateTime! @createdAt # Auto generate the time
-  updatedAt: DateTime @updatedAt
+  updatedAt: DateTime! @updatedAt
   description: String!
   url: String!
 }
