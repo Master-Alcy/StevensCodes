@@ -4,7 +4,7 @@
   "description": "GraphQL Mutation Example",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Orinami/graphql-mutation-example#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.15.3",
     "express-graphql": "^0.6.6",
     "graphql": "^0.10.3",
