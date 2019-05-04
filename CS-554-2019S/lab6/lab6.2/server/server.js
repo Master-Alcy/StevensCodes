@@ -5,7 +5,6 @@ const schema = require('./src/schema.js');
 const app = express();
 
 app.use('*', cors({ credentials: true }));
-//app.use(bodyparser);
 app.use('/', graphqlHTTP({
   schema,
   graphiql: true

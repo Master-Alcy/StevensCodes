@@ -1,19 +1,5 @@
 import gql from "graphql-tag";
 
-const GET_EMPLOYEES = gql`
-  query {
-    employees {
-      id
-      firstName
-      lastName
-      employer {
-        name
-        id
-      }
-    }
-  }
-`;
-
 const GET_ALL_QUOTES = gql`
   query {
     quotes {
@@ -23,105 +9,35 @@ const GET_ALL_QUOTES = gql`
   }
 `;
 
-const GET_EMPLOYERS = gql`
-  query {
-    employers {
-      name
+const ADD_QUOTE = gql`
+  mutation createQuote($quote: String!) {
+    createQuote(input: { quote: $quote }) {
+      id
+      quote
+    }
+  }
+`;
+
+const DELETE_QUOTE = gql`
+  mutation deleteQuote($id: String!) {
+    deleteQuote(input: { id: $id }) {
       id
     }
   }
 `;
 
-const GET_EMPLOYERS_WITH_EMPLOYEES = gql`
-  query {
-    employers {
+const UPDATE_QUOTE = gql`
+  mutation updateQuote($id: String!, $quote: String!) {
+    updateQuote(input: { id: $id, quote: $quote}) {
       id
-      name
-      numOfEmployees
-      employees {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-`;
-
-const ADD_EMPLOYEE = gql`
-  mutation createEmployee(
-    $firstName: String!
-    $lastName: String!
-    $employerId: Int!
-  ) {
-    addEmployee(
-      firstName: $firstName
-      lastName: $lastName
-      employerId: $employerId
-    ) {
-      id
-      firstName
-      lastName
-      employer {
-        name
-        id
-      }
-    }
-  }
-`;
-
-const ADD_EMPLOYER = gql`
-  mutation createEmployer($name: String!) {
-    addEmployer(name: $name) {
-      id
-      name
-      numOfEmployees
-      employees {
-        firstName
-        lastName
-        id
-      }
-    }
-  }
-`;
-
-const DELETE_EMPLOYEE = gql`
-  mutation deleteEmployee($id: String!) {
-    removeEmployee(id: $id) {
-      id
-      firstName
-      lastName
-      employer {
-        name
-        id
-      }
-    }
-  }
-`;
-
-const EDIT_EMPLOYEE = gql`
-  mutation changeEmployee(
-    $id: String!
-    $firstName: String
-    $lastName: String
-    $employerId: Int
-  ) {
-    editEmployee(
-      id: $id
-      employerId: $employerId
-      firstName: $firstName
-      lastName: $lastName
-    ) {
-      id
-      firstName
-      lastName
-      employer {
-        id
-        name
-      }
+      quote
     }
   }
 `;
 
 export default {
-  GET_ALL_QUOTES
+  GET_ALL_QUOTES,
+  ADD_QUOTE,
+  DELETE_QUOTE,
+  UPDATE_QUOTE
 };

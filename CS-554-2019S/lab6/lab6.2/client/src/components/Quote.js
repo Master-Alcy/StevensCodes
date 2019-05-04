@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import queries from "../queries";
 
-import AddModal from "./modals/AddQuote";
-import EditEmployeeModal from "./modals/UpdateQuote";
-import DeleteEmployeeModal from "./modals/DeleteQuote";
+import AddQuote from "./modals/AddQuote";
+import UpdateQuote from "./modals/UpdateQuote";
+import DeleteQuoteModal from "./modals/DeleteQuote";
 
 class Quotes extends Component {
 
@@ -14,25 +14,25 @@ class Quotes extends Component {
         showEditModal: false,
         showAddModal: false,
         showDeleteModal: false,
-        editEmployee: null,
-        deleteEmployee: null
+        editQuote: null,
+        deleteQuote: null
       };
       this.handleOpenEditModal = this.handleOpenEditModal.bind(this);
       this.handleOpenAddModal = this.handleOpenAddModal.bind(this);
       this.handleCloseModals = this.handleCloseModals.bind(this);
     }
 
-    handleOpenEditModal(employee) {
+    handleOpenEditModal(quote) {
       this.setState({
         showEditModal: true,
-        editEmployee: employee
+        editQuote: quote
       });
     }
   
-    handleOpenDeleteModal(employee) {
+    handleOpenDeleteModal(quote) {
       this.setState({
         showDeleteModal: true,
-        deleteEmployee: employee
+        deleteQuote: quote
       });
     }
 
@@ -49,6 +49,7 @@ class Quotes extends Component {
           showAddModal: true 
         });
     }
+
     render() {
       return (
         <div>
@@ -60,20 +61,20 @@ class Quotes extends Component {
             const { quotes } = data;
             if (!quotes) { return null; }
             return (
-            <div>
-            {quotes.map(quote => {
-              return (
-              <div className="card" key={quote.id}>
-              <div className="card-body">
-              <h5 className="card-title">{quote.id}</h5>
-              {quote.quote}
-              <br/>
-              <button className="button" onClick={() => { this.handleOpenEditModal(quote);}}>Edit</button>
-              <button className="button" onClick={() => { this.handleOpenDeleteModal(quote);}}>Delete</button>
-              <br/>
-              </div>
-              </div>);
-              })}
+              <div>
+              {quotes.map(quote => {
+                  return (
+                  <div className="card" key={quote.id}>
+                    <div className="card-body">
+                    <h5 className="card-title">{quote.id}</h5>
+                    {quote.quote}
+                    <br/>
+                    <button className="button" onClick={() => { this.handleOpenEditModal(quote);}}>Edit</button>
+                    <button className="button" onClick={() => { this.handleOpenDeleteModal(quote);}}>Delete</button>
+                    <br/>
+                    </div>
+                  </div>);
+                })}
               </div>);
             }}
             </Query>
@@ -83,6 +84,14 @@ class Quotes extends Component {
             {/*Add Employee Modal */}
 
             {/*Delete Employee Modal */}
+            {this.state && this.state.showDeleteModal && (
+              <DeleteQuoteModal
+                isOpen={this.state.showDeleteModal}
+                handleClose={this.handleCloseModals}
+                deleteQuote={this.state.deleteQuote}
+              />
+            )}
+
         </div>);
     }
 }
