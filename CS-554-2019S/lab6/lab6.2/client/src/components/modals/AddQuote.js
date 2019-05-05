@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-//Import Query from react-apollo
 import { Query, Mutation } from "react-apollo";
 import ReactModal from "react-modal";
-
-//Import the file where my query constants are defined
 import queries from "../../queries";
 
-//For react-modal
 ReactModal.setAppElement("#root");
 const customStyles = {
   content: {
@@ -22,11 +18,7 @@ const customStyles = {
   }
 };
 
-/* The React Apollo package grants access to a Query component, which takes a query as prop and executes it when its rendered. 
-That’s the important part: it executes the query when it is rendered. 
-It uses React’s render props pattern, using a child as a function implementation where you can access the result of the query as an argument.
-*/
-class AddModal extends Component {
+class AddQuoteModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,55 +36,48 @@ class AddModal extends Component {
     this.setState({ showAddModal: false });
     this.props.handleClose(false);
   }
+
   render() {
     let body;
-    //check which add modal they are trying to get to and then render the form, mutation/query accordingly
-    //if Add Employee
-    if (this.props.modal === "addEmployee") {
-      let firstName;
-      let lastName;
-      let employerId;
+    if (this.props.modal === "addQuote") {
+      let quote;
       body = (
         <Mutation
-          mutation={queries.ADD_EMPLOYEE}
-          update={(cache, { data: { addEmployee } }) => {
-            const { employees } = cache.readQuery({
-              query: queries.GET_EMPLOYEES
+          mutation={queries.ADD_QUOTE}
+          update={(cache, { data: { createQuote } }) => {
+            const { quotes } = cache.readQuery({
+              query: queries.GET_ALL_QUOTES
             });
             cache.writeQuery({
-              query: queries.GET_EMPLOYEES,
-              data: { employees: employees.concat([addEmployee]) }
+              query: queries.GET_ALL_QUOTES,
+              data: { quotes: quotes.concat([createQuote]) }
             });
           }}
         >
-          {(addEmployee, { data }) => (
+          {(createQuote, { data }) => (
             <form
               className="form"
-              id="add-employee"
+              id="add-quote"
               onSubmit={e => {
                 e.preventDefault();
-                addEmployee({
+                createQuote({
                   variables: {
-                    firstName: firstName.value,
-                    lastName: lastName.value,
-                    employerId: parseInt(employerId.value)
+                    quote: quote.value
                   }
                 });
-                firstName.value = "";
-                lastName.value = "";
-                employerId.value = "1";
+                quote.value = "";
                 this.setState({ showAddModal: false });
-                alert("Employee Added");
+                alert("Quote Added");
                 this.props.handleClose();
               }}
             >
               <div className="form-group">
                 <label>
-                  First Name:
+                  Quote:
                   <br />
                   <input
                     ref={node => {
-                      firstName = node;
+                      quote = node;
                     }}
                     required
                     autoFocus={true}
@@ -100,115 +85,10 @@ class AddModal extends Component {
                 </label>
               </div>
               <br />
-              <div className="form-group">
-                <label>
-                  Last Name:
-                  <br />
-                  <input
-                    ref={node => {
-                      lastName = node;
-                    }}
-                    required
-                  />
-                </label>
-              </div>
-              <br />
-
-              <Query query={queries.GET_EMPLOYERS}>
-                {({ data }) => {
-                  const { employers } = data;
-                  if (!employers) {
-                    return null;
-                  }
-                  return (
-                    <div className="form-group">
-                      <label>
-                        Employer:
-                        <select
-                          className="form-control"
-                          ref={node => {
-                            employerId = node;
-                          }}
-                        >
-                          {employers.map(employer => {
-                            return (
-                              <option key={employer.id} value={employer.id}>
-                                {employer.name}
-                              </option>
-                            );
-                          })}
-                        </select>
-                      </label>
-                    </div>
-                  );
-                }}
-              </Query>
-              <br />
-              <br />
-              <button className="button add-button" type="submit">
-                Add Employee
-              </button>
+              <button className="button add-button" type="submit">Add Quote</button>
             </form>
           )}
-        </Mutation>
-      );
-      //If add Employer
-    } else if (this.props.modal === "addEmployer") {
-      let name;
-      body = (
-        <Mutation
-          mutation={queries.ADD_EMPLOYER}
-          update={(cache, { data: { addEmployer } }) => {
-            const { employers } = cache.readQuery({
-              query: queries.GET_EMPLOYERS_WITH_EMPLOYEES
-            });
-            cache.writeQuery({
-              query: queries.GET_EMPLOYERS_WITH_EMPLOYEES,
-              data: { employers: employers.concat([addEmployer]) }
-            });
-          }}
-        >
-          {(addEmployer, { data }) => (
-            <form
-              className="form"
-              id="add-employer"
-              onSubmit={e => {
-                e.preventDefault();
-                addEmployer({
-                  variables: {
-                    name: name.value
-                  }
-                });
-                name.value = "";
-                this.setState({ showAddModal: false });
-                alert("Employer Added");
-                this.props.handleClose();
-              }}
-            >
-              <div className="form-group">
-                <label>
-                  Employer Name:
-                  <br />
-                  <input
-                    ref={node => {
-                      name = node;
-                    }}
-                    required
-                    autoFocus={true}
-                  />
-                </label>
-              </div>
-              <br />
-
-              <br />
-              <br />
-              <button className="button add-button" type="submit">
-                Add Employer
-              </button>
-            </form>
-          )}
-        </Mutation>
-      );
+        </Mutation>);
     }
 
     return (
@@ -219,17 +99,11 @@ class AddModal extends Component {
           contentLabel="Add Modal"
           style={customStyles}
         >
-          {body}
-          <button
-            className="button cancel-button"
-            onClick={this.handleCloseAddModal}
-          >
-            Cancel
-          </button>
+        {body}
+        <button className="button cancel-button" onClick={this.handleCloseAddModal}>Cancel</button>
         </ReactModal>
-      </div>
-    );
+      </div>);
   }
 }
 
-export default AddModal;
+export default AddQuoteModal;

@@ -70,7 +70,7 @@ class DeleteQuoteModal extends Component {
             <p>Are you sure you want to delete{" "}{this.state.quote.quote}?</p>
             <form 
               className="form" 
-              id="delete-employee"
+              id="delete-quote"
               onSubmit={e => {
                 e.preventDefault();
                 deleteQuote({
@@ -79,7 +79,7 @@ class DeleteQuoteModal extends Component {
                   }
                 });
                 this.setState({ showDeleteModal: false });
-                alert("Employee Deleted");
+                alert("Quote Deleted");
                 this.props.handleClose();
               }}
             >

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import queries from "../queries";
 
-import AddQuote from "./modals/AddQuote";
-import UpdateQuote from "./modals/UpdateQuote";
+import AddQuoteModel from "./modals/AddQuote";
+import UpdateQuoteModel from "./modals/UpdateQuote";
 import DeleteQuoteModal from "./modals/DeleteQuote";
 
 class Quotes extends Component {
@@ -79,11 +79,22 @@ class Quotes extends Component {
             }}
             </Query>
               
-            {/*Edit Employee Modal - NOT DONE YET */}
+            {this.state && this.state.showEditModal && (
+              <UpdateQuoteModel
+                isOpen={this.state.showEditModal}
+                editQuote={this.state.editQuote}
+                handleClose={this.handleCloseModals}
+              />
+            )}
     
-            {/*Add Employee Modal */}
+            {this.state && this.state.showAddModal && (
+              <AddQuoteModel
+                isOpen={this.state.showAddModal}
+                handleClose={this.handleCloseModals}
+                modal="addQuote"
+              />
+            )}
 
-            {/*Delete Employee Modal */}
             {this.state && this.state.showDeleteModal && (
               <DeleteQuoteModal
                 isOpen={this.state.showDeleteModal}
