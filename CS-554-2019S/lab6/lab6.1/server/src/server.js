@@ -1,6 +1,6 @@
-import express from 'express';
-import schema from './schema';
-import graphqlHTTP from 'express-graphql';
+const express = require('express');
+const schema = require('./schema');
+const graphqlHTTP = require('express-graphql');
 const port = 3001;
 
 const app = express();
@@ -21,6 +21,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
     console.log(`\n\nExpress listen at http://localhost:${port} \n`);
 });
