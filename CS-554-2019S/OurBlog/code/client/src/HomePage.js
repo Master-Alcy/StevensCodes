@@ -57,8 +57,6 @@ class HomePage extends Component {
                         <Col sm={10} >
                             <Query query={getAllBlogs}>
                                 {({ data }) => {
-                                    console.log(data)
-                                    console.log(getAllBlogs)
                                     if (!data) {
                                         return;
                                     }

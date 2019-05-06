@@ -33,7 +33,7 @@ function App() {
 
         </header>
         <Switch>
-          <Route path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
