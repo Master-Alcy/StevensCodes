@@ -85,6 +85,10 @@ async function updateBlog(parent, args, context, info) {
 
 async function updateComment(parent, args, context, info) {
     const userId = getUserId(context);
+    const author = await context.prisma.comment({ id: args.id }).postedBy();
+    if (author.id !== userId) {
+        throw new Error(`Comment: ${args.id} is not posted by User: ${userId}`);
+    }
 
     return context.prisma.updateComment({
         where: { id: args.id },
@@ -95,11 +99,38 @@ async function updateComment(parent, args, context, info) {
     });
 }
 
+async function likeBlog(parent, args, context, info) {
+    const Blog = await context.prisma.blog({ id: args.id });   
+    return context.prisma.updateBlog({
+        where: { id: args.id },
+        data: {
+            likes: Blog.likes + 1
+        }
+    });
+}
+
+async function likeComment(parent, args, context, info) {
+    const Comment = await context.prisma.comment({ id: args.id });   
+    return context.prisma.updateComment({
+        where: { id: args.id },
+        data: {
+            likes: Comment.likes + 1
+        }
+    });
+}
+
+// DELETE -----------------------------------------------------------------
+
+
+
 module.exports = {
     signup,
     login,
     postBlog,
     postComment,
     updateUser,
-    updateBlog
+    updateBlog,
+    updateComment,
+    likeBlog,
+    likeComment
 }

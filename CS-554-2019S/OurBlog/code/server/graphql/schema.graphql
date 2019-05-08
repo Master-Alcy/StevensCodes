@@ -21,6 +21,9 @@ type Mutation {
   postComment(content: String!, blogId: ID!): Comment!
   updateUser(id: ID, email: String, name: String, password: String, newEmail: String, phone: String, address: String, interest: String): User
   updateBlog(id: ID!, title: String, article: String, likes: Int): Blog
+  updateComment(id: ID!, content: String, likes: Int): Comment
+  likeBlog(id: ID!): Blog
+  likeComment(id: ID!): Comment
 }
 
 type AuthPayload {

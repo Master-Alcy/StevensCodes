@@ -46,7 +46,7 @@ function filterBlogsByString(parent, { searchString }, context, info) {
 }
 
 function filterBlogsByLikes(parent, { minLikes }, context, info) {
-    return context.prisma.comments({
+    return context.prisma.blogs({
         where: {
             likes_gte: minLikes
         }
