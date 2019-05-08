@@ -24,6 +24,9 @@ type Mutation {
   updateComment(id: ID!, content: String, likes: Int): Comment
   likeBlog(id: ID!): Blog
   likeComment(id: ID!): Comment
+  deleteUser(id: ID!): User
+  deleteBlog(id: ID!): Blog
+  deleteComment(id: ID!): Comment
 }
 
 type AuthPayload {

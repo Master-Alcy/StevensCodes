@@ -19,7 +19,7 @@ type Blog @model {
   title: String! @unique
   article: String!
   likes: Int! @default(value: 0)
-  postedBy: User! # relation field, this is how to express a one-to-many relationship
+  postedBy: User # relation field, this is how to express a one-to-many relationship
   comments: [Comment!]! @relation(link: INLINE)
 }
 
@@ -29,8 +29,8 @@ type Comment @model {
   updatedAt: DateTime! @updatedAt
   content: String!
   likes: Int! @default(value: 0)
-  postedBy: User!
-  forBlog: Blog!
+  postedBy: User
+  forBlog: Blog
 }
 
 # We can use @embedded instead of @model for documents are not stored in their own collection

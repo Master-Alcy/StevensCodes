@@ -68,7 +68,9 @@ function updateUser(parent, args, context, info) {
 
 async function updateBlog(parent, args, context, info) {
     const userId = getUserId(context);
+    console.log(userId);
     const author = await context.prisma.blog({ id: args.id }).postedBy();
+    console.log(author.id);
     if (author.id !== userId) {
         throw new Error(`Blog: ${args.id} is not posted by User: ${userId}`);
     }
@@ -120,8 +122,41 @@ async function likeComment(parent, args, context, info) {
 }
 
 // DELETE -----------------------------------------------------------------
+async function deleteUser(parent, args, context, info) {
+    const userId = getUserId(context);
+    const author = await context.prisma.user({ id: args.id });
+    if (author.id !== userId) {
+        throw new Error(`User: ${userId} is not authorized to delete User: ${args.id}`);
+    }
 
+    return context.prisma.deleteUser({
+        id: args.id
+    });
+}
 
+async function deleteBlog(parent, args, context, info) {
+    const userId = getUserId(context);
+    const author = await context.prisma.blog({ id: args.id }).postedBy();
+    if (author.id !== userId) {
+        throw new Error(`User: ${userId} is not authorized to delete Blog: ${args.id}`);
+    }
+
+    return context.prisma.deleteBlog({
+        id: args.id
+    });
+}
+
+async function deleteComment(parent, args, context, info) {
+    const userId = getUserId(context);
+    const author = await context.prisma.comment({ id: args.id }).postedBy();
+    if (author.id !== userId) {
+        throw new Error(`User: ${userId} is not authorized to delete Comment: ${args.id}`);
+    }
+
+    return context.prisma.deleteComment({
+        id: args.id
+    });
+}
 
 module.exports = {
     signup,
@@ -132,5 +167,8 @@ module.exports = {
     updateBlog,
     updateComment,
     likeBlog,
-    likeComment
+    likeComment,
+    deleteUser,
+    deleteBlog,
+    deleteComment
 }

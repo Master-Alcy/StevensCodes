@@ -271,13 +271,15 @@ export interface CommentCreateWithoutForBlogInput {
   id?: Maybe<ID_Input>;
   content: String;
   likes?: Maybe<Int>;
-  postedBy: UserCreateOneWithoutCommentsInput;
+  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
 }
 
-export interface BlogUpdateOneRequiredWithoutCommentsInput {
+export interface BlogUpdateOneWithoutCommentsInput {
   create?: Maybe<BlogCreateWithoutCommentsInput>;
   update?: Maybe<BlogUpdateWithoutCommentsDataInput>;
   upsert?: Maybe<BlogUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<BlogWhereUniqueInput>;
 }
 
@@ -404,21 +406,23 @@ export interface BlogUpdateInput {
   title?: Maybe<String>;
   article?: Maybe<String>;
   likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneRequiredWithoutBlogsInput>;
+  postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
   comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
 }
 
 export interface CommentUpdateInput {
   content?: Maybe<String>;
   likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
-  forBlog?: Maybe<BlogUpdateOneRequiredWithoutCommentsInput>;
+  postedBy?: Maybe<UserUpdateOneWithoutCommentsInput>;
+  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
 }
 
-export interface UserUpdateOneRequiredWithoutBlogsInput {
+export interface UserUpdateOneWithoutBlogsInput {
   create?: Maybe<UserCreateWithoutBlogsInput>;
   update?: Maybe<UserUpdateWithoutBlogsDataInput>;
   upsert?: Maybe<UserUpsertWithoutBlogsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -426,8 +430,8 @@ export interface CommentCreateInput {
   id?: Maybe<ID_Input>;
   content: String;
   likes?: Maybe<Int>;
-  postedBy: UserCreateOneWithoutCommentsInput;
-  forBlog: BlogCreateOneWithoutCommentsInput;
+  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
+  forBlog?: Maybe<BlogCreateOneWithoutCommentsInput>;
 }
 
 export interface UserUpdateWithoutBlogsDataInput {
@@ -470,7 +474,7 @@ export interface BlogUpdateManyWithWhereNestedInput {
 export interface CommentUpdateWithoutPostedByDataInput {
   content?: Maybe<String>;
   likes?: Maybe<Int>;
-  forBlog?: Maybe<BlogUpdateOneRequiredWithoutCommentsInput>;
+  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
 }
 
 export interface UserCreateOneWithoutBlogsInput {
@@ -561,7 +565,7 @@ export interface BlogUpdateWithoutCommentsDataInput {
   title?: Maybe<String>;
   article?: Maybe<String>;
   likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneRequiredWithoutBlogsInput>;
+  postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
 }
 
 export interface BlogCreateOneWithoutCommentsInput {
@@ -796,7 +800,7 @@ export interface BlogCreateInput {
   title: String;
   article: String;
   likes?: Maybe<Int>;
-  postedBy: UserCreateOneWithoutBlogsInput;
+  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
   comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
 }
 
@@ -827,7 +831,7 @@ export interface CommentCreateWithoutPostedByInput {
   id?: Maybe<ID_Input>;
   content: String;
   likes?: Maybe<Int>;
-  forBlog: BlogCreateOneWithoutCommentsInput;
+  forBlog?: Maybe<BlogCreateOneWithoutCommentsInput>;
 }
 
 export interface CommentUpdateWithWhereUniqueWithoutForBlogInput {
@@ -847,7 +851,7 @@ export interface UserSubscriptionWhereInput {
 export interface CommentUpdateWithoutForBlogDataInput {
   content?: Maybe<String>;
   likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneRequiredWithoutCommentsInput>;
+  postedBy?: Maybe<UserUpdateOneWithoutCommentsInput>;
 }
 
 export type CommentWhereUniqueInput = AtLeastOne<{
@@ -891,10 +895,12 @@ export interface UserUpdateWithoutCommentsDataInput {
   blogs?: Maybe<BlogUpdateManyWithoutPostedByInput>;
 }
 
-export interface UserUpdateOneRequiredWithoutCommentsInput {
+export interface UserUpdateOneWithoutCommentsInput {
   create?: Maybe<UserCreateWithoutCommentsInput>;
   update?: Maybe<UserUpdateWithoutCommentsDataInput>;
   upsert?: Maybe<UserUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -919,7 +925,7 @@ export interface BlogCreateWithoutCommentsInput {
   title: String;
   article: String;
   likes?: Maybe<Int>;
-  postedBy: UserCreateOneWithoutBlogsInput;
+  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
 }
 
 export interface UserCreateWithoutBlogsInput {

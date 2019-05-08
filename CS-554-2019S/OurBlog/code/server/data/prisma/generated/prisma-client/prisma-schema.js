@@ -26,7 +26,7 @@ type Blog {
   title: String!
   article: String!
   likes: Int!
-  postedBy: User!
+  postedBy: User
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
 }
 
@@ -41,7 +41,7 @@ input BlogCreateInput {
   title: String!
   article: String!
   likes: Int
-  postedBy: UserCreateOneWithoutBlogsInput!
+  postedBy: UserCreateOneWithoutBlogsInput
   comments: CommentCreateManyWithoutForBlogInput
 }
 
@@ -60,7 +60,7 @@ input BlogCreateWithoutCommentsInput {
   title: String!
   article: String!
   likes: Int
-  postedBy: UserCreateOneWithoutBlogsInput!
+  postedBy: UserCreateOneWithoutBlogsInput
 }
 
 input BlogCreateWithoutPostedByInput {
@@ -192,7 +192,7 @@ input BlogUpdateInput {
   title: String
   article: String
   likes: Int
-  postedBy: UserUpdateOneRequiredWithoutBlogsInput
+  postedBy: UserUpdateOneWithoutBlogsInput
   comments: CommentUpdateManyWithoutForBlogInput
 }
 
@@ -225,10 +225,12 @@ input BlogUpdateManyWithWhereNestedInput {
   data: BlogUpdateManyDataInput!
 }
 
-input BlogUpdateOneRequiredWithoutCommentsInput {
+input BlogUpdateOneWithoutCommentsInput {
   create: BlogCreateWithoutCommentsInput
   update: BlogUpdateWithoutCommentsDataInput
   upsert: BlogUpsertWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
   connect: BlogWhereUniqueInput
 }
 
@@ -236,7 +238,7 @@ input BlogUpdateWithoutCommentsDataInput {
   title: String
   article: String
   likes: Int
-  postedBy: UserUpdateOneRequiredWithoutBlogsInput
+  postedBy: UserUpdateOneWithoutBlogsInput
 }
 
 input BlogUpdateWithoutPostedByDataInput {
@@ -345,8 +347,8 @@ type Comment {
   updatedAt: DateTime!
   content: String!
   likes: Int!
-  postedBy: User!
-  forBlog: Blog!
+  postedBy: User
+  forBlog: Blog
 }
 
 type CommentConnection {
@@ -359,8 +361,8 @@ input CommentCreateInput {
   id: ID
   content: String!
   likes: Int
-  postedBy: UserCreateOneWithoutCommentsInput!
-  forBlog: BlogCreateOneWithoutCommentsInput!
+  postedBy: UserCreateOneWithoutCommentsInput
+  forBlog: BlogCreateOneWithoutCommentsInput
 }
 
 input CommentCreateManyWithoutForBlogInput {
@@ -377,14 +379,14 @@ input CommentCreateWithoutForBlogInput {
   id: ID
   content: String!
   likes: Int
-  postedBy: UserCreateOneWithoutCommentsInput!
+  postedBy: UserCreateOneWithoutCommentsInput
 }
 
 input CommentCreateWithoutPostedByInput {
   id: ID
   content: String!
   likes: Int
-  forBlog: BlogCreateOneWithoutCommentsInput!
+  forBlog: BlogCreateOneWithoutCommentsInput
 }
 
 type CommentEdge {
@@ -490,8 +492,8 @@ input CommentSubscriptionWhereInput {
 input CommentUpdateInput {
   content: String
   likes: Int
-  postedBy: UserUpdateOneRequiredWithoutCommentsInput
-  forBlog: BlogUpdateOneRequiredWithoutCommentsInput
+  postedBy: UserUpdateOneWithoutCommentsInput
+  forBlog: BlogUpdateOneWithoutCommentsInput
 }
 
 input CommentUpdateManyDataInput {
@@ -536,13 +538,13 @@ input CommentUpdateManyWithWhereNestedInput {
 input CommentUpdateWithoutForBlogDataInput {
   content: String
   likes: Int
-  postedBy: UserUpdateOneRequiredWithoutCommentsInput
+  postedBy: UserUpdateOneWithoutCommentsInput
 }
 
 input CommentUpdateWithoutPostedByDataInput {
   content: String
   likes: Int
-  forBlog: BlogUpdateOneRequiredWithoutCommentsInput
+  forBlog: BlogUpdateOneWithoutCommentsInput
 }
 
 input CommentUpdateWithWhereUniqueWithoutForBlogInput {
@@ -824,17 +826,21 @@ input UserUpdateManyMutationInput {
   interest: String
 }
 
-input UserUpdateOneRequiredWithoutBlogsInput {
+input UserUpdateOneWithoutBlogsInput {
   create: UserCreateWithoutBlogsInput
   update: UserUpdateWithoutBlogsDataInput
   upsert: UserUpsertWithoutBlogsInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutCommentsInput {
+input UserUpdateOneWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput
   update: UserUpdateWithoutCommentsDataInput
   upsert: UserUpsertWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
