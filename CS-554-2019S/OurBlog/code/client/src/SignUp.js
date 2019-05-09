@@ -48,7 +48,7 @@ class SignUpContainer extends Component {
         else {
             return <div>
                 <Container>
-                    <Row>
+                    <Row className="justify-content-md-center">
                         <Col lg={4}>
                             <h1>Sign Up</h1>
                             <Mutation mutation={queries.SIGN_UP}>
@@ -56,6 +56,7 @@ class SignUpContainer extends Component {
                                     <Form onSubmit={async (e) => {
                                         e.preventDefault();
                                         await this.handleSignUp;
+                                        console.log(this.state);
                                         signup({
                                             variables: {
                                                 email: this.state.email,

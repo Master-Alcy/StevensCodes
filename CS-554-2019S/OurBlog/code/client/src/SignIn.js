@@ -49,46 +49,50 @@ class SignInContainer extends Component {
             return (
                 <div>
                     <Container>
-                        <Row>
+                        <Row className="justify-content-md-center">
                             <Col lg={4}>
                                 <h1>Sign In</h1>
                                 <Mutation mutation={queries.LOGIN}>
-                                    {(login, { data }) => (
-                                        <Form onSubmit={async(e) => {
-                                            e.preventDefault();
-                                            await this.handleSignIn
-                                            login({
-                                                variables: {
-                                                    email: this.state.email,
-                                                    password: this.state.password
-                                                }
-                                            });
-                                        }}>
-                                            <Form.Group>
-                                                <Form.Label>Email</Form.Label>
-                                                <Form.Control
-                                                    name="email"
-                                                    type="email"
-                                                    placeholder="Email"
-                                                    value={this.state.email}
-                                                    onChange={this.handleInputChange}
-                                                />
-                                            </Form.Group>
+                                    {(login, { data }) => {
+                                        return (
+                                            <div>
+                                                <Form onSubmit={async(e) => {
+                                                    e.preventDefault();
+                                                    await this.handleSignIn
+                                                    login({
+                                                        variables: {
+                                                            email: this.state.email,
+                                                            password: this.state.password
+                                                        }
+                                                    });
+                                                }}>
+                                                    <Form.Group>
+                                                        <Form.Label>Email</Form.Label>
+                                                        <Form.Control
+                                                            name="email"
+                                                            type="email"
+                                                            placeholder="Email"
+                                                            value={this.state.email}
+                                                            onChange={this.handleInputChange}
+                                                        />
+                                                    </Form.Group>
 
-                                            <Form.Group>
-                                                <Form.Label>Password</Form.Label>
-                                                <Form.Control
-                                                    name="password"
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    value={this.state.password}
-                                                    onChange={this.handleInputChange}
-                                                />
-                                            </Form.Group>
-                                            <Button type="submit">Sign In</Button>
-                                        </Form>
-                                    )};
-                                </Mutation>
+                                                    <Form.Group>
+                                                        <Form.Label>Password</Form.Label>
+                                                        <Form.Control
+                                                            name="password"
+                                                            type="password"
+                                                            placeholder="Password"
+                                                            value={this.state.password}
+                                                            onChange={this.handleInputChange}
+                                                        />
+                                                    </Form.Group>
+                                                    <Button type="submit">Sign In</Button>
+                                                </Form>
+                                            </div>
+                                        )
+                                    }}
+                                 </Mutation>
                             </Col>
                         </Row>
                     </Container>

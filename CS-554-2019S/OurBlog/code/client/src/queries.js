@@ -123,19 +123,20 @@ const SIGN_UP = gql`
             email: $email
         ) {
            token
-           user 
+           user {
+               id
+           }
         }
     }
 `;
 
 const LOGIN = gql`
-    mutation login($email: String!, $password: String!) {
+    mutation login($email: String!, $password: String!){
         login(
             email: $email,
             password: $password
         ) {
             token
-            user
         }
     }
 `;
