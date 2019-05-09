@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap';
 import LikeButton from './LikeButton';
 import { Query } from 'react-apollo';
 import queries from '../queries';
-import ErrorPage from './ErrorPage';
 
 const ArticleCard = props => {
     console.log(props)

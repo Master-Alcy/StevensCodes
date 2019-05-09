@@ -4,11 +4,8 @@ import { Query, Mutation } from 'react-apollo';
 import ErrorPage from '../components/ErrorPage';
 import queries from '../queries';
 
-var im = require('imagemagick');
-
 class NewUserSurvey extends Component {
     render() {
-        // let name;
         let phone, address, interest;
         let street_address, address2, city, state, zipcode;
         return (
@@ -42,14 +39,12 @@ class NewUserSurvey extends Component {
                                                         address = address_arr.join(", ");
                                                         updateUser({
                                                             variables: {
-                                                                // name: name.value,
                                                                 id: me.id,
                                                                 phone: phone.value,
                                                                 address: address,
                                                                 interest: interest.value
                                                             }
                                                         });
-                                                        // name.value = "";
                                                         phone.value = "";
                                                         interest.value = "";
                                                         street_address.value = "";
@@ -58,23 +53,6 @@ class NewUserSurvey extends Component {
                                                         state.value = "";
                                                         zipcode.value = "";
                                                     }}>
-                                                        <Form.Group>
-                                                            <Form.Label>Profile Image</Form.Label>
-                                                            <Form.Control type="file" name="file" id="profile_img" />
-                                                        </Form.Group>
-                                                        {/* <Form.Group>
-                                                    <Form.Label>Name</Form.Label>
-                                                    <Form.Control
-                                                        name="name"
-                                                        type="name"
-                                                        placeholder="Name"
-                                                        ref={node => {
-                                                            name = node
-                                                        }}
-                                                        required
-                                                        autoFocus={true}
-                                                    />
-                                                </Form.Group> */}
                                                         <Form.Group>
                                                             <Form.Label>Phone Number</Form.Label>
                                                             <Form.Control

@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Instruction for Client
+
+## Installztion
+
+You need to install ImageMagic at: <https://imagemagick.org/script/download.php>
 
 ## Available Scripts
 

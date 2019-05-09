@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Row, Col, FormGroup } from 'react-bootstrap';
 import { Query, Mutation } from 'react-apollo';
 import queries from '../queries';
-import { Link , Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class NewArticle extends Component {

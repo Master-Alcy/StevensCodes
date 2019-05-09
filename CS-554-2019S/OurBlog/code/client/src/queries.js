@@ -115,6 +115,31 @@ const LIKE_BLOG = gql`
     }
 `;
 
+const SIGN_UP = gql`
+    mutation signup($name: String!, $email: String!, $password: String!) {
+        signup(
+            name: $name,
+            password: $password,
+            email: $email
+        ) {
+           token
+           user 
+        }
+    }
+`;
+
+const LOGIN = gql`
+    mutation login($email: String!, $password: String!) {
+        login(
+            email: $email,
+            password: $password
+        ) {
+            token
+            user
+        }
+    }
+`;
+
 export default {
     ME,
     UPDATE_USER,
@@ -123,5 +148,7 @@ export default {
     ELASTIC_SEARCH,
     GET_BLOG,
     GET_ALL_TAGS,
-    LIKE_BLOG
+    LIKE_BLOG,
+    SIGN_UP,
+    LOGIN
 }
