@@ -6,12 +6,13 @@ function comments(parent, args, context) {
     return context.prisma.blog({ id: parent.id }).comments();
 }
 
-function tags(parent, args, context) {
-    return context.prisma.blog({ id: parent.id }).tags();
+function relatedTag(parent, args, context) {
+    return context.prisma.blog({ id: parent.id }).relatedTag();
 }
+
 
 module.exports = {
     postedBy,
     comments,
-    tags
+    relatedTag
 }

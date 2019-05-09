@@ -19,6 +19,7 @@ I attached string we need with responce format to make it easier for front-end t
     - [2.4 - get all comments](#24---get-all-comments)
     - [2.5 - get all tags](#25---get-all-tags)
     - [2.6 - elastic search for blogs](#26---elastic-search-for-blogs)
+    - [2.7 - other APIs](#27---other-apis)
   - [3 - UPDATE](#3---update)
     - [3.1 - update user](#31---update-user)
     - [3.2 - update blog](#32---update-blog)
@@ -545,6 +546,17 @@ query {
   }
 }
 ~~~
+
+### 2.7 - other APIs
+
+1. getUser(id: ID, email: String): User
+2. getBlog(id: ID, title: String): Blog
+3. getComment(id: ID!): Comment
+4. getTag(id: ID, tag: String): Tag
+5. filterBlogsByString(searchString: String): [Blog!]!
+6. filterBlogsByLikes(minLikes: Int): [Blog!]!
+7. filterCommentsByString(searchString: String): [Comment!]!
+8. filterCommentsByLikes(minLikes: Int): [Comment!]!
 
 ## 3 - UPDATE
 

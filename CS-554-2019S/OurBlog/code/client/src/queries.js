@@ -52,13 +52,76 @@ query {
         comments {
           id
         }
+        tags {
+            tag
+        }
     }
 }
+`;
+
+const ELASTIC_SEARCH = gql`
+query elasticSearch($searchString: String){
+    elasticSearch(
+        searchString: $searchString
+    ) {
+        id
+        title
+        text
+    }
+}
+`;
+
+const GET_BLOG = gql`
+    query getBlog($id: String!) {
+        getBlog(
+            id: $id
+        ) {
+            id
+            createdAt
+            updatedAt
+            title
+            article
+            likes
+            postedBy {
+                id
+                name
+            }
+            comments {
+                id
+            }
+        }
+    }
+`;
+
+const GET_ALL_TAGS = gql`
+    query{
+        allTags{
+            id
+            tag
+        }
+    }
+`;
+
+const LIKE_BLOG = gql`
+    mutation likeBlog($id: ID!){
+        likeBlog(
+            id: $id
+        ) {
+            id
+            title
+            article
+            likes
+        }
+    }
 `;
 
 export default {
     ME,
     UPDATE_USER,
     POST_BLOG,
-    GET_ALL_BLOGS
+    GET_ALL_BLOGS,
+    ELASTIC_SEARCH,
+    GET_BLOG,
+    GET_ALL_TAGS,
+    LIKE_BLOG
 }

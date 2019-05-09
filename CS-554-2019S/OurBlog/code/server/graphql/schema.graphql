@@ -28,6 +28,8 @@ type Mutation {
   updateComment(id: ID!, content: String, likes: Int): Comment
   likeBlog(id: ID, title: String): Blog
   likeComment(id: ID!): Comment
+  addBlogToTagById(blogId: ID!, tagId: ID!): Tag
+  addBlogToTagByTitle(title: String!, tag: String!): Tag
   deleteUser(id: ID, email: String): User
   deleteBlog(id: ID, title: String): Blog
   deleteComment(id: ID!): Comment
@@ -67,7 +69,7 @@ type Blog {
   likes: Int
   postedBy: User
   comments: [Comment!]!
-  tags: [Tag!]!
+  relatedTag: Tag
 }
 
 type Comment {
@@ -83,5 +85,5 @@ type Comment {
 type Tag {
   id: ID!
   tag: String!
-  postedBy: Blog
+  blogs: [Blog!]!
 }

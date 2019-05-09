@@ -46,10 +46,10 @@ async function main() {
             console.log(`<Log>[${new Date().toUTCString()}]: Created new comment: ${JSON.stringify(newComment)}`);
         }// end comment seed
 
-        for (let k = 0; k < Random.natural(1, 2); k++) {
+        for (let k = 0; k < Random.natural(1, 3); k++) {
             const newTag = await prisma.createTag({
                 tag: Random.word(2, 4),
-                postedBy: {
+                blogs: {
                     connect: {
                         id: newBlog.id
                     }

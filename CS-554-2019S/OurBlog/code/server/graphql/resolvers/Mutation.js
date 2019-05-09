@@ -1,5 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const redis = require('redis');
+const bluebird = require("bluebird");
+
+bluebird.promisifyAll(redis);
+const client = redis.createClient(); // localhost:6379
+
 const { APP_SECRET, getUserId } = require('../utils');
 const solr = require('../../solr');
 
@@ -62,7 +68,7 @@ function postTag(parent, args, context, info) {
     }
     return context.prisma.createTag({
         tag: args.tag,
-        postedBy: {
+        blogs: {
             connect: {
                 id: args.blogId             
             }
@@ -93,8 +99,8 @@ async function updateBlog(parent, args, context, info) {
         if (author.id !== userId) {
             throw new Error(`Blog: ${args.id} is not posted by User: ${userId}`);
         }
-       
-        return context.prisma.updateBlog({
+
+        const Blog = await context.prisma.updateBlog({
             where: { id: args.id },
             data: {
                 title: args.newTitle,
@@ -102,13 +108,17 @@ async function updateBlog(parent, args, context, info) {
                 likes: args.likes
             }
         });
+        const esData = await solr.createSolrCompatibleDocument(Blog.id, Blog.title, Blog.article);
+        await solr.update(esData);
+
+        return Blog;
     } else if (args.title) {
         const author = await context.prisma.blog({ title: args.title }).postedBy();
         if (author.id !== userId) {
             throw new Error(`Blog: ${args.title} is not posted by User: ${userId}`);
         }
        
-        return context.prisma.updateBlog({
+        const Blog = await context.prisma.updateBlog({
             where: { title: args.title },
             data: {
                 title: args.newTitle,
@@ -116,6 +126,10 @@ async function updateBlog(parent, args, context, info) {
                 likes: args.likes
             }
         });
+        const esData = await solr.createSolrCompatibleDocument(Blog.id, Blog.title, Blog.article);
+        await solr.update(esData);
+        
+        return Blog;
     }
     throw new Error("No unique identifier for Blog provided");
 }
@@ -137,8 +151,20 @@ async function updateComment(parent, args, context, info) {
 }
 
 async function likeBlog(parent, { id, title }, context, info) {
+    const userId = getUserId(context);
+
     if (id) {
-        const Blog = await context.prisma.blog({ id });   
+        const Blog = await context.prisma.blog({ id }); 
+        const checkUser = await client.existsAsync(userId);
+        if (checkUser === 1) {
+            const checkBlog = await client.hexistsAsync(userId, Blog.id);
+            if (checkBlog === 1) {
+                // This userId, blogId pair exists
+                return Blog;
+            }            
+        } // pair not exists
+        await client.hsetAsync(userId, Blog.id, "");
+
         return context.prisma.updateBlog({
             where: { id },
             data: {
@@ -146,7 +172,16 @@ async function likeBlog(parent, { id, title }, context, info) {
             }
         });
     } else if (title) {
-        const Blog = await context.prisma.blog({ title });   
+        const Blog = await context.prisma.blog({ title }); 
+        const checkUser = await client.existsAsync(userId);
+        if (checkUser === 1) {
+            const checkBlog = await client.hexistsAsync(userId, Blog.id);
+            if (checkBlog === 1) { // This userId, blogId pair exists
+                return Blog;
+            }
+        } // pair not exists
+        await client.hsetAsync(userId, Blog.id, "");
+
         return context.prisma.updateBlog({
             where: { title },
             data: {
@@ -158,11 +193,57 @@ async function likeBlog(parent, { id, title }, context, info) {
 }
 
 async function likeComment(parent, args, context, info) {
-    const Comment = await context.prisma.comment({ id: args.id });   
+    const userId = getUserId(context);
+    const Comment = await context.prisma.comment({ id: args.id });
+    const checkUser = await client.existsAsync(userId);
+    if (checkUser === 1) {
+        const checkComment = await client.hexistsAsync(userId, Comment.id);
+        if (checkComment === 1) { // This userId, blogId pair exists
+            return Comment;
+        }
+    } // pair not exists
+    await client.hsetAsync(userId, Comment.id, "");
+
     return context.prisma.updateComment({
         where: { id: args.id },
         data: {
             likes: Comment.likes + 1
+        }
+    });
+}
+
+async function addBlogToTagById(parent, { blogId, tagId }, context, info) {
+    const userId = getUserId(context);
+    if (!userId) {
+        throw new Error("Only login user can  Blog to Tag");
+    }
+
+    return context.prisma.updateTag({
+        where: { id: tagId },
+        data: {
+            blogs: {
+                connect: {
+                    id: blogId
+                }
+            }
+        }
+    });
+}
+
+async function addBlogToTagByTitle(parent, { title, tag }, context, info) {
+    const userId = getUserId(context);
+    if (!userId) {
+        throw new Error("Only login user can  Blog to Tag");
+    }
+
+    return context.prisma.updateTag({
+        where: { tag },
+        data: {
+            blogs: {
+                connect: {
+                    title
+                }
+            }
         }
     });
 }
@@ -250,6 +331,8 @@ module.exports = {
     updateComment,
     likeBlog,
     likeComment,
+    addBlogToTagById,
+    addBlogToTagByTitle,
     deleteUser,
     deleteBlog,
     deleteComment,

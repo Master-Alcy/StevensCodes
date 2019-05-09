@@ -17,6 +17,10 @@
 
 ## 1 - Installation and Test for Prisma Server
 
+### IMPORTANT
+
+You need redis server running at <http://localhost:6379>
+
 ### 1.1.1 - Installation for Windows
 
 1. **npm install -g prisma** (**IMPORTANT**)
