@@ -1,28 +1,8 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Container, Col } from 'react-bootstrap';
 import ArticleList from './components/ArticleList';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-
-const getAllBlogs = gql`
-query {
-    allBlogs {
-        id
-        createdAt
-        updatedAt
-        title
-        article
-        likes
-        postedBy {
-          id
-          name
-        }
-        comments {
-          id
-        }
-    }
-}
-`;
+import queries from './queries';
 
 class HomePage extends Component {
 
@@ -55,7 +35,7 @@ class HomePage extends Component {
                             </div>
                         </Col>
                         <Col sm={10} >
-                            <Query query={getAllBlogs}>
+                            <Query query={queries.GET_ALL_BLOGS}>
                                 {({ data }) => {
                                     if (!data) {
                                         return;

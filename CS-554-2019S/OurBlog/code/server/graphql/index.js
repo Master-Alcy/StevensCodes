@@ -3,13 +3,15 @@ const Mutation = require('./resolvers/Mutation');
 const User = require('./resolvers/User');
 const Blog = require('./resolvers/Blog');
 const Comment = require('./resolvers/Comment');
+const Tag = require('./resolvers/Tag');
 
 const resolvers = {
   Query,
   Mutation,
   User,
   Blog,
-  Comment
+  Comment,
+  Tag
 }
 
 module.exports = resolvers;

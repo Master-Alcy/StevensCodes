@@ -18,6 +18,7 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   blog: (where?: BlogWhereInput) => Promise<boolean>;
   comment: (where?: CommentWhereInput) => Promise<boolean>;
+  tag: (where?: TagWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -78,6 +79,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => CommentConnectionPromise;
+  tag: (where: TagWhereUniqueInput) => TagNullablePromise;
+  tags: (args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Tag>;
+  tagsConnection: (args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => TagConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -135,6 +155,22 @@ export interface Prisma {
   }) => CommentPromise;
   deleteComment: (where: CommentWhereUniqueInput) => CommentPromise;
   deleteManyComments: (where?: CommentWhereInput) => BatchPayloadPromise;
+  createTag: (data: TagCreateInput) => TagPromise;
+  updateTag: (args: {
+    data: TagUpdateInput;
+    where: TagWhereUniqueInput;
+  }) => TagPromise;
+  updateManyTags: (args: {
+    data: TagUpdateManyMutationInput;
+    where?: TagWhereInput;
+  }) => BatchPayloadPromise;
+  upsertTag: (args: {
+    where: TagWhereUniqueInput;
+    create: TagCreateInput;
+    update: TagUpdateInput;
+  }) => TagPromise;
+  deleteTag: (where: TagWhereUniqueInput) => TagPromise;
+  deleteManyTags: (where?: TagWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -166,6 +202,9 @@ export interface Subscription {
   comment: (
     where?: CommentSubscriptionWhereInput
   ) => CommentSubscriptionPayloadSubscription;
+  tag: (
+    where?: TagSubscriptionWhereInput
+  ) => TagSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -205,6 +244,8 @@ export type CommentOrderByInput =
   | "likes_ASC"
   | "likes_DESC";
 
+export type TagOrderByInput = "id_ASC" | "id_DESC" | "tag_ASC" | "tag_DESC";
+
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -225,27 +266,12 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface CommentUpdateManyWithoutPostedByInput {
-  create?: Maybe<
-    CommentCreateWithoutPostedByInput[] | CommentCreateWithoutPostedByInput
-  >;
-  delete?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
-  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
-  set?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
-  disconnect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
-  update?: Maybe<
-    | CommentUpdateWithWhereUniqueWithoutPostedByInput[]
-    | CommentUpdateWithWhereUniqueWithoutPostedByInput
-  >;
-  upsert?: Maybe<
-    | CommentUpsertWithWhereUniqueWithoutPostedByInput[]
-    | CommentUpsertWithWhereUniqueWithoutPostedByInput
-  >;
-  deleteMany?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
-  updateMany?: Maybe<
-    | CommentUpdateManyWithWhereNestedInput[]
-    | CommentUpdateManyWithWhereNestedInput
-  >;
+export interface BlogUpdateWithoutCommentsDataInput {
+  title?: Maybe<String>;
+  article?: Maybe<String>;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
+  tags?: Maybe<TagUpdateManyWithoutPostedByInput>;
 }
 
 export type BlogWhereUniqueInput = AtLeastOne<{
@@ -253,233 +279,10 @@ export type BlogWhereUniqueInput = AtLeastOne<{
   title?: Maybe<String>;
 }>;
 
-export interface CommentCreateManyWithoutForBlogInput {
-  create?: Maybe<
-    CommentCreateWithoutForBlogInput[] | CommentCreateWithoutForBlogInput
-  >;
-  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
-}
-
-export interface BlogUpdateWithoutPostedByDataInput {
-  title?: Maybe<String>;
-  article?: Maybe<String>;
-  likes?: Maybe<Int>;
-  comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
-}
-
-export interface CommentCreateWithoutForBlogInput {
-  id?: Maybe<ID_Input>;
-  content: String;
-  likes?: Maybe<Int>;
-  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
-}
-
-export interface BlogUpdateOneWithoutCommentsInput {
-  create?: Maybe<BlogCreateWithoutCommentsInput>;
-  update?: Maybe<BlogUpdateWithoutCommentsDataInput>;
-  upsert?: Maybe<BlogUpsertWithoutCommentsInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<BlogWhereUniqueInput>;
-}
-
-export interface UserCreateOneWithoutCommentsInput {
-  create?: Maybe<UserCreateWithoutCommentsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface CommentWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  likes?: Maybe<Int>;
-  likes_not?: Maybe<Int>;
-  likes_in?: Maybe<Int[] | Int>;
-  likes_not_in?: Maybe<Int[] | Int>;
-  likes_lt?: Maybe<Int>;
-  likes_lte?: Maybe<Int>;
-  likes_gt?: Maybe<Int>;
-  likes_gte?: Maybe<Int>;
-  postedBy?: Maybe<UserWhereInput>;
-  forBlog?: Maybe<BlogWhereInput>;
-  AND?: Maybe<CommentWhereInput[] | CommentWhereInput>;
-}
-
-export interface UserCreateWithoutCommentsInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  password: String;
-  email: String;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  blogs?: Maybe<BlogCreateManyWithoutPostedByInput>;
-}
-
-export interface CommentSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CommentWhereInput>;
-  AND?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
-}
-
-export interface BlogCreateManyWithoutPostedByInput {
-  create?: Maybe<
-    BlogCreateWithoutPostedByInput[] | BlogCreateWithoutPostedByInput
-  >;
-  connect?: Maybe<BlogWhereUniqueInput[] | BlogWhereUniqueInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
-  password?: Maybe<String>;
-  email?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-}
-
-export interface BlogCreateWithoutPostedByInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  article: String;
-  likes?: Maybe<Int>;
-  comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  password: String;
-  email: String;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  blogs?: Maybe<BlogCreateManyWithoutPostedByInput>;
-  comments?: Maybe<CommentCreateManyWithoutPostedByInput>;
-}
-
-export interface BlogUpdateInput {
-  title?: Maybe<String>;
-  article?: Maybe<String>;
-  likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
-  comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
-}
-
-export interface CommentUpdateInput {
-  content?: Maybe<String>;
-  likes?: Maybe<Int>;
-  postedBy?: Maybe<UserUpdateOneWithoutCommentsInput>;
-  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
-}
-
-export interface UserUpdateOneWithoutBlogsInput {
-  create?: Maybe<UserCreateWithoutBlogsInput>;
-  update?: Maybe<UserUpdateWithoutBlogsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutBlogsInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface CommentCreateInput {
-  id?: Maybe<ID_Input>;
-  content: String;
-  likes?: Maybe<Int>;
-  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
-  forBlog?: Maybe<BlogCreateOneWithoutCommentsInput>;
-}
-
-export interface UserUpdateWithoutBlogsDataInput {
-  name?: Maybe<String>;
-  password?: Maybe<String>;
-  email?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  comments?: Maybe<CommentUpdateManyWithoutPostedByInput>;
-}
-
-export interface CommentUpsertWithWhereUniqueWithoutForBlogInput {
-  where: CommentWhereUniqueInput;
-  update: CommentUpdateWithoutForBlogDataInput;
-  create: CommentCreateWithoutForBlogInput;
-}
-
-export interface BlogUpsertWithWhereUniqueWithoutPostedByInput {
-  where: BlogWhereUniqueInput;
-  update: BlogUpdateWithoutPostedByDataInput;
-  create: BlogCreateWithoutPostedByInput;
-}
-
-export interface UserUpsertWithoutCommentsInput {
-  update: UserUpdateWithoutCommentsDataInput;
-  create: UserCreateWithoutCommentsInput;
-}
-
-export interface CommentUpdateWithWhereUniqueWithoutPostedByInput {
-  where: CommentWhereUniqueInput;
-  data: CommentUpdateWithoutPostedByDataInput;
-}
-
-export interface BlogUpdateManyWithWhereNestedInput {
-  where: BlogScalarWhereInput;
-  data: BlogUpdateManyDataInput;
-}
-
-export interface CommentUpdateWithoutPostedByDataInput {
-  content?: Maybe<String>;
-  likes?: Maybe<Int>;
-  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
-}
-
-export interface UserCreateOneWithoutBlogsInput {
-  create?: Maybe<UserCreateWithoutBlogsInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface TagUpsertWithWhereUniqueWithoutPostedByInput {
+  where: TagWhereUniqueInput;
+  update: TagUpdateWithoutPostedByDataInput;
+  create: TagCreateWithoutPostedByInput;
 }
 
 export interface BlogWhereInput {
@@ -551,31 +354,309 @@ export interface BlogWhereInput {
   likes_gte?: Maybe<Int>;
   postedBy?: Maybe<UserWhereInput>;
   comments_some?: Maybe<CommentWhereInput>;
+  tags_some?: Maybe<TagWhereInput>;
   AND?: Maybe<BlogWhereInput[] | BlogWhereInput>;
 }
 
-export interface CommentCreateManyWithoutPostedByInput {
-  create?: Maybe<
-    CommentCreateWithoutPostedByInput[] | CommentCreateWithoutPostedByInput
-  >;
-  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+export interface TagScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  tag?: Maybe<String>;
+  tag_not?: Maybe<String>;
+  tag_in?: Maybe<String[] | String>;
+  tag_not_in?: Maybe<String[] | String>;
+  tag_lt?: Maybe<String>;
+  tag_lte?: Maybe<String>;
+  tag_gt?: Maybe<String>;
+  tag_gte?: Maybe<String>;
+  tag_contains?: Maybe<String>;
+  tag_not_contains?: Maybe<String>;
+  tag_starts_with?: Maybe<String>;
+  tag_not_starts_with?: Maybe<String>;
+  tag_ends_with?: Maybe<String>;
+  tag_not_ends_with?: Maybe<String>;
+  AND?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  OR?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  NOT?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
 }
 
-export interface BlogUpdateWithoutCommentsDataInput {
+export interface CommentWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  likes?: Maybe<Int>;
+  likes_not?: Maybe<Int>;
+  likes_in?: Maybe<Int[] | Int>;
+  likes_not_in?: Maybe<Int[] | Int>;
+  likes_lt?: Maybe<Int>;
+  likes_lte?: Maybe<Int>;
+  likes_gt?: Maybe<Int>;
+  likes_gte?: Maybe<Int>;
+  postedBy?: Maybe<UserWhereInput>;
+  forBlog?: Maybe<BlogWhereInput>;
+  AND?: Maybe<CommentWhereInput[] | CommentWhereInput>;
+}
+
+export interface BlogCreateManyWithoutPostedByInput {
+  create?: Maybe<
+    BlogCreateWithoutPostedByInput[] | BlogCreateWithoutPostedByInput
+  >;
+  connect?: Maybe<BlogWhereUniqueInput[] | BlogWhereUniqueInput>;
+}
+
+export interface UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput;
+  create: UserCreateWithoutCommentsInput;
+}
+
+export interface BlogCreateWithoutPostedByInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  article: String;
+  likes?: Maybe<Int>;
+  comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
+  tags?: Maybe<TagCreateManyWithoutPostedByInput>;
+}
+
+export interface TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput;
+  data: TagUpdateManyDataInput;
+}
+
+export interface BlogUpdateInput {
   title?: Maybe<String>;
   article?: Maybe<String>;
   likes?: Maybe<Int>;
   postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
+  comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
+  tags?: Maybe<TagUpdateManyWithoutPostedByInput>;
 }
 
-export interface BlogCreateOneWithoutCommentsInput {
-  create?: Maybe<BlogCreateWithoutCommentsInput>;
+export interface TagSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TagWhereInput>;
+  AND?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+}
+
+export interface UserUpdateOneWithoutBlogsInput {
+  create?: Maybe<UserCreateWithoutBlogsInput>;
+  update?: Maybe<UserUpdateWithoutBlogsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutBlogsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface BlogSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BlogWhereInput>;
+  AND?: Maybe<BlogSubscriptionWhereInput[] | BlogSubscriptionWhereInput>;
+}
+
+export interface UserUpdateWithoutBlogsDataInput {
+  name?: Maybe<String>;
+  password?: Maybe<String>;
+  email?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  comments?: Maybe<CommentUpdateManyWithoutPostedByInput>;
+}
+
+export interface UserUpdateInput {
+  name?: Maybe<String>;
+  password?: Maybe<String>;
+  email?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  blogs?: Maybe<BlogUpdateManyWithoutPostedByInput>;
+  comments?: Maybe<CommentUpdateManyWithoutPostedByInput>;
+}
+
+export interface CommentUpdateManyWithoutPostedByInput {
+  create?: Maybe<
+    CommentCreateWithoutPostedByInput[] | CommentCreateWithoutPostedByInput
+  >;
+  delete?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  set?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  disconnect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+  update?: Maybe<
+    | CommentUpdateWithWhereUniqueWithoutPostedByInput[]
+    | CommentUpdateWithWhereUniqueWithoutPostedByInput
+  >;
+  upsert?: Maybe<
+    | CommentUpsertWithWhereUniqueWithoutPostedByInput[]
+    | CommentUpsertWithWhereUniqueWithoutPostedByInput
+  >;
+  deleteMany?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
+  updateMany?: Maybe<
+    | CommentUpdateManyWithWhereNestedInput[]
+    | CommentUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface TagUpdateManyMutationInput {
+  tag?: Maybe<String>;
+}
+
+export interface CommentUpdateWithWhereUniqueWithoutPostedByInput {
+  where: CommentWhereUniqueInput;
+  data: CommentUpdateWithoutPostedByDataInput;
+}
+
+export interface BlogUpsertWithoutTagsInput {
+  update: BlogUpdateWithoutTagsDataInput;
+  create: BlogCreateWithoutTagsInput;
+}
+
+export interface CommentUpdateWithoutPostedByDataInput {
+  content?: Maybe<String>;
+  likes?: Maybe<Int>;
+  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
+}
+
+export interface BlogUpdateOneWithoutTagsInput {
+  create?: Maybe<BlogCreateWithoutTagsInput>;
+  update?: Maybe<BlogUpdateWithoutTagsDataInput>;
+  upsert?: Maybe<BlogUpsertWithoutTagsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<BlogWhereUniqueInput>;
 }
 
-export interface BlogUpsertWithoutCommentsInput {
-  update: BlogUpdateWithoutCommentsDataInput;
-  create: BlogCreateWithoutCommentsInput;
+export interface BlogUpdateOneWithoutCommentsInput {
+  create?: Maybe<BlogCreateWithoutCommentsInput>;
+  update?: Maybe<BlogUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<BlogUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<BlogWhereUniqueInput>;
+}
+
+export interface TagUpdateInput {
+  tag?: Maybe<String>;
+  postedBy?: Maybe<BlogUpdateOneWithoutTagsInput>;
+}
+
+export interface BlogUpdateManyMutationInput {
+  title?: Maybe<String>;
+  article?: Maybe<String>;
+  likes?: Maybe<Int>;
+}
+
+export interface BlogCreateOneWithoutTagsInput {
+  create?: Maybe<BlogCreateWithoutTagsInput>;
+  connect?: Maybe<BlogWhereUniqueInput>;
+}
+
+export interface TagUpdateManyWithoutPostedByInput {
+  create?: Maybe<
+    TagCreateWithoutPostedByInput[] | TagCreateWithoutPostedByInput
+  >;
+  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  update?: Maybe<
+    | TagUpdateWithWhereUniqueWithoutPostedByInput[]
+    | TagUpdateWithWhereUniqueWithoutPostedByInput
+  >;
+  upsert?: Maybe<
+    | TagUpsertWithWhereUniqueWithoutPostedByInput[]
+    | TagUpsertWithWhereUniqueWithoutPostedByInput
+  >;
+  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  updateMany?: Maybe<
+    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface TagCreateInput {
+  id?: Maybe<ID_Input>;
+  tag: String;
+  postedBy?: Maybe<BlogCreateOneWithoutTagsInput>;
+}
+
+export interface TagUpdateWithWhereUniqueWithoutPostedByInput {
+  where: TagWhereUniqueInput;
+  data: TagUpdateWithoutPostedByDataInput;
+}
+
+export interface CommentUpdateInput {
+  content?: Maybe<String>;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserUpdateOneWithoutCommentsInput>;
+  forBlog?: Maybe<BlogUpdateOneWithoutCommentsInput>;
+}
+
+export interface TagUpdateWithoutPostedByDataInput {
+  tag?: Maybe<String>;
+}
+
+export interface UserCreateOneWithoutBlogsInput {
+  create?: Maybe<UserCreateWithoutBlogsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
 
 export interface UserWhereInput {
@@ -690,19 +771,98 @@ export interface UserWhereInput {
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
+export interface CommentCreateManyWithoutPostedByInput {
+  create?: Maybe<
+    CommentCreateWithoutPostedByInput[] | CommentCreateWithoutPostedByInput
+  >;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+}
+
+export interface TagWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  tag?: Maybe<String>;
+  tag_not?: Maybe<String>;
+  tag_in?: Maybe<String[] | String>;
+  tag_not_in?: Maybe<String[] | String>;
+  tag_lt?: Maybe<String>;
+  tag_lte?: Maybe<String>;
+  tag_gt?: Maybe<String>;
+  tag_gte?: Maybe<String>;
+  tag_contains?: Maybe<String>;
+  tag_not_contains?: Maybe<String>;
+  tag_starts_with?: Maybe<String>;
+  tag_not_starts_with?: Maybe<String>;
+  tag_ends_with?: Maybe<String>;
+  tag_not_ends_with?: Maybe<String>;
+  postedBy?: Maybe<BlogWhereInput>;
+  AND?: Maybe<TagWhereInput[] | TagWhereInput>;
+}
+
+export interface BlogCreateOneWithoutCommentsInput {
+  create?: Maybe<BlogCreateWithoutCommentsInput>;
+  connect?: Maybe<BlogWhereUniqueInput>;
+}
+
+export interface CommentUpsertWithWhereUniqueWithoutForBlogInput {
+  where: CommentWhereUniqueInput;
+  update: CommentUpdateWithoutForBlogDataInput;
+  create: CommentCreateWithoutForBlogInput;
+}
+
+export interface TagCreateManyWithoutPostedByInput {
+  create?: Maybe<
+    TagCreateWithoutPostedByInput[] | TagCreateWithoutPostedByInput
+  >;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+}
+
+export interface TagUpdateManyDataInput {
+  tag?: Maybe<String>;
+}
+
+export interface CommentCreateManyWithoutForBlogInput {
+  create?: Maybe<
+    CommentCreateWithoutForBlogInput[] | CommentCreateWithoutForBlogInput
+  >;
+  connect?: Maybe<CommentWhereUniqueInput[] | CommentWhereUniqueInput>;
+}
+
+export interface BlogUpsertWithoutCommentsInput {
+  update: BlogUpdateWithoutCommentsDataInput;
+  create: BlogCreateWithoutCommentsInput;
+}
+
+export interface UserCreateOneWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
 export interface CommentUpsertWithWhereUniqueWithoutPostedByInput {
   where: CommentWhereUniqueInput;
   update: CommentUpdateWithoutPostedByDataInput;
   create: CommentCreateWithoutPostedByInput;
 }
 
-export interface BlogSubscriptionWhereInput {
+export interface UserSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<BlogWhereInput>;
-  AND?: Maybe<BlogSubscriptionWhereInput[] | BlogSubscriptionWhereInput>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface CommentScalarWhereInput {
@@ -763,9 +923,13 @@ export interface CommentScalarWhereInput {
   NOT?: Maybe<CommentScalarWhereInput[] | CommentScalarWhereInput>;
 }
 
-export interface CommentUpdateManyMutationInput {
-  content?: Maybe<String>;
-  likes?: Maybe<Int>;
+export interface UserUpdateManyMutationInput {
+  name?: Maybe<String>;
+  password?: Maybe<String>;
+  email?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
 }
 
 export interface CommentUpdateManyWithWhereNestedInput {
@@ -773,36 +937,29 @@ export interface CommentUpdateManyWithWhereNestedInput {
   data: CommentUpdateManyDataInput;
 }
 
-export interface BlogUpdateManyMutationInput {
-  title?: Maybe<String>;
-  article?: Maybe<String>;
-  likes?: Maybe<Int>;
-}
+export type CommentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface CommentUpdateManyDataInput {
   content?: Maybe<String>;
   likes?: Maybe<Int>;
 }
 
-export interface BlogUpdateManyDataInput {
-  title?: Maybe<String>;
-  article?: Maybe<String>;
-  likes?: Maybe<Int>;
-}
+export type TagWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  tag?: Maybe<String>;
+}>;
 
 export interface UserUpsertWithoutBlogsInput {
   update: UserUpdateWithoutBlogsDataInput;
   create: UserCreateWithoutBlogsInput;
 }
 
-export interface BlogCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  article: String;
-  likes?: Maybe<Int>;
-  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
-  comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
-}
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
 
 export interface CommentUpdateManyWithoutForBlogInput {
   create?: Maybe<
@@ -827,10 +984,11 @@ export interface CommentUpdateManyWithoutForBlogInput {
   >;
 }
 
-export interface CommentCreateWithoutPostedByInput {
+export interface CommentCreateInput {
   id?: Maybe<ID_Input>;
   content: String;
   likes?: Maybe<Int>;
+  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
   forBlog?: Maybe<BlogCreateOneWithoutCommentsInput>;
 }
 
@@ -839,13 +997,15 @@ export interface CommentUpdateWithWhereUniqueWithoutForBlogInput {
   data: CommentUpdateWithoutForBlogDataInput;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+export interface UserCreateWithoutBlogsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  password: String;
+  email: String;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  comments?: Maybe<CommentCreateManyWithoutPostedByInput>;
 }
 
 export interface CommentUpdateWithoutForBlogDataInput {
@@ -854,13 +1014,48 @@ export interface CommentUpdateWithoutForBlogDataInput {
   postedBy?: Maybe<UserUpdateOneWithoutCommentsInput>;
 }
 
-export type CommentWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface BlogCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  article: String;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
+  tags?: Maybe<TagCreateManyWithoutPostedByInput>;
+}
 
-export interface BlogUpdateWithWhereUniqueWithoutPostedByInput {
-  where: BlogWhereUniqueInput;
-  data: BlogUpdateWithoutPostedByDataInput;
+export interface UserUpdateOneWithoutCommentsInput {
+  create?: Maybe<UserCreateWithoutCommentsInput>;
+  update?: Maybe<UserUpdateWithoutCommentsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutCommentsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface CommentCreateWithoutForBlogInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserCreateOneWithoutCommentsInput>;
+}
+
+export interface UserUpdateWithoutCommentsDataInput {
+  name?: Maybe<String>;
+  password?: Maybe<String>;
+  email?: Maybe<String>;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  blogs?: Maybe<BlogUpdateManyWithoutPostedByInput>;
+}
+
+export interface CommentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CommentWhereInput>;
+  AND?: Maybe<CommentSubscriptionWhereInput[] | CommentSubscriptionWhereInput>;
 }
 
 export interface BlogUpdateManyWithoutPostedByInput {
@@ -885,58 +1080,48 @@ export interface BlogUpdateManyWithoutPostedByInput {
   >;
 }
 
-export interface UserUpdateWithoutCommentsDataInput {
-  name?: Maybe<String>;
-  password?: Maybe<String>;
-  email?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  blogs?: Maybe<BlogUpdateManyWithoutPostedByInput>;
-}
-
-export interface UserUpdateOneWithoutCommentsInput {
-  create?: Maybe<UserCreateWithoutCommentsInput>;
-  update?: Maybe<UserUpdateWithoutCommentsDataInput>;
-  upsert?: Maybe<UserUpsertWithoutCommentsInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export interface UserUpdateInput {
-  name?: Maybe<String>;
-  password?: Maybe<String>;
-  email?: Maybe<String>;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  blogs?: Maybe<BlogUpdateManyWithoutPostedByInput>;
-  comments?: Maybe<CommentUpdateManyWithoutPostedByInput>;
-}
-
-export interface BlogCreateWithoutCommentsInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  article: String;
+export interface BlogUpdateWithoutTagsDataInput {
+  title?: Maybe<String>;
+  article?: Maybe<String>;
   likes?: Maybe<Int>;
-  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
+  postedBy?: Maybe<UserUpdateOneWithoutBlogsInput>;
+  comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
 }
 
-export interface UserCreateWithoutBlogsInput {
+export interface BlogUpdateWithWhereUniqueWithoutPostedByInput {
+  where: BlogWhereUniqueInput;
+  data: BlogUpdateWithoutPostedByDataInput;
+}
+
+export interface CommentUpdateManyMutationInput {
+  content?: Maybe<String>;
+  likes?: Maybe<Int>;
+}
+
+export interface BlogUpdateWithoutPostedByDataInput {
+  title?: Maybe<String>;
+  article?: Maybe<String>;
+  likes?: Maybe<Int>;
+  comments?: Maybe<CommentUpdateManyWithoutForBlogInput>;
+  tags?: Maybe<TagUpdateManyWithoutPostedByInput>;
+}
+
+export interface CommentCreateWithoutPostedByInput {
   id?: Maybe<ID_Input>;
-  name: String;
-  password: String;
-  email: String;
-  phone?: Maybe<String>;
-  address?: Maybe<String>;
-  interest?: Maybe<String>;
-  comments?: Maybe<CommentCreateManyWithoutPostedByInput>;
+  content: String;
+  likes?: Maybe<Int>;
+  forBlog?: Maybe<BlogCreateOneWithoutCommentsInput>;
+}
+
+export interface BlogUpdateManyDataInput {
+  title?: Maybe<String>;
+  article?: Maybe<String>;
+  likes?: Maybe<Int>;
+}
+
+export interface BlogUpdateManyWithWhereNestedInput {
+  where: BlogScalarWhereInput;
+  data: BlogUpdateManyDataInput;
 }
 
 export interface BlogScalarWhereInput {
@@ -1011,6 +1196,59 @@ export interface BlogScalarWhereInput {
   NOT?: Maybe<BlogScalarWhereInput[] | BlogScalarWhereInput>;
 }
 
+export interface BlogUpsertWithWhereUniqueWithoutPostedByInput {
+  where: BlogWhereUniqueInput;
+  update: BlogUpdateWithoutPostedByDataInput;
+  create: BlogCreateWithoutPostedByInput;
+}
+
+export interface TagCreateWithoutPostedByInput {
+  id?: Maybe<ID_Input>;
+  tag: String;
+}
+
+export interface BlogCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  article: String;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
+  comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
+  tags?: Maybe<TagCreateManyWithoutPostedByInput>;
+}
+
+export interface BlogCreateWithoutTagsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  article: String;
+  likes?: Maybe<Int>;
+  postedBy?: Maybe<UserCreateOneWithoutBlogsInput>;
+  comments?: Maybe<CommentCreateManyWithoutForBlogInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  password: String;
+  email: String;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  blogs?: Maybe<BlogCreateManyWithoutPostedByInput>;
+  comments?: Maybe<CommentCreateManyWithoutPostedByInput>;
+}
+
+export interface UserCreateWithoutCommentsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  password: String;
+  email: String;
+  phone?: Maybe<String>;
+  address?: Maybe<String>;
+  interest?: Maybe<String>;
+  blogs?: Maybe<BlogCreateManyWithoutPostedByInput>;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
@@ -1050,47 +1288,6 @@ export interface UserPreviousValuesSubscription
   phone: () => Promise<AsyncIterator<String>>;
   address: () => Promise<AsyncIterator<String>>;
   interest: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateBlog {
-  count: Int;
-}
-
-export interface AggregateBlogPromise
-  extends Promise<AggregateBlog>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateBlogSubscription
-  extends Promise<AsyncIterator<AggregateBlog>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface CommentSubscriptionPayload {
-  mutation: MutationType;
-  node: Comment;
-  updatedFields: String[];
-  previousValues: CommentPreviousValues;
-}
-
-export interface CommentSubscriptionPayloadPromise
-  extends Promise<CommentSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CommentPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CommentPreviousValuesPromise>() => T;
-}
-
-export interface CommentSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CommentSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CommentPreviousValuesSubscription>() => T;
 }
 
 export interface BlogEdge {
@@ -1212,101 +1409,70 @@ export interface UserNullablePromise
   }) => T;
 }
 
-export interface AggregateUser {
+export interface AggregateBlog {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateBlogPromise
+  extends Promise<AggregateBlog>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateBlogSubscription
+  extends Promise<AsyncIterator<AggregateBlog>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
+export interface TagSubscriptionPayload {
+  mutation: MutationType;
+  node: Tag;
+  updatedFields: String[];
+  previousValues: TagPreviousValues;
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface TagSubscriptionPayloadPromise
+  extends Promise<TagSubscriptionPayload>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  mutation: () => Promise<MutationType>;
+  node: <T = TagPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TagPreviousValuesPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface TagSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TagSubscriptionPayload>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TagSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TagPreviousValuesSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface AggregateComment {
-  count: Int;
-}
-
-export interface AggregateCommentPromise
-  extends Promise<AggregateComment>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCommentSubscription
-  extends Promise<AsyncIterator<AggregateComment>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BlogConnection {
-  pageInfo: PageInfo;
-  edges: BlogEdge[];
-}
-
-export interface BlogConnectionPromise
-  extends Promise<BlogConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BlogEdge>>() => T;
-  aggregate: <T = AggregateBlogPromise>() => T;
-}
-
-export interface BlogConnectionSubscription
-  extends Promise<AsyncIterator<BlogConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BlogEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBlogSubscription>() => T;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
 export interface BatchPayload {
@@ -1323,111 +1489,6 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface CommentConnection {
-  pageInfo: PageInfo;
-  edges: CommentEdge[];
-}
-
-export interface CommentConnectionPromise
-  extends Promise<CommentConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CommentEdge>>() => T;
-  aggregate: <T = AggregateCommentPromise>() => T;
-}
-
-export interface CommentConnectionSubscription
-  extends Promise<AsyncIterator<CommentConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCommentSubscription>() => T;
-}
-
-export interface BlogPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  title: String;
-  article: String;
-  likes: Int;
-}
-
-export interface BlogPreviousValuesPromise
-  extends Promise<BlogPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  title: () => Promise<String>;
-  article: () => Promise<String>;
-  likes: () => Promise<Int>;
-}
-
-export interface BlogPreviousValuesSubscription
-  extends Promise<AsyncIterator<BlogPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  title: () => Promise<AsyncIterator<String>>;
-  article: () => Promise<AsyncIterator<String>>;
-  likes: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BlogSubscriptionPayload {
-  mutation: MutationType;
-  node: Blog;
-  updatedFields: String[];
-  previousValues: BlogPreviousValues;
-}
-
-export interface BlogSubscriptionPayloadPromise
-  extends Promise<BlogSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = BlogPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = BlogPreviousValuesPromise>() => T;
-}
-
-export interface BlogSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BlogSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BlogSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BlogPreviousValuesSubscription>() => T;
-}
-
-export interface CommentPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  content: String;
-  likes: Int;
-}
-
-export interface CommentPreviousValuesPromise
-  extends Promise<CommentPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  content: () => Promise<String>;
-  likes: () => Promise<Int>;
-}
-
-export interface CommentPreviousValuesSubscription
-  extends Promise<AsyncIterator<CommentPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  content: () => Promise<AsyncIterator<String>>;
-  likes: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Comment {
@@ -1489,46 +1550,27 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface CommentEdge {
-  node: Comment;
-  cursor: String;
-}
-
-export interface CommentEdgePromise extends Promise<CommentEdge>, Fragmentable {
-  node: <T = CommentPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CommentEdgeSubscription
-  extends Promise<AsyncIterator<CommentEdge>>,
-    Fragmentable {
-  node: <T = CommentSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Blog {
@@ -1557,6 +1599,15 @@ export interface BlogPromise extends Promise<Blog>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
+  tags: <T = FragmentableArray<Tag>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
 }
 
 export interface BlogSubscription
@@ -1572,6 +1623,15 @@ export interface BlogSubscription
   comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
     where?: CommentWhereInput;
     orderBy?: CommentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  tags: <T = Promise<AsyncIterator<TagSubscription>>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -1599,6 +1659,334 @@ export interface BlogNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
+  tags: <T = FragmentableArray<Tag>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface BlogConnection {
+  pageInfo: PageInfo;
+  edges: BlogEdge[];
+}
+
+export interface BlogConnectionPromise
+  extends Promise<BlogConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BlogEdge>>() => T;
+  aggregate: <T = AggregateBlogPromise>() => T;
+}
+
+export interface BlogConnectionSubscription
+  extends Promise<AsyncIterator<BlogConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BlogEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBlogSubscription>() => T;
+}
+
+export interface TagEdge {
+  node: Tag;
+  cursor: String;
+}
+
+export interface TagEdgePromise extends Promise<TagEdge>, Fragmentable {
+  node: <T = TagPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TagEdgeSubscription
+  extends Promise<AsyncIterator<TagEdge>>,
+    Fragmentable {
+  node: <T = TagSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TagPreviousValues {
+  id: ID_Output;
+  tag: String;
+}
+
+export interface TagPreviousValuesPromise
+  extends Promise<TagPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  tag: () => Promise<String>;
+}
+
+export interface TagPreviousValuesSubscription
+  extends Promise<AsyncIterator<TagPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  tag: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateComment {
+  count: Int;
+}
+
+export interface AggregateCommentPromise
+  extends Promise<AggregateComment>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCommentSubscription
+  extends Promise<AsyncIterator<AggregateComment>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BlogSubscriptionPayload {
+  mutation: MutationType;
+  node: Blog;
+  updatedFields: String[];
+  previousValues: BlogPreviousValues;
+}
+
+export interface BlogSubscriptionPayloadPromise
+  extends Promise<BlogSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BlogPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BlogPreviousValuesPromise>() => T;
+}
+
+export interface BlogSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BlogSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BlogSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BlogPreviousValuesSubscription>() => T;
+}
+
+export interface CommentConnection {
+  pageInfo: PageInfo;
+  edges: CommentEdge[];
+}
+
+export interface CommentConnectionPromise
+  extends Promise<CommentConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CommentEdge>>() => T;
+  aggregate: <T = AggregateCommentPromise>() => T;
+}
+
+export interface CommentConnectionSubscription
+  extends Promise<AsyncIterator<CommentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CommentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCommentSubscription>() => T;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface CommentPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  content: String;
+  likes: Int;
+}
+
+export interface CommentPreviousValuesPromise
+  extends Promise<CommentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  content: () => Promise<String>;
+  likes: () => Promise<Int>;
+}
+
+export interface CommentPreviousValuesSubscription
+  extends Promise<AsyncIterator<CommentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  content: () => Promise<AsyncIterator<String>>;
+  likes: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CommentSubscriptionPayload {
+  mutation: MutationType;
+  node: Comment;
+  updatedFields: String[];
+  previousValues: CommentPreviousValues;
+}
+
+export interface CommentSubscriptionPayloadPromise
+  extends Promise<CommentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CommentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CommentPreviousValuesPromise>() => T;
+}
+
+export interface CommentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CommentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CommentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CommentPreviousValuesSubscription>() => T;
+}
+
+export interface Tag {
+  id: ID_Output;
+  tag: String;
+}
+
+export interface TagPromise extends Promise<Tag>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  tag: () => Promise<String>;
+  postedBy: <T = BlogPromise>() => T;
+}
+
+export interface TagSubscription
+  extends Promise<AsyncIterator<Tag>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  tag: () => Promise<AsyncIterator<String>>;
+  postedBy: <T = BlogSubscription>() => T;
+}
+
+export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  tag: () => Promise<String>;
+  postedBy: <T = BlogPromise>() => T;
+}
+
+export interface BlogPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  title: String;
+  article: String;
+  likes: Int;
+}
+
+export interface BlogPreviousValuesPromise
+  extends Promise<BlogPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  title: () => Promise<String>;
+  article: () => Promise<String>;
+  likes: () => Promise<Int>;
+}
+
+export interface BlogPreviousValuesSubscription
+  extends Promise<AsyncIterator<BlogPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  title: () => Promise<AsyncIterator<String>>;
+  article: () => Promise<AsyncIterator<String>>;
+  likes: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateTag {
+  count: Int;
+}
+
+export interface AggregateTagPromise
+  extends Promise<AggregateTag>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTagSubscription
+  extends Promise<AsyncIterator<AggregateTag>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface CommentEdge {
+  node: Comment;
+  cursor: String;
+}
+
+export interface CommentEdgePromise extends Promise<CommentEdge>, Fragmentable {
+  node: <T = CommentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CommentEdgeSubscription
+  extends Promise<AsyncIterator<CommentEdge>>,
+    Fragmentable {
+  node: <T = CommentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TagConnection {
+  pageInfo: PageInfo;
+  edges: TagEdge[];
+}
+
+export interface TagConnectionPromise
+  extends Promise<TagConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TagEdge>>() => T;
+  aggregate: <T = AggregateTagPromise>() => T;
+}
+
+export interface TagConnectionSubscription
+  extends Promise<AsyncIterator<TagConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TagEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTagSubscription>() => T;
 }
 
 /*
@@ -1607,17 +1995,17 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean;
 
 /*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
+*/
+export type Int = number;
+
+/*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
 
 export type Long = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
-*/
-export type Int = number;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -1649,6 +2037,10 @@ export const models: Model[] = [
   },
   {
     name: "Comment",
+    embedded: false
+  },
+  {
+    name: "Tag",
     embedded: false
   }
 ];

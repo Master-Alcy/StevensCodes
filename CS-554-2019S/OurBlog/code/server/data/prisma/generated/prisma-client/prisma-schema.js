@@ -11,6 +11,10 @@ type AggregateComment {
   count: Int!
 }
 
+type AggregateTag {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
 }
@@ -28,6 +32,7 @@ type Blog {
   likes: Int!
   postedBy: User
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
 }
 
 type BlogConnection {
@@ -43,6 +48,7 @@ input BlogCreateInput {
   likes: Int
   postedBy: UserCreateOneWithoutBlogsInput
   comments: CommentCreateManyWithoutForBlogInput
+  tags: TagCreateManyWithoutPostedByInput
 }
 
 input BlogCreateManyWithoutPostedByInput {
@@ -55,12 +61,18 @@ input BlogCreateOneWithoutCommentsInput {
   connect: BlogWhereUniqueInput
 }
 
+input BlogCreateOneWithoutTagsInput {
+  create: BlogCreateWithoutTagsInput
+  connect: BlogWhereUniqueInput
+}
+
 input BlogCreateWithoutCommentsInput {
   id: ID
   title: String!
   article: String!
   likes: Int
   postedBy: UserCreateOneWithoutBlogsInput
+  tags: TagCreateManyWithoutPostedByInput
 }
 
 input BlogCreateWithoutPostedByInput {
@@ -68,6 +80,16 @@ input BlogCreateWithoutPostedByInput {
   title: String!
   article: String!
   likes: Int
+  comments: CommentCreateManyWithoutForBlogInput
+  tags: TagCreateManyWithoutPostedByInput
+}
+
+input BlogCreateWithoutTagsInput {
+  id: ID
+  title: String!
+  article: String!
+  likes: Int
+  postedBy: UserCreateOneWithoutBlogsInput
   comments: CommentCreateManyWithoutForBlogInput
 }
 
@@ -194,6 +216,7 @@ input BlogUpdateInput {
   likes: Int
   postedBy: UserUpdateOneWithoutBlogsInput
   comments: CommentUpdateManyWithoutForBlogInput
+  tags: TagUpdateManyWithoutPostedByInput
 }
 
 input BlogUpdateManyDataInput {
@@ -234,17 +257,36 @@ input BlogUpdateOneWithoutCommentsInput {
   connect: BlogWhereUniqueInput
 }
 
+input BlogUpdateOneWithoutTagsInput {
+  create: BlogCreateWithoutTagsInput
+  update: BlogUpdateWithoutTagsDataInput
+  upsert: BlogUpsertWithoutTagsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: BlogWhereUniqueInput
+}
+
 input BlogUpdateWithoutCommentsDataInput {
   title: String
   article: String
   likes: Int
   postedBy: UserUpdateOneWithoutBlogsInput
+  tags: TagUpdateManyWithoutPostedByInput
 }
 
 input BlogUpdateWithoutPostedByDataInput {
   title: String
   article: String
   likes: Int
+  comments: CommentUpdateManyWithoutForBlogInput
+  tags: TagUpdateManyWithoutPostedByInput
+}
+
+input BlogUpdateWithoutTagsDataInput {
+  title: String
+  article: String
+  likes: Int
+  postedBy: UserUpdateOneWithoutBlogsInput
   comments: CommentUpdateManyWithoutForBlogInput
 }
 
@@ -256,6 +298,11 @@ input BlogUpdateWithWhereUniqueWithoutPostedByInput {
 input BlogUpsertWithoutCommentsInput {
   update: BlogUpdateWithoutCommentsDataInput!
   create: BlogCreateWithoutCommentsInput!
+}
+
+input BlogUpsertWithoutTagsInput {
+  update: BlogUpdateWithoutTagsDataInput!
+  create: BlogCreateWithoutTagsInput!
 }
 
 input BlogUpsertWithWhereUniqueWithoutPostedByInput {
@@ -333,6 +380,7 @@ input BlogWhereInput {
   likes_gte: Int
   postedBy: UserWhereInput
   comments_some: CommentWhereInput
+  tags_some: TagWhereInput
   AND: [BlogWhereInput!]
 }
 
@@ -648,6 +696,12 @@ type Mutation {
   upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
   deleteComment(where: CommentWhereUniqueInput!): Comment
   deleteManyComments(where: CommentWhereInput): BatchPayload!
+  createTag(data: TagCreateInput!): Tag!
+  updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteManyTags(where: TagWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -680,6 +734,9 @@ type Query {
   comment(where: CommentWhereUniqueInput!): Comment
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
   commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+  tag(where: TagWhereUniqueInput!): Tag
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
@@ -689,7 +746,186 @@ type Query {
 type Subscription {
   blog(where: BlogSubscriptionWhereInput): BlogSubscriptionPayload
   comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+  tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Tag {
+  id: ID!
+  tag: String!
+  postedBy: Blog
+}
+
+type TagConnection {
+  pageInfo: PageInfo!
+  edges: [TagEdge]!
+  aggregate: AggregateTag!
+}
+
+input TagCreateInput {
+  id: ID
+  tag: String!
+  postedBy: BlogCreateOneWithoutTagsInput
+}
+
+input TagCreateManyWithoutPostedByInput {
+  create: [TagCreateWithoutPostedByInput!]
+  connect: [TagWhereUniqueInput!]
+}
+
+input TagCreateWithoutPostedByInput {
+  id: ID
+  tag: String!
+}
+
+type TagEdge {
+  node: Tag!
+  cursor: String!
+}
+
+enum TagOrderByInput {
+  id_ASC
+  id_DESC
+  tag_ASC
+  tag_DESC
+}
+
+type TagPreviousValues {
+  id: ID!
+  tag: String!
+}
+
+input TagScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tag: String
+  tag_not: String
+  tag_in: [String!]
+  tag_not_in: [String!]
+  tag_lt: String
+  tag_lte: String
+  tag_gt: String
+  tag_gte: String
+  tag_contains: String
+  tag_not_contains: String
+  tag_starts_with: String
+  tag_not_starts_with: String
+  tag_ends_with: String
+  tag_not_ends_with: String
+  AND: [TagScalarWhereInput!]
+  OR: [TagScalarWhereInput!]
+  NOT: [TagScalarWhereInput!]
+}
+
+type TagSubscriptionPayload {
+  mutation: MutationType!
+  node: Tag
+  updatedFields: [String!]
+  previousValues: TagPreviousValues
+}
+
+input TagSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TagWhereInput
+  AND: [TagSubscriptionWhereInput!]
+}
+
+input TagUpdateInput {
+  tag: String
+  postedBy: BlogUpdateOneWithoutTagsInput
+}
+
+input TagUpdateManyDataInput {
+  tag: String
+}
+
+input TagUpdateManyMutationInput {
+  tag: String
+}
+
+input TagUpdateManyWithoutPostedByInput {
+  create: [TagCreateWithoutPostedByInput!]
+  delete: [TagWhereUniqueInput!]
+  connect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+  disconnect: [TagWhereUniqueInput!]
+  update: [TagUpdateWithWhereUniqueWithoutPostedByInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutPostedByInput!]
+  deleteMany: [TagScalarWhereInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyDataInput!
+}
+
+input TagUpdateWithoutPostedByDataInput {
+  tag: String
+}
+
+input TagUpdateWithWhereUniqueWithoutPostedByInput {
+  where: TagWhereUniqueInput!
+  data: TagUpdateWithoutPostedByDataInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutPostedByInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutPostedByDataInput!
+  create: TagCreateWithoutPostedByInput!
+}
+
+input TagWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  tag: String
+  tag_not: String
+  tag_in: [String!]
+  tag_not_in: [String!]
+  tag_lt: String
+  tag_lte: String
+  tag_gt: String
+  tag_gte: String
+  tag_contains: String
+  tag_not_contains: String
+  tag_starts_with: String
+  tag_not_starts_with: String
+  tag_ends_with: String
+  tag_not_ends_with: String
+  postedBy: BlogWhereInput
+  AND: [TagWhereInput!]
+}
+
+input TagWhereUniqueInput {
+  id: ID
+  tag: String
 }
 
 type User {

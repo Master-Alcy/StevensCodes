@@ -3,11 +3,10 @@ import { Button } from 'react-bootstrap';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-const updateBlog = gql`
-    mutation updateBlog($id: ID!, $likes: Int!){
-        updateBlog(
-            id: $id,
-            likes: $likes
+const likeBlog = gql`
+    mutation likeBlog($id: ID!){
+        likeBlog(
+            id: $id
         ) {
             id
             title
@@ -40,8 +39,8 @@ query {
 const LikeButton = (all) => {
     return (
         <div>
-            <Mutation mutation={updateBlog}
-                update={(cache, { data: { updateBlog } }) => {
+            <Mutation mutation={likeBlog}
+                update={(cache, { data: { likeBlog } }) => {
                     const { allBlogs } = cache.readQuery({
                         query: getAllBlogs
                     });
@@ -53,13 +52,12 @@ const LikeButton = (all) => {
                     })
                 }}
             >
-                {(updateBlog, { data }) => (
+                {(likeBlog, { data }) => (
                     <div>
                         <Button className="float-right" variant="outline-danger" onClick={ e => {
-                                updateBlog({
+                                likeBlog({
                                     variables: {
-                                        id: all.all.id,
-                                        likes: all.all.likes + 1
+                                        id: all.all.id
                                     }
                                 });
                         }}>

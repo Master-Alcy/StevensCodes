@@ -21,6 +21,7 @@ type Blog @model {
   likes: Int! @default(value: 0)
   postedBy: User # relation field, this is how to express a one-to-many relationship
   comments: [Comment!]! @relation(link: INLINE)
+  tags: [Tag!]! @relation(link: INLINE)
 }
 
 type Comment @model {
@@ -31,6 +32,12 @@ type Comment @model {
   likes: Int! @default(value: 0)
   postedBy: User
   forBlog: Blog
+}
+
+type Tag @model {
+  id: ID! @id
+  tag: String! @unique
+  postedBy: Blog
 }
 
 # We can use @embedded instead of @model for documents are not stored in their own collection

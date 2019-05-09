@@ -8,10 +8,13 @@ type Query {
   allBlogs: [Blog!]!
   filterBlogsByString(searchString: String): [Blog!]!
   filterBlogsByLikes(minLikes: Int): [Blog!]!
+  elasticSearch(searchString: String): [ESData]
   getComment(id: ID!): Comment
   allComments: [Comment!]!
   filterCommentsByString(searchString: String): [Comment!]!
   filterCommentsByLikes(minLikes: Int): [Comment!]!
+  getTag(id: ID, tag: String): Tag
+  allTags: [Tag!]!
 }
 
 type Mutation {
@@ -19,14 +22,22 @@ type Mutation {
   login(password: String!, email: String!): AuthPayload
   postBlog(title: String!, article: String!): Blog!
   postComment(content: String!, blogId: ID!): Comment!
-  updateUser(id: ID, email: String, name: String, password: String, newEmail: String, phone: String, address: String, interest: String): User
-  updateBlog(id: ID!, title: String, article: String, likes: Int): Blog
+  postTag(tag: String!, blogId: ID!): Tag!
+  updateUser(email: String, name: String, password: String, newEmail: String, phone: String, address: String, interest: String): User
+  updateBlog(id: ID, title: String, newTitle: String, article: String, likes: Int): Blog
   updateComment(id: ID!, content: String, likes: Int): Comment
-  likeBlog(id: ID!): Blog
+  likeBlog(id: ID, title: String): Blog
   likeComment(id: ID!): Comment
-  deleteUser(id: ID!): User
-  deleteBlog(id: ID!): Blog
+  deleteUser(id: ID, email: String): User
+  deleteBlog(id: ID, title: String): Blog
   deleteComment(id: ID!): Comment
+  deleteTag(id: ID, tag: String): Tag
+}
+
+type ESData {
+  id: ID
+  title: String
+  text: String
 }
 
 type AuthPayload {
@@ -54,8 +65,9 @@ type Blog {
   title: String! 
   article: String!
   likes: Int
-  postedBy: User!
+  postedBy: User
   comments: [Comment!]!
+  tags: [Tag!]!
 }
 
 type Comment {
@@ -64,6 +76,12 @@ type Comment {
   updatedAt: DateTime!
   content: String!
   likes: Int
-  postedBy: User!
-  forBlog: Blog!
+  postedBy: User
+  forBlog: Blog
+}
+
+type Tag {
+  id: ID!
+  tag: String!
+  postedBy: Blog
 }
