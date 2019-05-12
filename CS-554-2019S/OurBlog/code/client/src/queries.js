@@ -4,14 +4,17 @@ const ME = gql`
     query {
         me {
             id
+            name
+            email
         }
     }
 `;
 
 const UPDATE_USER = gql`
-    mutation updateUser ($id: String!, $phone: String, $address: String, $interest:String){
+    mutation updateUser ($name: String!, $email: String! , $phone: String, $address: String, $interest:String){
         updateUser(
-            id: $id,
+            name: $name,
+            email: $email,
             phone: $phone,
             address: $address,
             interest: $interest
@@ -72,7 +75,7 @@ query elasticSearch($searchString: String){
 `;
 
 const GET_BLOG = gql`
-    query getBlog($id: String!) {
+    query getBlog($id: ID!) {
         getBlog(
             id: $id
         ) {
@@ -89,6 +92,10 @@ const GET_BLOG = gql`
             comments {
                 id
             }
+            relatedTag {
+                id
+                tag
+            }
         }
     }
 `;
@@ -100,6 +107,18 @@ const GET_ALL_TAGS = gql`
             tag
         }
     }
+`;
+
+
+const POST_COMMENT = gql`
+mutation postComment($content:String!, $blogId:ID!){
+    postComment(
+        content: $content, 
+        blogId: $blogId
+    ) {
+      content
+    }
+  }
 `;
 
 const LIKE_BLOG = gql`
@@ -141,6 +160,24 @@ const LOGIN = gql`
     }
 `;
 
+const GET_TAG = gql`
+query getTag ($id: ID!){
+    getTag(
+        id: $id
+    ) {
+        id
+        tag
+        blogs {
+            id
+            title
+        }
+    }
+  }
+`;
+
+let TOKEN = "aaa";
+
+
 export default {
     ME,
     UPDATE_USER,
@@ -149,7 +186,10 @@ export default {
     ELASTIC_SEARCH,
     GET_BLOG,
     GET_ALL_TAGS,
+    POST_COMMENT,
     LIKE_BLOG,
     SIGN_UP,
-    LOGIN
+    LOGIN,
+    TOKEN,
+    GET_TAG
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import firebase from "./firebase";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { Mutation } from 'react-apollo';
+import { Mutation, ApolloConsumer } from 'react-apollo';
 import queries from './queries';
 
 class SignInContainer extends Component {
@@ -30,7 +30,6 @@ class SignInContainer extends Component {
 
         try {
             let data = await firebase.auth().signInWithEmailAndPassword(email, password);
-            console.log(data);
             this.setState({ success: true });
         }
         catch (e) {
@@ -47,56 +46,66 @@ class SignInContainer extends Component {
         }
         else {
             return (
-                <div>
-                    <Container>
-                        <Row className="justify-content-md-center">
-                            <Col lg={4}>
-                                <h1>Sign In</h1>
-                                <Mutation mutation={queries.LOGIN}>
-                                    {(login, { data }) => {
-                                        return (
-                                            <div>
-                                                <Form onSubmit={async(e) => {
-                                                    e.preventDefault();
-                                                    await this.handleSignIn
-                                                    login({
-                                                        variables: {
-                                                            email: this.state.email,
-                                                            password: this.state.password
-                                                        }
-                                                    });
-                                                }}>
-                                                    <Form.Group>
-                                                        <Form.Label>Email</Form.Label>
-                                                        <Form.Control
-                                                            name="email"
-                                                            type="email"
-                                                            placeholder="Email"
-                                                            value={this.state.email}
-                                                            onChange={this.handleInputChange}
-                                                        />
-                                                    </Form.Group>
+                <ApolloConsumer>
+                    {client =>
+                        <Mutation mutation={queries.LOGIN}
+                            onCompleted={({ login }) => {
+                                localStorage.setItem('token', login.token);
+                                client.writeData({ data: { isLoggedIn: true } });
+                            }}
+                        >
+                            {(login, { loading, error }) => {
+                                if (loading) return "Loading";
+                                if (error) return <p>An error occurred</p>
+                                return (
+                                    <div>
+                                        <Container>
+                                            <Row className="justify-content-md-center">
+                                                <Col lg={4}>
+                                                    <h1>Sign In</h1>
+                                                    <div>
+                                                        <Form onSubmit={async (e) => {
+                                                            e.preventDefault();
+                                                            this.handleSignIn(e);
+                                                            login({
+                                                                variables: {
+                                                                    email: this.state.email,
+                                                                    password: this.state.password
+                                                                }
+                                                            });
+                                                        }}>
+                                                            <Form.Group>
+                                                                <Form.Label>Email</Form.Label>
+                                                                <Form.Control
+                                                                    name="email"
+                                                                    type="email"
+                                                                    placeholder="Email"
+                                                                    value={this.state.email}
+                                                                    onChange={this.handleInputChange}
+                                                                />
+                                                            </Form.Group>
 
-                                                    <Form.Group>
-                                                        <Form.Label>Password</Form.Label>
-                                                        <Form.Control
-                                                            name="password"
-                                                            type="password"
-                                                            placeholder="Password"
-                                                            value={this.state.password}
-                                                            onChange={this.handleInputChange}
-                                                        />
-                                                    </Form.Group>
-                                                    <Button type="submit">Sign In</Button>
-                                                </Form>
-                                            </div>
-                                        )
-                                    }}
-                                 </Mutation>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
+                                                            <Form.Group>
+                                                                <Form.Label>Password</Form.Label>
+                                                                <Form.Control
+                                                                    name="password"
+                                                                    type="password"
+                                                                    placeholder="Password"
+                                                                    value={this.state.password}
+                                                                    onChange={this.handleInputChange}
+                                                                />
+                                                            </Form.Group>
+                                                            <Button type="submit">Sign In</Button>
+                                                        </Form>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Container>
+                                    </div>);
+                            }}
+                        </Mutation>
+                    }
+                </ApolloConsumer>
             );
         }
 

@@ -26,6 +26,8 @@ async function main() {
                 }
             }
         });
+        const esData = await solr.createSolrCompatibleDocument(newBlog.id, newBlog.title, newBlog.article);
+        await solr.update(esData);
         console.log(`<Log>[${new Date().toUTCString()}]: Created new blog: ${JSON.stringify(newBlog)}`);
 
         for (let j = 0; j < Random.natural(1, 6); j++) {

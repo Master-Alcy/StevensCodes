@@ -5,7 +5,6 @@ import { Query } from 'react-apollo';
 import queries from '../queries';
 
 const ArticleCard = props => {
-    console.log(props)
     return (
         <Query query={queries.GET_BLOG}
             variables={{ id: props.id }}
@@ -31,7 +30,7 @@ const ArticleCard = props => {
                                     <LikeButton all={getBlog} />
                                     <Card.Title>{getBlog.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">BY {getBlog.postedBy.name}</Card.Subtitle>
-                                    <Card.Subtitle className="mb-2 text-muted">Tags: {getBlog.tags.join(", ")}</Card.Subtitle>
+                                    <Card.Subtitle className="mb-2 text-muted">Tag: {getBlog.relatedTag.tag}</Card.Subtitle>
                                     <Card.Text>
                                         {getBlog.article.split(" ").slice(0, 100).join(" ").concat('...')}
                                     </Card.Text>

@@ -1,7 +1,7 @@
 # config Prisma
 # The HTTP endpoint for your Prisma API
-endpoint: http://192.168.99.100:4466 # For Windows with Orcal Virtual Machine
-# endpoint: http://localhost:4466 # For MacOS
+#endpoint: http://192.168.99.100:4466 # For Windows with Orcal Virtual Machine
+endpoint: http://localhost:4466 # For MacOS
 
 # Points to the file that contains your datamodel
 datamodel: datamodel.prisma

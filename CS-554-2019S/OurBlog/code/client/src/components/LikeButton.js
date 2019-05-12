@@ -19,7 +19,8 @@ const LikeButton = (all) => {
                     })
                 }}
             >
-                {(likeBlog, { data }) => {
+                {likeBlog  => {
+                    
                     return (
                         <div>
                             <Button className="float-right" variant="outline-danger" onClick={e => {
@@ -29,8 +30,7 @@ const LikeButton = (all) => {
                                     }
                                 });
                             }}>
-                                {/* all.all.likes probably won't update with cache. try finding what data is instead */}
-                                Like {data.likeBlog.likes}
+                                Likes {all.all.likes}
                             </Button>
                         </div>
                     )

@@ -8,8 +8,12 @@ import SignUp from './SignUp';
 import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
 import NewUserSurvey from './forms/NewUserSurvey';
+import ArticleItem from './components/ArticleItem';
+// import ShowProfile from './ShowProfile';
+import AccountButtons from './components/AccountButtons';
+import LogOut from './components/LogOut';
 
-function App() {
+function App(isLoggedIn) {
   return (
     <Router>
       <div className="App">
@@ -26,8 +30,7 @@ function App() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/signin">SignIn</Nav.Link>
-                <Nav.Link href="/signup">SignUp</Nav.Link>
+                {isLoggedIn.isLoggedIn ? <LogOut /> : <AccountButtons isLoggedIn={isLoggedIn.isLoggedIn} />}
               </Nav>
             </Container>
           </Navbar>
@@ -40,6 +43,8 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route path="/create" component={CreateArticle} />
           <Route path="/signup/survey" component={NewUserSurvey} />
+          <Route path="/article/:id" component={ArticleItem} />
+          {/* <Route path="/profile" component={ShowProfile} /> */}
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
                   <Route path="/pokemon/" component={PokemonListContainer} /> */}
         </Switch>
