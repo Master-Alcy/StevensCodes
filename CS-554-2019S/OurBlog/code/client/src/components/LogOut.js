@@ -8,13 +8,16 @@ class LogOut extends Component {
             <ApolloConsumer>
                 {client => (
                     <div>
-                        <Nav.Link onClick={() => {
-                            console.log(client);
-                            client.writeData({ data: { isLoggedIn: false } });
-                            localStorage.clear();
-                            console.log("hello");
-                            console.log(client);
-                        }}>Log Out</Nav.Link>
+                        <Nav className="mr-auto">
+                            <Nav.Link href='/create'>Post Blog</Nav.Link>
+                            <Nav.Link onClick={() => {
+                                console.log(client);
+                                client.writeData({ data: { isLoggedIn: false } });
+                                localStorage.clear();
+                                console.log("hello");
+                                console.log(client);
+                            }}>Log Out</Nav.Link>
+                        </Nav>
                     </div>
                 )}
             </ApolloConsumer>

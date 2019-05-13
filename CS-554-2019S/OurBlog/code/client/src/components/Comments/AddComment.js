@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Query, Mutation} from 'react-apollo';
-import { Form, Button, Row, Col, FormGroup } from 'react-bootstrap';
+import { Form, Button, Row, Col, FormGroup, Card } from 'react-bootstrap';
 import queries from '../../queries';
 
 class AddComment extends Component {
@@ -9,7 +9,8 @@ class AddComment extends Component {
         this.state = {
             showAddComment: this.props.isOpen,
             comment: '',
-            blogId: ''
+            blogId: '',
+            name: '',
         };
         this.handleOpenAddComment = this.handleOpenAddComment.bind(this);
         this.handleCloseAddComment = this.handleCloseAddComment.bind(this);
@@ -29,6 +30,7 @@ class AddComment extends Component {
     }
 
     handleCloseAddComment() {
+        this.setState({comment: "", blogId: ""});
         this.setState({showAddComment: false});
         this.props.handleClose(false);
     }
@@ -39,11 +41,27 @@ class AddComment extends Component {
             <div>
                 <Row className="justify-content-md-center">
                     <Col lg={8}>
+                    <Query query={queries.ME}>
+                                {({ data }) => {
+                                    if (!data) {
+                                        return (
+                                            <div>
+                                            </div>
+                                        );
+                                    }
+                                    const { me } = data;
+                                    if (!me) {
+                                        return (
+                                            <div>
+                                            </div>
+                                        );
+                                    } else {
+                                        return (
                     <Mutation mutation={queries.POST_COMMENT}>
                             {(postComment, { data }) => (
                                 <Form onSubmit={async (e) => {
                                     e.preventDefault();
-                                    console.log(this.state.comment, this.state.blogId);
+                                    //console.log(this.state.comment, this.state.blogId);
                                     postComment({
                                         variables: {
                                             content: this.state.comment,
@@ -51,24 +69,28 @@ class AddComment extends Component {
                                         }
                                     });
 
-                                    this.setState({comment: "", blogId: ""});
-                                    this.setState({showAddComment: false});
+                                   
                                 alert('Comment Added');
                                 this.handleCloseAddComment();
                             }}>
                             <Form.Group controlId="comment">
-                                        <Form.Label>Content</Form.Label>
+                                        <Form.Label>Comment</Form.Label>
                                         <Form.Control as="textarea" name="comment" value={this.state.value} onChange={this.handleChange} rows="3"
                                             ref={node => {
                                                 content = node;
                                             }}
                                             required
                                         />
+                                      
                                     </Form.Group>
+                                    <div className= "card-footer"> <b>You:</b> {me.name} </div>
                                     <Button variant="outline-primary" type="submit">Post</Button>
                                 </Form>
                             )}
-                        </Mutation>              
+                        </Mutation>    
+                                        )}
+                                }}
+                     </Query>         
                         </Col>
                 </Row>
                

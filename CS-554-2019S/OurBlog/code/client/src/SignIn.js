@@ -4,6 +4,7 @@ import firebase from "./firebase";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Mutation, ApolloConsumer } from 'react-apollo';
 import queries from './queries';
+import { Redirect } from 'react-router-dom';
 
 class SignInContainer extends Component {
 
@@ -41,7 +42,7 @@ class SignInContainer extends Component {
 
         if (this.state.success) {
             return (
-                <h1>Blogs</h1>
+                <Redirect to='/profile' />
             );
         }
         else {

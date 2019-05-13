@@ -37,6 +37,7 @@ class HomePage extends Component {
                                     query: queries.ELASTIC_SEARCH,
                                     variables: { searchString: this.state.searchString }
                                 });
+                                
                                 this.fetchTag(data.elasticSearch);
                             }}>
                                 <Form.Group controlId="searchBar">
@@ -85,14 +86,32 @@ class HomePage extends Component {
                             </Col>
                             <Col sm={10} className="justify-content-md-center">
                                 <div>
-                                    {this.state.articles && <ArticleList articles={this.state.articles} />}
+                                <Query query={queries.GET_ALL_BLOGS}>
+                                  {({ loading, error, data }) => {
+                                     if(data){
+                                          let arr = data.allBlogs;
+                                          console.log("articles in state", this.state.articles)
+                                          if(arr && (this.state.articles.length === 0))
+                                          {
+                                            return <ArticleList articles={arr} />
+                                          }
+                                          else
+                                          {
+                                            return <ArticleList articles={this.state.articles} />
+                                          }
+                                      }
+                                    return null   
+
+                                  }}
+                                  </Query>
                                 </div>
-                            </Col>
+                </Col>
                         </Row>
                     </div>
                 )}
             </ApolloConsumer>
         )
+
     }
 
 }

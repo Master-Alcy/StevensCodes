@@ -9,9 +9,10 @@ import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
 import NewUserSurvey from './forms/NewUserSurvey';
 import ArticleItem from './components/ArticleItem';
-// import ShowProfile from './ShowProfile';
+import ShowProfile from './ShowProfile';
 import AccountButtons from './components/AccountButtons';
 import LogOut from './components/LogOut';
+import UpdateUser from './components/UpdateUser'
 
 function App(isLoggedIn) {
   return (
@@ -20,16 +21,15 @@ function App(isLoggedIn) {
         <header className="App-header">
           <Navbar bg="dark" variant="dark">
             <Container fluid={true}>
-              <Navbar.Brand href="/">OurBlog</Navbar.Brand>
+            <Navbar.Brand href="/">
+            <img
+            src="/blog.png"
+            width="50"
+            height="40"
+            className="d-inline-block align-top"
+            />
+    </Navbar.Brand>
               <Nav className="mr-auto">
-                <Nav.Link href="/">Home</Nav.Link>
-                <NavDropdown title="Articles" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                </NavDropdown>
                 {isLoggedIn.isLoggedIn ? <LogOut /> : <AccountButtons isLoggedIn={isLoggedIn.isLoggedIn} />}
               </Nav>
             </Container>
@@ -44,7 +44,8 @@ function App(isLoggedIn) {
           <Route path="/create" component={CreateArticle} />
           <Route path="/signup/survey" component={NewUserSurvey} />
           <Route path="/article/:id" component={ArticleItem} />
-          {/* <Route path="/profile" component={ShowProfile} /> */}
+          <Route path="/profile/update" exact component={UpdateUser} />
+          <Route path="/profile/" component={ShowProfile} />
           {/* <Route path="/pokemon/" component={PokemonListContainer} />
                   <Route path="/pokemon/" component={PokemonListContainer} /> */}
         </Switch>

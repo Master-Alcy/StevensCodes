@@ -27,7 +27,7 @@ You need redis server running at <http://localhost:6379>
 2. Install Docker
    1. For Windows 10 Professional : <https://hub.docker.com/editions/community/docker-ce-desktop-windows>
    2. Else install docker toolbox: <https://docs.docker.com/toolbox/toolbox_install_windows/>
-3. For Operations in Docker (These should all be done within `start.sh`!!!)
+3. For Operations in Docker (These should all be done in Docker and within `start.sh`!!!)
    1. You should run the `start.sh` in docker folder
    2. Go to `\OurBlog\code\server\data\prisma\`, make sure the `prisma.yml` has endpoint points to <http://192.168.99.100:4466>
    3. run `docker-compose up -d` at `/OurBlog/code/server/data/prisma/`

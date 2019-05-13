@@ -9,11 +9,11 @@ class  ArticleItem extends Component{
     constructor (props) {
         super(props);
         this.state= {
-        //articles: [],
         id:'',
         showAddComment: false
         };
         this.handleOpenAddComment = this.handleOpenAddComment.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
     handleOpenAddComment() {
         this.setState({showAddComment: true});
@@ -23,12 +23,12 @@ componentDidMount(){
     this.setState({id: id});
 }  
 handleClose(){
-
+    console.log("inside")
 }
 render(){
     console.log("state", this.state.id);
         return (
-            <Query query={queries.GET_BLOG}
+            <Query query={queries.GET_ONLY_BLOG}
             variables={{ id: this.state.id }}
         >
          {({ loading, error, data, refetch }) => {
@@ -37,9 +37,6 @@ render(){
                     return null;
                 }
              if (error) return `Error: ${error}`
-
-                console.log("state id: ", this.state.id)
-                console.log("data", data)
                 if (!data) {
                     console.log("Data not found");
                     // refetch();
@@ -55,6 +52,13 @@ render(){
                         </div>
                     );
                 } else {
+                    let arr = getBlog.comments;
+                    let divArr = [];
+
+                    for(let i in arr){
+                        divArr.push(<Card key={i}><div><b>{arr[i].postedBy.name}:</b> {arr[i].content}</div></Card>)
+                    }  
+
                     return(
                         <div>
                             <Card>
@@ -62,16 +66,26 @@ render(){
                                     <Card.Title>{getBlog.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">Created At: {getBlog.createdAt}</Card.Subtitle>
                                     <Card.Subtitle className="mb-2 text-muted">Updated At: {getBlog.updatedAt}</Card.Subtitle>
+                                    
+                                    <br />
                                     <Card.Text>
                                         {getBlog.article}
                                     </Card.Text>
-    
+                                    <br/>
+                                    <div >{getBlog.postedBy.name}</div>
                                 </Card.Body>
                             </Card>
+                     <br/>
+                     <br />
+                           <div> 
+                                {divArr}
+                           </div>
+                          <br />
+
                             <AddComment blogId={this.state.id} handleClose={this.handleClose}/>
                         </div>
             );
-        }
+    }
     }
     }
 </Query>

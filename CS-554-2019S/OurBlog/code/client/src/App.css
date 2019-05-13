@@ -1,1 +1,38 @@
 
+@media screen and (max-width: 970px) {
+    .nav-logo {
+        margin-left: -30px;
+    }
+}
+
+
+
+
+.button {
+    padding: 0.4rem .8rem;
+    background-color: #28547a;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none !important;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
+    margin: 0 auto 20px;
+}
+
+
+input,
+select {
+    padding: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #28547a;
+}
+.signup-h2 {
+    font-size: 25px;
+    color: gray;
+    font-family: "Domine";
+    text-align: center;
+}

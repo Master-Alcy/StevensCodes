@@ -5,8 +5,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Mutation, ApolloConsumer } from 'react-apollo';
 import queries from './queries';
 
-// import SignInContainer from './SignIn'
-import NewUserSurvey from './forms/NewUserSurvey';
+import { Redirect } from 'react-router-dom';
 
 class SignUpContainer extends Component {
 
@@ -43,9 +42,9 @@ class SignUpContainer extends Component {
     };
 
     render() {
-
+        console.log("state.success", this.state.success);
         if (this.state.success) {
-            return <NewUserSurvey />;
+            return <Redirect to='/signup/survey' />;
         }
         else {
             return (
