@@ -26,6 +26,8 @@ async function main() {
                 }
             }
         });
+        const esData = await solr.createSolrCompatibleDocument(newBlog.id, newBlog.title, newBlog.article);
+        await solr.update(esData);
         console.log(`<Log>[${new Date().toUTCString()}]: Created new blog: ${JSON.stringify(newBlog)}`);
 
         for (let j = 0; j < Random.natural(1, 6); j++) {
@@ -45,6 +47,18 @@ async function main() {
             });
             console.log(`<Log>[${new Date().toUTCString()}]: Created new comment: ${JSON.stringify(newComment)}`);
         }// end comment seed
+
+        for (let k = 0; k < Random.natural(1, 3); k++) {
+            const newTag = await prisma.createTag({
+                tag: Random.word(2, 4),
+                blogs: {
+                    connect: {
+                        id: newBlog.id
+                    }
+                }
+            });
+            console.log(`<Log>[${new Date().toUTCString()}]: Created new tag: ${JSON.stringify(newTag)}`);
+        }// end tag seed
     }// end blog seed
     console.log("=====================Finished========================");
 }

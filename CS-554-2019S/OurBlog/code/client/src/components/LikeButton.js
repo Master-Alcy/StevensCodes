@@ -1,73 +1,40 @@
 import React from "react";
 import { Button } from 'react-bootstrap';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-
-const updateBlog = gql`
-    mutation updateBlog($id: ID!, $likes: Int!){
-        updateBlog(
-            id: $id,
-            likes: $likes
-        ) {
-            id
-            title
-            article
-            likes
-        }
-    }
-`;
-
-const getAllBlogs = gql`
-query {
-    allBlogs {
-        id
-        createdAt
-        updatedAt
-        title
-        article
-        likes
-        postedBy {
-          id
-          name
-        }
-        comments {
-          id
-        }
-    }
-}
-`;
+import queries from '../queries';
 
 const LikeButton = (all) => {
     return (
         <div>
-            <Mutation mutation={updateBlog}
-                update={(cache, { data: { updateBlog } }) => {
+            <Mutation mutation={queries.LIKE_BLOG}
+                update={(cache, { data: { likeBlog } }) => {
                     const { allBlogs } = cache.readQuery({
-                        query: getAllBlogs
+                        query: queries.GET_ALL_BLOGS
                     });
                     cache.writeQuery({
-                        query: getAllBlogs,
+                        query: queries.GET_ALL_BLOGS,
                         data: {
                             allBlogs: allBlogs
                         }
                     })
                 }}
             >
-                {(updateBlog, { data }) => (
-                    <div>
-                        <Button className="float-right" variant="outline-danger" onClick={ e => {
-                                updateBlog({
+                {likeBlog  => {
+                    
+                    return (
+                        <div>
+                            <Button className="float-right" variant="outline-danger" onClick={e => {
+                                likeBlog({
                                     variables: {
-                                        id: all.all.id,
-                                        likes: all.all.likes + 1
+                                        id: all.all.id
                                     }
                                 });
-                        }}>
-                        {/* all.all.likes probably won't update with cache. try finding what data is instead */}
-                            Like {all.all.likes}
-                        </Button>
-                    </div>
-                )}
+                            }}>
+                                Likes {all.all.likes}
+                            </Button>
+                        </div>
+                    )
+                }}
 
             </Mutation>
         </div>
