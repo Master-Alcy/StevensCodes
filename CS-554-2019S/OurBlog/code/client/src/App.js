@@ -7,6 +7,10 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import HomePage from './HomePage';
 import CreateArticle from './CreateArticle';
+<<<<<<< HEAD
+=======
+import NewUserSurvey from './forms/NewUserSurvey';
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
 import ArticleItem from './components/ArticleItem';
 import ShowProfile from './ShowProfile';
 import AccountButtons from './components/AccountButtons';
@@ -20,6 +24,7 @@ function App(isLoggedIn) {
         <header className="App-header">
           <Navbar className="navbar">
             <Container fluid={true}>
+<<<<<<< HEAD
               <Navbar.Brand href="/">
                 <img
                   src="/blog.png"
@@ -29,6 +34,16 @@ function App(isLoggedIn) {
                   alt="OurBlog"
                 />
               </Navbar.Brand>
+=======
+            <Navbar.Brand href="/">
+            <img
+            src="/blog.png"
+            width="50"
+            height="40"
+            className="d-inline-block align-top"
+            />
+    </Navbar.Brand>
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
               <Nav className="mr-auto">
                 {isLoggedIn.isLoggedIn ? <LogOut /> : <AccountButtons isLoggedIn={isLoggedIn.isLoggedIn} />}
               </Nav>
@@ -40,6 +55,7 @@ function App(isLoggedIn) {
         </header>
         <Switch>
           <Route exact path="/" component={HomePage} />
+<<<<<<< HEAD
           <PrivateRoute path="/signin" component={SignIn} isLoggedIn={isLoggedIn.isLoggedIn} />
           <PrivateRoute exact path="/signup" component={SignUp} isLoggedIn={isLoggedIn.isLoggedIn} />
           <ExtraPrivateRoute path="/create" component={CreateArticle} isLoggedIn={isLoggedIn.isLoggedIn} />
@@ -47,6 +63,17 @@ function App(isLoggedIn) {
           <ExtraPrivateRoute path="/profile/update" exact component={UpdateUser} isLoggedIn={isLoggedIn.isLoggedIn} />
           <ExtraPrivateRoute path="/profile/" component={ShowProfile} isLoggedIn={isLoggedIn.isLoggedIn} />
 
+=======
+          <Route path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route path="/create" component={CreateArticle} />
+          <Route path="/signup/survey" component={NewUserSurvey} />
+          <Route path="/article/:id" component={ArticleItem} />
+          <Route path="/profile/update" exact component={UpdateUser} />
+          <Route path="/profile/" component={ShowProfile} />
+          {/* <Route path="/pokemon/" component={PokemonListContainer} />
+                  <Route path="/pokemon/" component={PokemonListContainer} /> */}
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
         </Switch>
       </div>
     </Router>

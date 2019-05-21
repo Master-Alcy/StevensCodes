@@ -39,9 +39,16 @@ class SignInContainer extends Component {
     };
 
     render() {
+<<<<<<< HEAD
         if (this.state.success) {
             return (
                 <Redirect to='/' />
+=======
+
+        if (this.state.success) {
+            return (
+                <Redirect to='/profile' />
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
             );
         }
         else {

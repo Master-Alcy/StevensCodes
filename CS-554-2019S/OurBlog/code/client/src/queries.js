@@ -26,10 +26,18 @@ query {
 `;
 
 const UPDATE_USER = gql`
+<<<<<<< HEAD
     mutation updateUser ($name: String!, $email: String!, $phone: String, $address: String, $interest:String){
         updateUser(
             name: $name,
             email: $email,
+=======
+    mutation updateUser ($name: String!, $password:String, $email: String!, $phone: String, $address: String, $interest:String){
+        updateUser(
+            name: $name,
+            email: $email,
+            password: $password,
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
             phone: $phone,
             address: $address,
             interest: $interest
@@ -132,7 +140,10 @@ const GET_ONLY_BLOG = gql`
                     id
                     name
                 }
+<<<<<<< HEAD
                 likes
+=======
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
             }
         }
     }
@@ -153,9 +164,14 @@ mutation postComment($content:String!, $blogId:ID!){
         content: $content, 
         blogId: $blogId
     ) {
+<<<<<<< HEAD
         id
         content
         postedBy{
+=======
+      content
+      postedBy{
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
           name
       }
     }
@@ -271,6 +287,7 @@ const ADD_BLOG_TO_TAG_BY_ID = gql`
      }
 `;
 
+<<<<<<< HEAD
 const LIKE_COMMENT = gql`
 mutation likeComment($id: ID!){
     likeComment(
@@ -293,6 +310,8 @@ const GET_ALL_COMMENTS = gql`
     }
 `;
 
+=======
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
 export default {
     ME,
     UPDATE_USER,
@@ -310,7 +329,11 @@ export default {
     GET_TAG,
     GET_ONLY_BLOG,
     POST_TAG,
+<<<<<<< HEAD
     ADD_BLOG_TO_TAG_BY_ID,
     LIKE_COMMENT,
     GET_ALL_COMMENTS
+=======
+    ADD_BLOG_TO_TAG_BY_ID
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
 }

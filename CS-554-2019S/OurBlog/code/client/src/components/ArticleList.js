@@ -3,6 +3,7 @@ import React from "react";
 import ArticleCard from './ArticleCard'
 
 const ArticleList = props => {
+    console.log("props arr: ", props.articles.length)
     if (!props.articles.length) {
         return null;
     }

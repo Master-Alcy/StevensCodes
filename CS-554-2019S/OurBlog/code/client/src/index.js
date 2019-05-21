@@ -14,6 +14,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+<<<<<<< HEAD
+=======
+import queries from './queries'
+>>>>>>> 887ef9b15c5adc7dcec8b96530399b6466e77bc6
 import gql from 'graphql-tag';
 
 // The uri is a mandatory value to define the only GraphQL API endpoint used by the Apollo Client.
